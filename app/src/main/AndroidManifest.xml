@@ -10,8 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PokemonTowerDefense">
         <activity
+            android:name=".testSecondScreen"
+            android:exported="false" />
+        <activity
             android:name=".WelcomeScreen"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
