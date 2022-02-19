@@ -1,91 +1,82 @@
 package com.my.pokemontowerdefense.ui.login
 
-import android.app.Activity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.view.inputmethod.EditorInfo
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.my.pokemontowerdefense.databinding.ActivityConfigScreenBinding
-
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
 import com.my.pokemontowerdefense.R
+import kotlinx.android.synthetic.main.activity_config_screen.*
+
 
 class ConfigScreen : AppCompatActivity() {
 
-    private lateinit var loginViewModel: LoginViewModel
-    private lateinit var binding: ActivityConfigScreenBinding
-
+    //val hardButton: Button = findViewById<View>(R.id.hardButton) as Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_config_screen)
 
-        binding = ActivityConfigScreenBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        var hardClicked = false
+        var medClicked = false
+        var easyClicked = false
 
-        val username = binding.name
-        val loading = binding.loading
-
-        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
-            .get(LoginViewModel::class.java)
-
-        loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
-            val loginState = it ?: return@Observer
-
-            // disable login button unless both username / password is valid
-            //login.isEnabled = loginState.isDataValid
-
-            if (loginState.usernameError != null) {
-                username.error = getString(loginState.usernameError)
+        hardButton.setOnClickListener() {
+            hardClicked = true
+            hardButton.setBackgroundColor(getResources().getColor(R.color.white))
+            mediumButton.setTextColor(getResources().getColor(R.color.light_black))
+            if (medClicked) {
+                medClicked = false
+                mediumButton.setBackgroundColor(getResources().getColor(R.color.silver))
+                mediumButton.setTextColor(getResources().getColor(R.color.light_black))
+            } else if (easyClicked) {
+                easyClicked = false
+                easyButton.setBackgroundColor(getResources().getColor(R.color.red))
+                easyButton.setTextColor(getResources().getColor(R.color.white))
             }
-        })
+        }
 
-        loginViewModel.loginResult.observe(this@LoginActivity, Observer {
-            val loginResult = it ?: return@Observer
-
-            loading.visibility = View.GONE
-            if (loginResult.error != null) {
-                showLoginFailed(loginResult.error)
+        mediumButton.setOnClickListener() {
+            medClicked = true
+            mediumButton.setBackgroundColor(getResources().getColor(R.color.dark_black))
+            mediumButton.setTextColor(getResources().getColor(R.color.silver))
+            if (hardClicked) {
+                hardClicked = false;
+                hardButton.setBackgroundColor(getResources().getColor(R.color.dark_black))
+                mediumButton.setTextColor(getResources().getColor(R.color.white))
+            } else if (easyClicked) {
+                easyClicked = false;
+                easyButton.setBackgroundColor(getResources().getColor(R.color.red))
+                easyButton.setTextColor(getResources().getColor(R.color.white))
             }
-            if (loginResult.success != null) {
-                updateUiWithUser(loginResult.success)
+        }
+
+        easyButton.setOnClickListener() {
+            easyClicked = true;
+            easyButton.setBackgroundColor(getResources().getColor(R.color.white))
+            easyButton.setTextColor(getResources().getColor(R.color.red))
+            if (hardClicked) {
+                hardClicked = false;
+                hardButton.setBackgroundColor(getResources().getColor(R.color.dark_black))
+                mediumButton.setTextColor(getResources().getColor(R.color.white))
+            } else if (medClicked) {
+                medClicked = false;
+                mediumButton.setBackgroundColor(getResources().getColor(R.color.silver))
+                mediumButton.setTextColor(getResources().getColor(R.color.light_black))
             }
-            setResult(Activity.RESULT_OK)
-
-            //Complete and destroy login activity once successful
-            finish()
-        })
-
-        username.afterTextChanged {
-            loginViewModel.loginDataChanged(
-                username.text.toString(),
-            )
         }
     }
 
-    private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome)
-        val displayName = model.displayName
-        // TODO : initiate successful logged in experience
-        Toast.makeText(
-            applicationContext,
-            "$welcome $displayName",
-            Toast.LENGTH_LONG
-        ).show()
-    }
 
-    private fun showLoginFailed(@StringRes errorString: Int) {
-        Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
-    }
 }
 
 /**
  * Extension function to simplify setting an afterTextChanged action to EditText components.
  */
+/*
 fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
     this.addTextChangedListener(object : TextWatcher {
         override fun afterTextChanged(editable: Editable?) {
@@ -96,4 +87,4 @@ fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
 
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
     })
-}
+}*/

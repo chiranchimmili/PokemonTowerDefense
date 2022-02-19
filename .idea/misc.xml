@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/hardbuttonchange.xml" value="0.1645" />
+        <entry key="app/src/main/res/layout-w1240dp/activity_config_screen.xml" value="0.16953125" />
+        <entry key="app/src/main/res/layout-w936dp/activity_config_screen.xml" value="0.148224043715847" />
+        <entry key="app/src/main/res/layout/activity_config_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/layout.xml" value="0.19655797101449277" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

@@ -13,7 +13,8 @@
             android:name=".ui.login.ConfigScreen"
             android:exported="false"
             android:label="@string/title_activity_config_screen"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape"
+        />
     </application>
 
 </manifest>
