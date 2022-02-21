@@ -23,10 +23,6 @@ class ConfigScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_config_screen)
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        Objects.requireNonNull(getSupportActionBar())?.hide();
-
         var hardClicked = false
         var medClicked = false
         var easyClicked = false
@@ -39,45 +35,45 @@ class ConfigScreen : AppCompatActivity() {
 
         hardButton.setOnClickListener() {
             hardClicked = true
-            hardButton.setBackgroundColor(getResources().getColor(R.color.light_black))
+            hardButton.setSelected(true);
             hardButton.setTextColor(getResources().getColor(R.color.silver))
             if (medClicked) {
                 medClicked = false
-                mediumButton.setBackgroundColor(getResources().getColor(R.color.brown))
+                mediumButton.setSelected(false)
                 mediumButton.setTextColor(getResources().getColor(R.color.dark_black))
             } else if (easyClicked) {
                 easyClicked = false
-                easyButton.setBackgroundColor(getResources().getColor(R.color.brown))
+                easyButton.setSelected(false)
                 easyButton.setTextColor(getResources().getColor(R.color.dark_black))
             }
         }
 
         mediumButton.setOnClickListener() {
             medClicked = true
-            mediumButton.setBackgroundColor(getResources().getColor(R.color.light_black))
+            mediumButton.setSelected(true)
             mediumButton.setTextColor(getResources().getColor(R.color.silver))
             if (hardClicked) {
                 hardClicked = false;
-                hardButton.setBackgroundColor(getResources().getColor(R.color.brown))
+                hardButton.setSelected(false)
                 hardButton.setTextColor(getResources().getColor(R.color.dark_black))
             } else if (easyClicked) {
                 easyClicked = false;
-                easyButton.setBackgroundColor(getResources().getColor(R.color.brown))
+                easyButton.setSelected(false)
                 easyButton.setTextColor(getResources().getColor(R.color.dark_black))
             }
         }
 
         easyButton.setOnClickListener() {
             easyClicked = true;
-            easyButton.setBackgroundColor(getResources().getColor(R.color.light_black))
+            easyButton.setSelected(true)
             easyButton.setTextColor(getResources().getColor(R.color.silver))
             if (hardClicked) {
                 hardClicked = false;
-                hardButton.setBackgroundColor(getResources().getColor(R.color.brown))
+                hardButton.setSelected(false)
                 hardButton.setTextColor(getResources().getColor(R.color.dark_black))
             } else if (medClicked) {
                 medClicked = false;
-                mediumButton.setBackgroundColor(getResources().getColor(R.color.brown))
+                mediumButton.setSelected(false)
                 mediumButton.setTextColor(getResources().getColor(R.color.dark_black))
             }
         }
