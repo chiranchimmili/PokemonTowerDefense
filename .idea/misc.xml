@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/buttoncolor.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/hardbuttonchange.xml" value="0.1645" />
+        <entry key="app/src/main/res/drawable/textcolor.xml" value="0.1" />
         <entry key="app/src/main/res/layout-w1240dp/activity_config_screen.xml" value="0.16953125" />
         <entry key="app/src/main/res/layout-w936dp/activity_config_screen.xml" value="0.148224043715847" />
         <entry key="app/src/main/res/layout/activity_config_screen.xml" value="0.21621621621621623" />

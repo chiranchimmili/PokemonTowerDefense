@@ -1,20 +1,10 @@
 package com.my.pokemontowerdefense.ui.login
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.View
-import android.view.WindowManager
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import com.my.pokemontowerdefense.R
 import kotlinx.android.synthetic.main.activity_config_screen.*
-import java.util.*
 
 
 class ConfigScreen : AppCompatActivity() {
@@ -33,53 +23,44 @@ class ConfigScreen : AppCompatActivity() {
             dialog.cancel()
         }
 
-        hardButton.setOnClickListener() {
+        hardButton.setOnClickListener {
             hardClicked = true
-            hardButton.setSelected(true);
-            hardButton.setTextColor(getResources().getColor(R.color.silver))
+            hardButton.isSelected = true
             if (medClicked) {
                 medClicked = false
-                mediumButton.setSelected(false)
-                mediumButton.setTextColor(getResources().getColor(R.color.dark_black))
+                mediumButton.isSelected = false
             } else if (easyClicked) {
                 easyClicked = false
-                easyButton.setSelected(false)
-                easyButton.setTextColor(getResources().getColor(R.color.dark_black))
+                easyButton.isSelected = false
             }
         }
 
-        mediumButton.setOnClickListener() {
+        mediumButton.setOnClickListener {
             medClicked = true
-            mediumButton.setSelected(true)
-            mediumButton.setTextColor(getResources().getColor(R.color.silver))
-            if (hardClicked) {
-                hardClicked = false;
-                hardButton.setSelected(false)
-                hardButton.setTextColor(getResources().getColor(R.color.dark_black))
-            } else if (easyClicked) {
-                easyClicked = false;
-                easyButton.setSelected(false)
-                easyButton.setTextColor(getResources().getColor(R.color.dark_black))
-            }
+            mediumButton.isSelected = true
+                if (hardClicked) {
+                    hardClicked = false
+                    hardButton.isSelected = false
+                } else if (easyClicked) {
+                    easyClicked = false
+                    easyButton.isSelected = false
+                }
         }
 
-        easyButton.setOnClickListener() {
-            easyClicked = true;
-            easyButton.setSelected(true)
-            easyButton.setTextColor(getResources().getColor(R.color.silver))
+        easyButton.setOnClickListener {
+            easyClicked = true
+            easyButton.isSelected = true
             if (hardClicked) {
-                hardClicked = false;
-                hardButton.setSelected(false)
-                hardButton.setTextColor(getResources().getColor(R.color.dark_black))
+                hardClicked = false
+                hardButton.isSelected = false
             } else if (medClicked) {
-                medClicked = false;
-                mediumButton.setSelected(false)
-                mediumButton.setTextColor(getResources().getColor(R.color.dark_black))
+                medClicked = false
+                mediumButton.isSelected = false
             }
         }
 
 
-        startButton.setOnClickListener() {
+        startButton.setOnClickListener {
             if (nameField.text.toString().isNullOrBlank()) { // if the name is invalid
                 dialogBuilder.setMessage("Name is Invalid!")
                 val alert = dialogBuilder.create()
