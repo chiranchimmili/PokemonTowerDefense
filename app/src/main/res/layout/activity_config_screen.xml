@@ -13,32 +13,37 @@
     tools:context=".ui.login.ConfigScreen">
 
 
+    <!-- 430  110 -->
+
     <Button
         android:id="@+id/hardButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="265dp"
         android:layout_marginEnd="4dp"
-        android:backgroundTint="#000000"
+        android:backgroundTint="@color/brown"
+        android:textColor="@color/dark_black"
         android:fontFamily="@font/alatsi"
         android:text="Elite Four"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <!-- 430  110 -->
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.811" />
+
     <Button
         android:id="@+id/startButton"
         android:layout_width="430dp"
         android:layout_height="60dp"
-        android:layout_marginTop="324dp"
-        android:layout_marginEnd="110dp"
+        android:layout_marginEnd="168dp"
         android:backgroundTint="#E6D428"
         android:fontFamily="@font/pokemon"
         android:letterSpacing="0.18"
         android:text="Begin your adventure!"
         android:textColor="#B4000000"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/name"
@@ -60,26 +65,29 @@
         android:id="@+id/easyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="265dp"
-        android:layout_marginEnd="272dp"
-        android:backgroundTint="#E9330C"
+        android:layout_marginEnd="352dp"
+        android:backgroundTint="#D38A51"
         android:fontFamily="@font/alatsi"
         android:text="Trainer"
+        android:textColor="@color/dark_black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.811" />
 
     <Button
         android:id="@+id/mediumButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="265dp"
-        android:layout_marginEnd="133dp"
-        android:backgroundTint="#B4B4B4"
+        android:layout_marginEnd="172dp"
+        android:backgroundTint="@color/brown"
         android:fontFamily="@font/alatsi"
         android:text="Gym Leader"
-        android:textColor="#37474F"
+        android:textColor="@color/dark_black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.811" />
 
     <TextView
         android:id="@+id/nameLabel"
@@ -100,7 +108,7 @@
         android:id="@+id/difficultyLabel"
         android:layout_width="276dp"
         android:layout_height="47dp"
-        android:layout_marginEnd="368dp"
+        android:layout_marginEnd="484dp"
         android:fontFamily="@font/pokemon"
         android:gravity="center"
         android:letterSpacing="0.11"
@@ -110,6 +118,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.804" />
+        app:layout_constraintVertical_bias="0.812" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

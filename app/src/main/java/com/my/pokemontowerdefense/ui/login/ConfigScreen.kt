@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -11,6 +12,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import com.my.pokemontowerdefense.R
 import kotlinx.android.synthetic.main.activity_config_screen.*
+import java.util.*
 
 
 class ConfigScreen : AppCompatActivity() {
@@ -19,6 +21,9 @@ class ConfigScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_config_screen)
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        Objects.requireNonNull(getSupportActionBar())?.hide();
 
         var hardClicked = false
         var medClicked = false
@@ -26,65 +31,49 @@ class ConfigScreen : AppCompatActivity() {
 
         hardButton.setOnClickListener() {
             hardClicked = true
-            hardButton.setBackgroundColor(getResources().getColor(R.color.white))
-            mediumButton.setTextColor(getResources().getColor(R.color.light_black))
+            hardButton.setBackgroundColor(getResources().getColor(R.color.light_black))
+            hardButton.setTextColor(getResources().getColor(R.color.silver))
             if (medClicked) {
                 medClicked = false
-                mediumButton.setBackgroundColor(getResources().getColor(R.color.silver))
-                mediumButton.setTextColor(getResources().getColor(R.color.light_black))
+                mediumButton.setBackgroundColor(getResources().getColor(R.color.brown))
+                mediumButton.setTextColor(getResources().getColor(R.color.dark_black))
             } else if (easyClicked) {
                 easyClicked = false
-                easyButton.setBackgroundColor(getResources().getColor(R.color.red))
-                easyButton.setTextColor(getResources().getColor(R.color.white))
+                easyButton.setBackgroundColor(getResources().getColor(R.color.brown))
+                easyButton.setTextColor(getResources().getColor(R.color.dark_black))
             }
         }
 
         mediumButton.setOnClickListener() {
             medClicked = true
-            mediumButton.setBackgroundColor(getResources().getColor(R.color.dark_black))
+            mediumButton.setBackgroundColor(getResources().getColor(R.color.light_black))
             mediumButton.setTextColor(getResources().getColor(R.color.silver))
             if (hardClicked) {
                 hardClicked = false;
-                hardButton.setBackgroundColor(getResources().getColor(R.color.dark_black))
-                mediumButton.setTextColor(getResources().getColor(R.color.white))
+                hardButton.setBackgroundColor(getResources().getColor(R.color.brown))
+                hardButton.setTextColor(getResources().getColor(R.color.dark_black))
             } else if (easyClicked) {
                 easyClicked = false;
-                easyButton.setBackgroundColor(getResources().getColor(R.color.red))
-                easyButton.setTextColor(getResources().getColor(R.color.white))
+                easyButton.setBackgroundColor(getResources().getColor(R.color.brown))
+                easyButton.setTextColor(getResources().getColor(R.color.dark_black))
             }
         }
 
         easyButton.setOnClickListener() {
             easyClicked = true;
-            easyButton.setBackgroundColor(getResources().getColor(R.color.white))
-            easyButton.setTextColor(getResources().getColor(R.color.red))
+            easyButton.setBackgroundColor(getResources().getColor(R.color.light_black))
+            easyButton.setTextColor(getResources().getColor(R.color.silver))
             if (hardClicked) {
                 hardClicked = false;
-                hardButton.setBackgroundColor(getResources().getColor(R.color.dark_black))
-                mediumButton.setTextColor(getResources().getColor(R.color.white))
+                hardButton.setBackgroundColor(getResources().getColor(R.color.brown))
+                hardButton.setTextColor(getResources().getColor(R.color.dark_black))
             } else if (medClicked) {
                 medClicked = false;
-                mediumButton.setBackgroundColor(getResources().getColor(R.color.silver))
-                mediumButton.setTextColor(getResources().getColor(R.color.light_black))
+                mediumButton.setBackgroundColor(getResources().getColor(R.color.brown))
+                mediumButton.setTextColor(getResources().getColor(R.color.dark_black))
             }
         }
     }
 
 
 }
-
-/**
- * Extension function to simplify setting an afterTextChanged action to EditText components.
- */
-/*
-fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
-    this.addTextChangedListener(object : TextWatcher {
-        override fun afterTextChanged(editable: Editable?) {
-            afterTextChanged.invoke(editable.toString())
-        }
-
-        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-
-        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-    })
-}*/

@@ -11,7 +11,7 @@
         android:theme="@style/Theme.PokemonTowerDefense">
         <activity
             android:name=".ui.login.ConfigScreen"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/title_activity_config_screen"
             android:screenOrientation="landscape"
         />
