@@ -1,5 +1,7 @@
 package com.my.pokemontowerdefense.ui.login
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -23,6 +25,12 @@ class ConfigScreen : AppCompatActivity() {
         var hardClicked = false
         var medClicked = false
         var easyClicked = false
+
+        // Initialize dialogue alert box
+        val dialogBuilder = AlertDialog.Builder(this)
+        dialogBuilder.setPositiveButton("Okay") { dialog, _ ->
+            dialog.cancel()
+        }
 
         hardButton.setOnClickListener() {
             hardClicked = true
@@ -66,6 +74,21 @@ class ConfigScreen : AppCompatActivity() {
                 medClicked = false;
                 mediumButton.setBackgroundColor(getResources().getColor(R.color.silver))
                 mediumButton.setTextColor(getResources().getColor(R.color.light_black))
+            }
+        }
+
+
+        startButton.setOnClickListener() {
+            if (nameField.text.toString().isNullOrBlank()) { // if the name is invalid
+                dialogBuilder.setMessage("Name is Invalid!")
+                val alert = dialogBuilder.create()
+                alert.show()
+            } else if (!hardClicked && !medClicked && !easyClicked) { // If no difficulty is selected
+                dialogBuilder.setMessage("Select a difficulty!")
+                val alert = dialogBuilder.create()
+                alert.show()
+            } else {
+                // TODO: If everything goes right
             }
         }
     }
