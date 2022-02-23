@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.animation.ValueAnimator.INFINITE
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
@@ -12,6 +13,7 @@ import android.view.animation.RotateAnimation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.animation.doOnEnd
 import com.my.pokemontowerdefense.R
+import com.my.pokemontowerdefense.testSecondScreen
 import kotlinx.android.synthetic.main.activity_config_screen.*
 
 
@@ -86,8 +88,11 @@ class ConfigScreen : AppCompatActivity() {
                 alert.show()
             } else {
                 // TODO: If everything goes right
+                val intent = Intent(this, testSecondScreen::class.java)
+                startActivity(intent)
             }
         }
+
 
     }
 

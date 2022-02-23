@@ -7,6 +7,7 @@ import android.content.Intent
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import com.my.pokemontowerdefense.ui.login.ConfigScreen
 
 class WelcomeScreen : AppCompatActivity() {
     private fun hideSystemBars() {
@@ -29,7 +30,7 @@ class WelcomeScreen : AppCompatActivity() {
         val quitButton = findViewById<Button>(R.id.quit_button)
 
         startButton.setOnClickListener{
-            val intent = Intent(this, testSecondScreen::class.java)
+            val intent = Intent(this, ConfigScreen::class.java)
             startActivity(intent)
         }
 
