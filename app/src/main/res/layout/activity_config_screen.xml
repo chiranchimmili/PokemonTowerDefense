@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background2"
+    android:paddingLeft="16dp"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="16dp"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".ui.login.ConfigScreen">
+
+
+    <Button
+        android:id="@+id/hardButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alatsi"
+        android:text="Elite Four"
+        android:layout_margin="10dp"
+        android:backgroundTint="@drawable/buttoncolor"
+        android:textColor="@drawable/textcolor"
+        app:layout_constraintBottom_toTopOf="@+id/startButton"
+        app:layout_constraintStart_toEndOf="@+id/mediumButton" />
+
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/charizard"
+        android:layout_width="158dp"
+        android:layout_height="128dp"
+        android:src="@drawable/charizard"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.921"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.477">
+
+    </pl.droidsonroids.gif.GifImageView>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/charizard_flying"
+        android:layout_width="101dp"
+        android:layout_height="77dp"
+        android:src="@drawable/charizard2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.849"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.215">
+
+    </pl.droidsonroids.gif.GifImageView>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/blastoise"
+        android:layout_width="125dp"
+        android:layout_height="80dp"
+        android:src="@drawable/blastoise2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.555">
+
+    </pl.droidsonroids.gif.GifImageView>
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="430dp"
+        android:layout_height="60dp"
+        android:backgroundTint="#E6D428"
+        android:fontFamily="@font/pokemon"
+        android:letterSpacing="0.18"
+        android:text="Begin your adventure!"
+        android:textColor="#B4000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/nameField"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pokemon"
+        android:hint="Enter here"
+        android:inputType="textPersonName"
+        android:selectAllOnFocus="true"
+        android:textColor="#D5000000"
+        android:textColorHint="#7E000000"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nameLabel"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/easyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@drawable/buttoncolor"
+        android:textColor="@drawable/textcolor"
+        android:fontFamily="@font/alatsi"
+        android:text="Trainer"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/startButton"
+        app:layout_constraintStart_toEndOf="@+id/difficultyLabel" />
+
+    <Button
+        android:id="@+id/mediumButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@drawable/buttoncolor"
+        android:fontFamily="@font/alatsi"
+        android:text="Gym Leader"
+        android:layout_margin="10dp"
+        android:textColor="@drawable/textcolor"
+        app:layout_constraintBottom_toTopOf="@+id/startButton"
+        app:layout_constraintStart_toEndOf="@+id/easyButton" />
+
+    <TextView
+        android:id="@+id/nameLabel"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/pokemon"
+        android:letterSpacing=".1"
+        android:text="@string/name"
+        android:textColor="#D5000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/nameField"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/difficultyLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/pokemon"
+        android:gravity="center"
+        android:letterSpacing="0.11"
+        android:text="Choose a difficulty:"
+        android:textColor="#D5000000"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/easyButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/easyButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
