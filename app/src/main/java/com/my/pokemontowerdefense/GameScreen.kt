@@ -21,11 +21,11 @@ class GameScreen(var configScreen: ConfigScreen = ConfigScreen()) : AppCompatAct
         val med: String = intent.getStringExtra("mediumbutton").toString()
         val hard: String = intent.getStringExtra("hardbutton").toString()
 
-        if(hard=="true") {
+        if (hard =="true") {
             monumentHealth = 50;
             startingMoney = 500;
         }
-        else if (med== "true") {
+        else if (med == "true") {
             monumentHealth = 100;
             startingMoney = 1000;
         }
@@ -36,9 +36,9 @@ class GameScreen(var configScreen: ConfigScreen = ConfigScreen()) : AppCompatAct
 
 
         var startingMoneyView: TextView = findViewById<TextView>(R.id.startingMoney)
-        startingMoneyView.text = "$" + startingMoney.toString()
+        startingMoneyView.text = startingMoney.toString()
 
         var healthView: TextView = findViewById<TextView>(R.id.monumentHealth)
-        healthView.text = "HP: " + monumentHealth.toString()
+        healthView.text = monumentHealth.toString()
     }
 }
