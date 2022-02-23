@@ -17,13 +17,18 @@
             android:name=".WelcomeScreen"
             android:screenOrientation="landscape"
             android:exported="true">
-
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.login.ConfigScreen"
+            android:exported="true"
+            android:label="@string/title_activity_config_screen"
+            android:screenOrientation="landscape"
+            >
         </activity>
     </application>
 
