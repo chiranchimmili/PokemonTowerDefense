@@ -12,12 +12,23 @@ import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.animation.doOnEnd
+import com.my.pokemontowerdefense.GameScreen
 import com.my.pokemontowerdefense.R
 import com.my.pokemontowerdefense.testSecondScreen
 import kotlinx.android.synthetic.main.activity_config_screen.*
 
 
 class ConfigScreen : AppCompatActivity() {
+
+
+    val hardClicked: Boolean
+        get() {
+            return hardClicked
+        }
+    val mediumClicked: Boolean
+        get() {
+            return mediumClicked
+        }
 
     //val hardButton: Button = findViewById<View>(R.id.hardButton) as Button
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,7 +99,7 @@ class ConfigScreen : AppCompatActivity() {
                 alert.show()
             } else {
                 // TODO: If everything goes right
-                val intent = Intent(this, testSecondScreen::class.java)
+                val intent = Intent(this, GameScreen::class.java)
                 startActivity(intent)
             }
         }
