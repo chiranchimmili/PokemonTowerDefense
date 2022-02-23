@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import com.my.pokemontowerdefense.ui.login.ConfigScreen
-
+import kotlinx.android.synthetic.main.activity_config_screen.*
 
 
 class GameScreen(var configScreen: ConfigScreen = ConfigScreen()) : AppCompatActivity() {
@@ -17,11 +17,15 @@ class GameScreen(var configScreen: ConfigScreen = ConfigScreen()) : AppCompatAct
         var monumentHealth: Int;
         var startingMoney: Int;
 
-        if (configScreen.hardClicked) {
+        val intent = intent
+        val med: String = intent.getStringExtra("mediumbutton").toString()
+        val hard: String = intent.getStringExtra("hardbutton").toString()
+
+        if(hard=="true") {
             monumentHealth = 50;
             startingMoney = 500;
         }
-        else if (configScreen.medClicked) {
+        else if (med== "true") {
             monumentHealth = 100;
             startingMoney = 1000;
         }
@@ -32,9 +36,9 @@ class GameScreen(var configScreen: ConfigScreen = ConfigScreen()) : AppCompatAct
 
 
         var startingMoneyView: TextView = findViewById<TextView>(R.id.startingMoney)
-        startingMoneyView.text = startingMoney.toString()
+        startingMoneyView.text = "$" + startingMoney.toString()
 
         var healthView: TextView = findViewById<TextView>(R.id.monumentHealth)
-        healthView.text = monumentHealth.toString()
+        healthView.text = "HP: " + monumentHealth.toString()
     }
 }

@@ -95,6 +95,8 @@ open class ConfigScreen : AppCompatActivity() {
             } else {
                 // TODO: If everything goes right
                 val intent = Intent(this, GameScreen::class.java)
+                intent.putExtra("mediumbutton",medClicked.toString())
+                intent.putExtra("hardbutton", hardClicked.toString())
                 startActivity(intent)
             }
         }
