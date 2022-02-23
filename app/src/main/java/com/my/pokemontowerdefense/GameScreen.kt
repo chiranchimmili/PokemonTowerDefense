@@ -6,7 +6,10 @@ import android.os.Bundle
 import android.widget.TextView
 import com.my.pokemontowerdefense.ui.login.ConfigScreen
 
-class GameScreen(val configScreen: ConfigScreen) : AppCompatActivity() {
+
+
+class GameScreen(var configScreen: ConfigScreen = ConfigScreen()) : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_screen)
@@ -18,7 +21,7 @@ class GameScreen(val configScreen: ConfigScreen) : AppCompatActivity() {
             monumentHealth = 50;
             startingMoney = 500;
         }
-        else if (configScreen.mediumClicked) {
+        else if (configScreen.medClicked) {
             monumentHealth = 100;
             startingMoney = 1000;
         }
@@ -27,10 +30,11 @@ class GameScreen(val configScreen: ConfigScreen) : AppCompatActivity() {
             startingMoney = 2000;
         }
 
-        val startingMoneyView: TextView = findViewById<TextView>(R.id.startingMoney)
-        startingMoneyView.text = getString(startingMoney)
 
-        val healthView: TextView = findViewById<TextView>(R.id.monumentHealth)
-        healthView.text = getString(monumentHealth)
+        var startingMoneyView: TextView = findViewById<TextView>(R.id.startingMoney)
+        startingMoneyView.text = startingMoney.toString()
+
+        var healthView: TextView = findViewById<TextView>(R.id.monumentHealth)
+        healthView.text = monumentHealth.toString()
     }
 }

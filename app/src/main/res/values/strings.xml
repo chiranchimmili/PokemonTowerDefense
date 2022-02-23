@@ -10,6 +10,8 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="name">Name:</string>
-    <string name="textview">TextView</string>
+    <string name="health">TextView</string>
+    <string name="money">TextView</string>
+
 </resources>
 

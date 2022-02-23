@@ -18,25 +18,20 @@ import com.my.pokemontowerdefense.testSecondScreen
 import kotlinx.android.synthetic.main.activity_config_screen.*
 
 
-class ConfigScreen : AppCompatActivity() {
+open class ConfigScreen : AppCompatActivity() {
 
-
-    val hardClicked: Boolean
-        get() {
-            return hardClicked
-        }
-    val mediumClicked: Boolean
-        get() {
-            return mediumClicked
-        }
+    var hardClicked : Boolean = false
+    var medClicked : Boolean = false
+    var easyClicked : Boolean = false
 
     //val hardButton: Button = findViewById<View>(R.id.hardButton) as Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_config_screen)
-        var hardClicked = false
-        var medClicked = false
-        var easyClicked = false
+
+        hardClicked = false
+        medClicked = false
+        easyClicked = false
 
         // Initialize dialogue alert box
         val dialogBuilder = AlertDialog.Builder(this)
@@ -103,9 +98,6 @@ class ConfigScreen : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-
-
     }
-
 
 }
