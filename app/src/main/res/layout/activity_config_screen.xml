@@ -25,6 +25,49 @@
         app:layout_constraintBottom_toTopOf="@+id/startButton"
         app:layout_constraintStart_toEndOf="@+id/mediumButton" />
 
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/charizard"
+        android:layout_width="158dp"
+        android:layout_height="128dp"
+        android:src="@drawable/charizard"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.921"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.477">
+
+    </pl.droidsonroids.gif.GifImageView>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/charizard_flying"
+        android:layout_width="101dp"
+        android:layout_height="77dp"
+        android:src="@drawable/charizard2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.849"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.215">
+
+    </pl.droidsonroids.gif.GifImageView>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/blastoise"
+        android:layout_width="125dp"
+        android:layout_height="80dp"
+        android:src="@drawable/blastoise2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.555">
+
+    </pl.droidsonroids.gif.GifImageView>
+
     <Button
         android:id="@+id/startButton"
         android:layout_width="430dp"
