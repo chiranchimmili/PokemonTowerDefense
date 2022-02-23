@@ -30,6 +30,8 @@
             android:screenOrientation="landscape"
             >
         </activity>
+        <activity
+            android:name=".GameScreen"
+            android:exported="false" />
     </application>
-
 </manifest>
