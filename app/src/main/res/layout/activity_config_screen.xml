@@ -40,7 +40,7 @@
 
     </pl.droidsonroids.gif.GifImageView>
 
-    <pl.droidsonroids.gif.GifImageView
+    <!-- <pl.droidsonroids.gif.GifImageView
         android:id="@+id/charizard_flying"
         android:layout_width="101dp"
         android:layout_height="77dp"
@@ -52,7 +52,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.215">
 
-    </pl.droidsonroids.gif.GifImageView>
+    </pl.droidsonroids.gif.GifImageView> -->
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/blastoise"
