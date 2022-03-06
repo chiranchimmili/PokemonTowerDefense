@@ -1,13 +1,14 @@
 package com.my.pokemontowerdefense
 
-abstract class Tower {
-    val difficulty = GameScreen().difficulty
+open abstract class Tower : GameScreen() {
     open var cost: Int = 0
         get() {
             return field
         }
+        set(value) {
+            field = value;
+        }
 
-    abstract fun determineCost(): Int
 
 
 }

@@ -13,6 +13,7 @@ import android.view.animation.RotateAnimation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.animation.doOnEnd
 import com.my.pokemontowerdefense.GameScreen
+import com.my.pokemontowerdefense.Player
 import com.my.pokemontowerdefense.R
 import com.my.pokemontowerdefense.testSecondScreen
 import kotlinx.android.synthetic.main.activity_config_screen.*
@@ -94,6 +95,8 @@ open class ConfigScreen : AppCompatActivity() {
                 alert.show()
             } else {
                 // TODO: If everything goes right
+
+                Player().name = nameField.text.toString()
                 val intent = Intent(this, GameScreen::class.java)
                 intent.putExtra("mediumbutton",medClicked.toString())
                 intent.putExtra("hardbutton", hardClicked.toString())
