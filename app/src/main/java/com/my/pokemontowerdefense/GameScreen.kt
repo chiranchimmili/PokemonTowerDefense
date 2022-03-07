@@ -62,7 +62,7 @@ open class GameScreen() : AppCompatActivity() {
             var shop = Shop()
             var tower1 = SubTower1()
 
-            tower1.cost = 500
+            tower1.cost = 400
             player1.money -= tower1.cost
             moneyView.text = player1.money.toString()
 
