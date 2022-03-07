@@ -3,28 +3,22 @@ package com.my.pokemontowerdefense
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
-import android.widget.ImageView
 import com.my.pokemontowerdefense.ui.login.ConfigScreen
 import kotlinx.android.synthetic.main.activity_config_screen.*
 import android.annotation.SuppressLint
 import android.graphics.Rect
 import android.view.MotionEvent
+import android.view.View
 import android.view.View.OnTouchListener
 import android.view.ViewGroup
-import android.widget.RelativeLayout
-import android.widget.Toast
+import android.widget.*
+import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_game_screen.*
 
 
 open class GameScreen() : AppCompatActivity() {
 
-    private lateinit var movingLayout: ViewGroup
-    private lateinit var testImage: ImageView
-
-    private var xDelta = 5
-    private var yDelta = 5
+    var state = 0
 
     var player1 = Player()
     var difficulty: String = ""
@@ -40,13 +34,7 @@ open class GameScreen() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_screen)
 
-        movingLayout = findViewById(R.id.moving)
-        testImage = findViewById(R.id.testBoi)
-
-        testImage.setOnTouchListener(onTouchListener())
-
         var monumentHealth: Int = 0
-
         val intent = intent
         val med: String = intent.getStringExtra("mediumbutton").toString()
         val hard: String = intent.getStringExtra("hardbutton").toString()
@@ -84,46 +72,50 @@ open class GameScreen() : AppCompatActivity() {
             player1.money -= tower1.cost
             moneyView.text = player1.money.toString()
 
+            placement()
+
+        }
+
+        val layout1 = findViewById<RelativeLayout>(R.id.location1relative)
+        val layout2 = findViewById<RelativeLayout>(R.id.location2relative)
+
+    }
+
+    fun placement() {
+
+        val location1 = findViewById<Button>(R.id.location1button)
+        val location2 = findViewById<Button>(R.id.location2button)
+        location1.visibility = View.VISIBLE
+        location2.visibility = View.VISIBLE
+
+
+        location1.setOnClickListener{
+
+            location1.visibility = View.INVISIBLE
+            location2.visibility = View.INVISIBLE
+            placeTower(location2relative)
+        }
+
+        location2.setOnClickListener{
+
+            location1.visibility = View.INVISIBLE
+            location2.visibility = View.INVISIBLE
+            placeTower(location1relative)
+
         }
     }
-    @SuppressLint("ClickableViewAccessibility")
-    fun onTouchListener(): OnTouchListener {
-        return OnTouchListener { view, event ->
-            val x = event.rawX.toInt()
-            val y = event.rawY.toInt()
 
-            // detecting user actions on moving
+    fun placeTower(view: ViewGroup) {
 
-            when (event.action and MotionEvent.ACTION_MASK) {
-                MotionEvent.ACTION_DOWN -> {
-                    val lParams = view.layoutParams as RelativeLayout.LayoutParams
-                    xDelta = x - lParams.leftMargin
-                    yDelta = y - lParams.topMargin
+        val imageView = ImageView(this)
+        imageView.layoutParams= LinearLayout.LayoutParams(400, 400)
+        imageView.x= 20F
+        imageView.y= 20F
+        val imgResId = R.drawable.charmander
+        var resId = imgResId
+        imageView.setImageResource(resId)
 
-                }
-                MotionEvent.ACTION_UP -> {
+        view?.addView(imageView)
 
-                    Toast.makeText(
-                        this,
-                        "Tower Moved Successfully!", Toast.LENGTH_SHORT
-                    )
-                        .show()
-                }
-                MotionEvent.ACTION_MOVE -> {
-                    // based on x and y coordinates (when moving image)
-                    // and image is placed with it.
-                    val layoutParams = view.layoutParams as RelativeLayout.LayoutParams
-                    layoutParams.leftMargin = x - xDelta
-                    layoutParams.topMargin = y - yDelta
-                    layoutParams.rightMargin = 0
-                    layoutParams.bottomMargin = 0
-                    view.layoutParams = layoutParams
-                }
-            }
-
-            // reflect the changes on screen
-            movingLayout.invalidate()
-            true
-        }
     }
 }
