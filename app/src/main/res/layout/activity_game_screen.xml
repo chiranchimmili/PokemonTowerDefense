@@ -103,4 +103,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/health" />
 
+    <RelativeLayout
+        android:id="@+id/moving"
+        android:layout_width="570dp"
+        android:layout_height="409dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/testBoi"
+            android:layout_width="75dp"
+            android:layout_height="82dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="198dp"
+            android:layout_marginTop="167dp"
+            app:srcCompat="@drawable/charmander" />
+    </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
