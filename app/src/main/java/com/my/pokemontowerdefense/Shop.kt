@@ -2,19 +2,14 @@ package com.my.pokemontowerdefense
 
 class Shop {
 
-    var difficulty = GameScreen().difficulty
-    var player = Player()
-    var tower1 = SubTower1()
+    val difficulty = GameScreen().difficulty
 
-    fun buyTower(tower: Tower): String {
-        if (difficulty == "hard") {
-            tower1.cost = 500
-        }
-        if (player.money >= SubTower1().cost) {
-            player.money = player.money - tower.cost
-            return "Success!"
+    fun buyTower(tower: Tower, player: Player): Boolean {
+        return if (player.money >= tower.cost) {
+            player.money -= tower.cost
+            true
         } else {
-            return "Insufficient funds"
+            false
         }
     }
 

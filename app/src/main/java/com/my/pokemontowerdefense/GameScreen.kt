@@ -3,6 +3,7 @@ package com.my.pokemontowerdefense
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -12,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_game_screen.*
 open class GameScreen() : AppCompatActivity() {
 
     var player1 = Player()
+
     var difficulty: String = ""
         get() {
             return field
@@ -32,6 +34,8 @@ open class GameScreen() : AppCompatActivity() {
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
+        var subTower1 = SubTower1()
+        var shop = Shop()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_screen)
 
@@ -43,14 +47,17 @@ open class GameScreen() : AppCompatActivity() {
         if (hard == "true") {
             monumentHealth = 50;
             player1.money = 500
+            subTower1.cost = 400
             difficulty = "hard"
         } else if (med == "true") {
             monumentHealth = 100;
             player1.money = 1000
+            subTower1.cost = 300
             difficulty = "medium"
         } else {
             monumentHealth = 200;
             player1.money = 2000
+            subTower1.cost = 200
             difficulty = "easy"
         }
 
@@ -67,14 +74,18 @@ open class GameScreen() : AppCompatActivity() {
         healthView.text = monumentHealth.toString()
 
         buyTower1.setOnClickListener {
-            var shop = Shop()
-            var tower1 = SubTower1()
+            if (shop.buyTower(subTower1, player1)) {
+                moneyView.text = player1.money.toString()
+                placement()
+            } else {
+                val dialogBuilder = AlertDialog.Builder(this)
+                dialogBuilder.setPositiveButton("Insufficient Funds") { dialog, _ ->
+                    dialog.cancel()
+                }
+                val alert = dialogBuilder.create()
+                alert.show()
+            }
 
-            tower1.cost = 400
-            player1.money -= tower1.cost
-            moneyView.text = player1.money.toString()
-
-            placement()
 
         }
 
