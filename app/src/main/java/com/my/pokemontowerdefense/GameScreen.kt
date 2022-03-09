@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -61,9 +62,10 @@ open class GameScreen() : AppCompatActivity() {
             difficulty = "easy"
         }
 
-        val buyTower1 = findViewById<Button>(R.id.BuyTower1)
-        val buyTower2 = findViewById<Button>(R.id.BuyTower2)
-        val buyTower3 = findViewById<Button>(R.id.BuyTower3)
+        val buyTower1 = findViewById<ImageButton>(R.id.buyTower1Image)
+        val buyTower2 = findViewById<ImageButton>(R.id.buyTower2Image)
+        val buyTower3 = findViewById<ImageButton>(R.id.buyTower3Image)
+
 
         // Displays starting money, depending on difficulty
         var moneyView: TextView = findViewById<TextView>(R.id.startingMoney)
@@ -187,14 +189,16 @@ open class GameScreen() : AppCompatActivity() {
     // Currently only places an imageview (charmander), need to make it so it places
     // a tower class or subclass object, which should also be an imageview
     fun placeTower(view: ViewGroup) {
-        val imageView = ImageView(this)
-        imageView.layoutParams= LinearLayout.LayoutParams(400, 400)
-        imageView.x= 20F
-        imageView.y= 20F
-        val imgResId = R.drawable.charmander
+        val imageButton = ImageButton(this)
+        imageButton.layoutParams= LinearLayout.LayoutParams(400, 400)
+        imageButton.x= 20F
+        imageButton.y= 20F
+        imageButton.setBackgroundColor(Color.TRANSPARENT)
+        val imgResId = R.drawable.charmander_removed
         var resId = imgResId
-        imageView.setImageResource(resId)
-        view?.addView(imageView)
+        imageButton.setImageResource(resId)
+        imageButton.scaleType = ImageView.ScaleType.FIT_START
+        view?.addView(imageButton)
     }
 
     // turns off visibility of all tower placement buttons

@@ -320,34 +320,46 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="109dp"
-        android:layout_height="156dp"
+        android:layout_width="160dp"
+        android:layout_height="150dp"
         android:layout_marginStart="67dp"
         android:layout_marginTop="263dp"
         android:layout_marginEnd="49dp"
         android:orientation="vertical"
+        android:background="#B38231"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/location8layout"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
-        <Button
-            android:id="@+id/BuyTower1"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:text="Tower 1" />
+        <ImageButton
+            android:id="@+id/buyTower1Image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="left"
+            android:contentDescription="Buy charmander tower"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/charmander_removed" />
 
-        <Button
-            android:id="@+id/BuyTower2"
-            android:layout_width="111dp"
-            android:layout_height="56dp"
-            android:text="Tower 2" />
+        <ImageButton
+            android:id="@+id/buyTower2Image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="left"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/squirtle" />
 
-        <Button
-            android:id="@+id/BuyTower3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tower 3" />
+        <ImageButton
+            android:id="@+id/buyTower3Image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="left"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/bulbasaur"
+
+            />
     </LinearLayout>
 
 
