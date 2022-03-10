@@ -35,7 +35,6 @@ open class GameScreen() : AppCompatActivity() {
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
-        var subTower1 = SubTower1()
         var shop = Shop()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_screen)
@@ -48,19 +47,17 @@ open class GameScreen() : AppCompatActivity() {
         if (hard == "true") {
             monumentHealth = 50;
             player1.money = 500
-            subTower1.cost = 400
             difficulty = "hard"
         } else if (med == "true") {
             monumentHealth = 100;
             player1.money = 1000
-            subTower1.cost = 300
             difficulty = "medium"
         } else {
             monumentHealth = 200;
             player1.money = 2000
-            subTower1.cost = 200
             difficulty = "easy"
         }
+        var subTower1 = CharmanderTower(difficulty);
 
         val buyTower1 = findViewById<ImageButton>(R.id.buyTower1Image)
         val buyTower2 = findViewById<ImageButton>(R.id.buyTower2Image)

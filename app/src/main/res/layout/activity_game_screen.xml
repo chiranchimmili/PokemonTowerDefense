@@ -339,25 +339,30 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="left"
+            android:background="@null"
             android:contentDescription="Buy charmander tower"
             android:scaleType="fitStart"
-            app:srcCompat="@drawable/charmander_removed" />
+            app:srcCompat="@drawable/charmander1" />
 
         <ImageButton
             android:id="@+id/buyTower2Image"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="left"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="5dp"
+            android:background="@null"
             android:scaleType="fitStart"
-            app:srcCompat="@drawable/squirtle" />
+            app:srcCompat="@drawable/squirtle1" />
 
         <ImageButton
             android:id="@+id/buyTower3Image"
+            android:background="@null"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="left"
             android:scaleType="fitStart"
-            app:srcCompat="@drawable/bulbasaur"
+            app:srcCompat="@drawable/bulbasaur1"
 
             />
     </LinearLayout>
