@@ -84,8 +84,6 @@ open class GameScreen() : AppCompatActivity() {
                 val alert = dialogBuilder.create()
                 alert.show()
             }
-
-
         }
 
         val layout1 = findViewById<RelativeLayout>(R.id.location1relative)

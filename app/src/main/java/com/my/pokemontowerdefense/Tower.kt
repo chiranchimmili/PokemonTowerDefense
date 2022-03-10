@@ -36,5 +36,12 @@ open abstract class Tower {
         set(value) {
             field = value;
         }
+    open var description: String = ""
+        get() {
+            return field;
+        }
+        set(value) {
+            field = value;
+        }
     abstract fun update();
 }
