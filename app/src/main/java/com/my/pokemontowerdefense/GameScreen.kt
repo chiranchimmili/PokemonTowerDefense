@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.app.Notification
 import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +40,7 @@ open class GameScreen() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_screen)
 
-        var monumentHealth: Int = 0
+        var monumentHealth: Int
         val intent = intent
         val med: String = intent.getStringExtra("mediumbutton").toString()
         val hard: String = intent.getStringExtra("hardbutton").toString()
@@ -57,12 +58,14 @@ open class GameScreen() : AppCompatActivity() {
             player1.money = 2000
             difficulty = "easy"
         }
-        var subTower1 = CharmanderTower(difficulty);
+
+        val CharmanderTower = CharmanderTower(difficulty);
+        val BulbasaurTower = BulbasaurTower(difficulty);
+        val SquirtleTower = SquirtleTower(difficulty);
 
         val buyTower1 = findViewById<ImageButton>(R.id.buyTower1Image)
         val buyTower2 = findViewById<ImageButton>(R.id.buyTower2Image)
         val buyTower3 = findViewById<ImageButton>(R.id.buyTower3Image)
-
 
         // Displays starting money, depending on difficulty
         var moneyView: TextView = findViewById<TextView>(R.id.startingMoney)
@@ -73,26 +76,34 @@ open class GameScreen() : AppCompatActivity() {
         healthView.text = monumentHealth.toString()
 
         buyTower1.setOnClickListener {
-            if (shop.buyTower(subTower1, player1)) {
+            if (shop.buyTower(CharmanderTower, player1)) {
                 moneyView.text = player1.money.toString()
-                placement()
+                placement(CharmanderTower.imgResId)
             } else {
-                val dialogBuilder = AlertDialog.Builder(this)
-                dialogBuilder.setPositiveButton("Insufficient Funds") { dialog, _ ->
-                    dialog.cancel()
-                }
-                val alert = dialogBuilder.create()
-                alert.show()
+                insufficientFunds()
             }
         }
-
-        val layout1 = findViewById<RelativeLayout>(R.id.location1relative)
-        val layout2 = findViewById<RelativeLayout>(R.id.location2relative)
+        buyTower2.setOnClickListener {
+            if (shop.buyTower(SquirtleTower, player1)) {
+                moneyView.text = player1.money.toString()
+                placement(SquirtleTower.imgResId)
+            } else {
+                insufficientFunds()
+            }
+        }
+        buyTower3.setOnClickListener {
+            if (shop.buyTower(BulbasaurTower, player1)) {
+                moneyView.text = player1.money.toString()
+                placement(BulbasaurTower.imgResId)
+            } else {
+                insufficientFunds()
+            }
+        }
 
     }
 
     // placement of towers functionality, can currently place in one of nine spots on screen
-    fun placement() {
+    fun placement(imgResId: Int) {
         val location1 = findViewById<Button>(R.id.location1button)
         val location2 = findViewById<Button>(R.id.location2button)
         val location3 = findViewById<Button>(R.id.location3button)
@@ -137,60 +148,58 @@ open class GameScreen() : AppCompatActivity() {
         location1.setOnClickListener {
             visibilityOff(list)
             location1_on = true
-            placeTower(location1relative)
+            placeTower(location1relative, imgResId)
         }
         location2.setOnClickListener {
             visibilityOff(list)
             location2_on = true
-            placeTower(location2relative)
+            placeTower(location2relative, imgResId)
         }
         location3.setOnClickListener {
             visibilityOff(list)
             location3_on = true
-            placeTower(location3relative)
+            placeTower(location3relative, imgResId)
         }
         location4.setOnClickListener {
             visibilityOff(list)
             location4_on = true
-            placeTower(location4relative)
+            placeTower(location4relative, imgResId)
         }
         location5.setOnClickListener {
             visibilityOff(list)
             location5_on = true
-            placeTower(location5relative)
+            placeTower(location5relative, imgResId)
         }
         location6.setOnClickListener {
             visibilityOff(list)
             location6_on = true
-            placeTower(location6relative)
+            placeTower(location6relative, imgResId)
         }
         location7.setOnClickListener {
             visibilityOff(list)
             location7_on = true
-            placeTower(location7relative)
+            placeTower(location7relative, imgResId)
         }
         location8.setOnClickListener {
             visibilityOff(list)
             location8_on = true
-            placeTower(location8relative)
+            placeTower(location8relative, imgResId)
         }
         location9.setOnClickListener {
             visibilityOff(list)
             location9_on = true
-            placeTower(location9relative)
+            placeTower(location9relative, imgResId)
         }
     }
 
     // Currently only places an imageview (charmander), need to make it so it places
     // a tower class or subclass object, which should also be an imageview
-    fun placeTower(view: ViewGroup) {
+    fun placeTower(view: ViewGroup, resId: Int) {
         val imageButton = ImageButton(this)
         imageButton.layoutParams= LinearLayout.LayoutParams(400, 400)
         imageButton.x= 20F
         imageButton.y= 20F
         imageButton.setBackgroundColor(Color.TRANSPARENT)
-        val imgResId = R.drawable.charmander_removed
-        var resId = imgResId
         imageButton.setImageResource(resId)
         imageButton.scaleType = ImageView.ScaleType.FIT_START
         view?.addView(imageButton)
@@ -201,5 +210,14 @@ open class GameScreen() : AppCompatActivity() {
         for (b in buttons) {
             b.visibility = View.INVISIBLE
         }
+    }
+
+    private fun insufficientFunds() {
+        val dialogBuilder = AlertDialog.Builder(this)
+        dialogBuilder.setPositiveButton("Insufficient Funds") { dialog, _ ->
+            dialog.cancel()
+        }
+        val alert = dialogBuilder.create()
+        alert.show()
     }
 }
