@@ -21,6 +21,12 @@ import kotlinx.android.synthetic.main.activity_config_screen.*
 
 open class ConfigScreen : AppCompatActivity() {
 
+    companion object {
+        fun checkNameInvalid(name : String): Boolean {
+            return name.isNullOrBlank()
+        }
+    }
+
     var hardClicked : Boolean = false
     var medClicked : Boolean = false
     var easyClicked : Boolean = false
@@ -85,7 +91,7 @@ open class ConfigScreen : AppCompatActivity() {
 
 
         startButton.setOnClickListener {
-            if (nameField.text.toString().isNullOrBlank()) { // if the name is invalid
+            if (checkNameInvalid(nameField.text.toString())) { // if the name is invalid
                 dialogBuilder.setMessage("Name is Invalid!")
                 val alert = dialogBuilder.create()
                 alert.show()
