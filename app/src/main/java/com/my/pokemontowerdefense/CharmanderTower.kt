@@ -1,6 +1,7 @@
 package com.my.pokemontowerdefense
 
 class CharmanderTower(difficulty: String) : Tower() {
+    constructor() : this("easy")
 
     init {
         imageString="@drawable/charmander1";

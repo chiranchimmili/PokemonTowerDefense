@@ -1,7 +1,8 @@
 package com.my.pokemontowerdefense
 
 class BulbasaurTower(difficulty: String): Tower() {
-    override var imageString = ""
+    constructor() : this("easy")
+
     init {
         imageString="@drawable/bulbasaur1";
         level = 1;

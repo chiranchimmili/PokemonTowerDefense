@@ -1,6 +1,8 @@
 package com.my.pokemontowerdefense
 
 class SquirtleTower(difficulty: String): Tower() {
+    constructor() : this("easy")
+
     init {
         imageString="@drawable/charmander1";
         level = 1;
