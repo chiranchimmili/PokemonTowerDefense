@@ -1,8 +1,10 @@
 package com.my.pokemontowerdefense
 
 import android.text.SpannableStringBuilder
+import android.widget.Button
 import com.my.pokemontowerdefense.ui.login.ConfigScreen
 import kotlinx.android.synthetic.main.activity_config_screen.*
+import kotlinx.android.synthetic.main.activity_game_screen.*
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -10,9 +12,9 @@ import org.junit.runner.RunWith
 
 
 class M3UnitTest {
-    class TestPriceVariesByDifficulty {
+    class TestTowerPriceVariesByDifficulty {
         @Test
-        fun price_isCorrect() {
+        fun priceVariesByDifficulty() {
             val testTower1hard = CharmanderTower("hard")
             val testTower1med = CharmanderTower("medium")
             val testTower1easy = CharmanderTower("easy")
@@ -41,11 +43,16 @@ class M3UnitTest {
     class TestInsufficientFunds {
         @Test
         fun insufficientFundsTest() {
-            assertEquals(400, 400)
+            val testShop = Shop()
+            val testPlayer = Player("hard")
+            val testTower = SquirtleTower("hard")
+
+            testShop.buyTower(testTower, testPlayer)
+            assertFalse(testShop.buyTower(testTower,testPlayer))
         }
     }
 
-    class TestMath {
+    class TestMathBuyingTower {
         @Test
         fun correctSubtraction() {
             val testShop = Shop()
@@ -81,7 +88,7 @@ class M3UnitTest {
         }
     }
 
-    class ConfigScreenTest {
+    class ValidNameTest {
         @Test
         fun testCheckNameInvalid() { // M2 - Check if player's inputted name is valid
 
@@ -89,20 +96,6 @@ class M3UnitTest {
             assertEquals(ConfigScreen.checkNameInvalid(" "), true)
             assertEquals(ConfigScreen.checkNameInvalid("   "), true)
             assertEquals(ConfigScreen.checkNameInvalid("    "), true)
-        }
-    }
-
-    class TowerTest {
-        @Test
-        fun test() { // M2 - The Bulbasaur tower costs differently on easy, medium, and hard diificulties
-            var bt_easy = BulbasaurTower("easy")
-            var bt_med = BulbasaurTower("medium")
-            var bt_hard = BulbasaurTower("hard")
-
-            assertNotEquals(bt_easy.cost, bt_med.cost)
-            assertNotEquals(bt_med.cost, bt_hard.cost)
-            assertNotEquals(bt_easy.cost, bt_hard.cost)
-
         }
     }
 
@@ -150,7 +143,20 @@ class M3UnitTest {
             assertNotEquals(monumentM.health, monumentH.health)
         }
     }
-    
 
+    class isTowerPlacedCorrectLocation {
+        @Test
+        fun test() {
+
+        }
+    }
+
+    class TestScoreIsInitialized {
+        @Test
+        fun testScoreInit() {
+            val testPlayer = Player("hard")
+            assertEquals(testPlayer.score,0)
+        }
+    }
 
 }
