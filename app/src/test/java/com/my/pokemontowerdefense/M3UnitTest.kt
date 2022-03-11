@@ -10,8 +10,29 @@ import org.junit.runner.RunWith
 class M3UnitTest {
     class TestPriceVariesByDifficulty {
         @Test
-        fun addition_isCorrect() {
-            assertEquals(4, 2 + 2)
+        fun price_isCorrect() {
+            val testTower1hard = CharmanderTower("hard")
+            val testTower1med = CharmanderTower("medium")
+            val testTower1easy = CharmanderTower("easy")
+            assertEquals(testTower1hard.cost, 400)
+            assertEquals(testTower1med.cost, 300)
+            assertEquals(testTower1easy.cost, 200)
+
+            val testTower2hard = SquirtleTower("hard")
+            val testTower2med = SquirtleTower("medium")
+            val testTower2easy = SquirtleTower("easy")
+            assertEquals(testTower2hard.cost, 400)
+            assertEquals(testTower2med.cost, 300)
+            assertEquals(testTower2easy.cost, 200)
+
+            val testTower3hard = BulbasaurTower("hard")
+            val testTower3med = BulbasaurTower("medium")
+            val testTower3easy = BulbasaurTower("easy")
+            assertEquals(testTower3hard.cost, 400)
+            assertEquals(testTower3med.cost, 300)
+            assertEquals(testTower3easy.cost, 200)
+
+
         }
     }
 
@@ -25,14 +46,36 @@ class M3UnitTest {
     class TestMath {
         @Test
         fun correctSubtraction() {
-            assertEquals(400, 400)
+            val testShop = Shop()
+            val testPlayerHard = Player("hard")
+            val testPlayerMed = Player("medium")
+            val testPlayerEasy = Player("easy")
+
+            val testTower3Hard = BulbasaurTower("hard")
+            val testTower3Medium = BulbasaurTower("medium")
+            val testTower3Easy = BulbasaurTower("easy")
+
+            testShop.buyTower(testTower3Hard, testPlayerHard)
+            assertEquals(testPlayerHard.money, 100)
+
+            testShop.buyTower(testTower3Medium, testPlayerMed)
+            assertEquals(testPlayerMed.money, 700)
+
+            testShop.buyTower(testTower3Easy, testPlayerEasy)
+            assertEquals(testPlayerEasy.money, 1800)
+
         }
     }
 
     class TestStartingMoney {
         @Test
         fun varyingStartingMoney() {
-            assertEquals(4,4)
+            val testPlayerHard = Player("hard")
+            val testPlayerMedium = Player("medium")
+            val testPlayerEasy = Player("easy")
+            assertEquals(testPlayerHard.money, 500)
+            assertEquals(testPlayerMedium.money, 1000)
+            assertEquals(testPlayerEasy.money, 2000)
         }
     }
 

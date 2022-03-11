@@ -100,7 +100,6 @@ open class ConfigScreen : AppCompatActivity() {
                 val alert = dialogBuilder.create()
                 alert.show()
             } else {
-                Player().name = nameField.text.toString()
                 val intent = Intent(this, GameScreen::class.java)
                 intent.putExtra("mediumbutton",medClicked.toString())
                 intent.putExtra("hardbutton", hardClicked.toString())

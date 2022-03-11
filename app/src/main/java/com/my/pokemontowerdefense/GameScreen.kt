@@ -14,8 +14,6 @@ import kotlinx.android.synthetic.main.activity_game_screen.*
 
 open class GameScreen() : AppCompatActivity() {
 
-    var player1 = Player()
-
     var difficulty: String = ""
         get() {
             return field
@@ -46,13 +44,10 @@ open class GameScreen() : AppCompatActivity() {
         val hard: String = intent.getStringExtra("hardbutton").toString()
 
         if (hard == "true") {
-            player1.money = 500
             difficulty = "hard"
         } else if (med == "true") {
-            player1.money = 1000
             difficulty = "medium"
         } else {
-            player1.money = 2000
             difficulty = "easy"
         }
 
@@ -60,6 +55,7 @@ open class GameScreen() : AppCompatActivity() {
         val BulbasaurTower = BulbasaurTower(difficulty);
         val SquirtleTower = SquirtleTower(difficulty);
         val monument = Monument(difficulty);
+        val player = Player(difficulty)
 
         val buyTower1 = findViewById<ImageButton>(R.id.buyTower1Image)
         val buyTower2 = findViewById<ImageButton>(R.id.buyTower2Image)
@@ -67,31 +63,31 @@ open class GameScreen() : AppCompatActivity() {
 
         // Displays starting money, depending on difficulty
         var moneyView: TextView = findViewById<TextView>(R.id.startingMoney)
-        moneyView.text = player1.money.toString()
+        moneyView.text = player.money.toString()
 
         // Displays monument health, depending on difficulty
         var healthView: TextView = findViewById<TextView>(R.id.monumentHealth)
         healthView.text = monument.health.toString()
 
         buyTower1.setOnClickListener {
-            if (shop.buyTower(CharmanderTower, player1)) {
-                moneyView.text = player1.money.toString()
+            if (shop.buyTower(CharmanderTower, player)) {
+                moneyView.text = player.money.toString()
                 placement(CharmanderTower.imgResId)
             } else {
                 insufficientFunds()
             }
         }
         buyTower2.setOnClickListener {
-            if (shop.buyTower(SquirtleTower, player1)) {
-                moneyView.text = player1.money.toString()
+            if (shop.buyTower(SquirtleTower, player)) {
+                moneyView.text = player.money.toString()
                 placement(SquirtleTower.imgResId)
             } else {
                 insufficientFunds()
             }
         }
         buyTower3.setOnClickListener {
-            if (shop.buyTower(BulbasaurTower, player1)) {
-                moneyView.text = player1.money.toString()
+            if (shop.buyTower(BulbasaurTower, player)) {
+                moneyView.text = player.money.toString()
                 placement(BulbasaurTower.imgResId)
             } else {
                 insufficientFunds()
@@ -190,8 +186,6 @@ open class GameScreen() : AppCompatActivity() {
         }
     }
 
-    // Currently only places an imageview (charmander), need to make it so it places
-    // a tower class or subclass object, which should also be an imageview
     fun placeTower(view: ViewGroup, resId: Int) {
         val imageButton = ImageButton(this)
         imageButton.layoutParams= LinearLayout.LayoutParams(400, 400)
