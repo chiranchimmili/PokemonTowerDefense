@@ -1,0 +1,39 @@
+﻿M3 Test Case Writeup
+Case #1: Towers have different difficulty based off the difficulty chosen - M3
+        We have three towers (Charmander, Squirtle, and Bulbasaur) as well as three difficulties (easy, medium, and hard). For each tower, we set 3 variables for the tower with the difficulty passed in as the parameter. Then, we use assertEquals to check if the tower has the right cost for the difficulty given to it. For example, charmander(hard) is tested to have a cost of 400, while charmander(easy) is tested to have a cost of 200.
+
+
+Case #2: Player is can’t make a purchase if they have insufficient funds - M3
+        We create three variables: one for the shop, one for the player on hard difficulty, and one for the Squirtle tower on hard difficulty. Then, using the shop object, we call the buyTower() method, passing in the other 2 variables as the parameters (Simulating the player buying Squirtle on hard difficulty). Then, we use assertFalse() to test if the player is blocked from making a purchase with a dialogue box popping up.
+
+
+Case #3: Player money is reduced correctly when making a tower purchase - M3
+        We create six variables: three players on each difficulty and three Bulbasaur towers on each difficulty. Also, we create a testshop object to simulate the shop (aka menu). Then by using testShop.buyTower(...) three times with the player and tower with matching difficulties passed in. Right after, we use assertEquals() to verify that the player has the right amount of menu remaining after buying their respective tower. 
+
+
+Case #4: Player’s starting money changes based on difficulty - M2
+        We create three variables: one player for each difficulty. Then, using assertEquals(), we access the money var for each player for each difficulty and check if the money they begin with is equal to the right number. For example, the easy difficulty tests if the player starts with 2000.
+
+
+Case #5: Player name can’t be empty or be only spaces - M2
+        We use checkNameInvalid, which returns a boolean value based on if the name passed in is empty or only spaces (true if invalid, false if valid). Then, we pass in invalid names as the parameter for that method (like an empty name). Finally, we use assertEquals() to check if the checking method returns true, given the invalid names.
+
+
+Case #6: Towers have different damages in each difficulty - M3
+        We create nine variables: one var for each of the 3 towers in each of the 3 difficulties (so 9 total). Then, to make sure that each tower has a different damage given value based on each difficulty, we use assertNotEquals(). Each tower has a set of three of the not equals (easy/medium, easy/hard, medium/hard) that verifies all 3 damage variables for the difficulties are different. 
+
+
+Case #7: Monument has different starting health in each difficulty - M3
+        We create three variables: one for each monument in each difficulty. Then, similar to case #6, we use assertNotEquals() to check that the health variable for each monument difficulty is different (easy/medium, easy/hard, medium/hard).
+
+
+Case #8: All towers begin at level 1 when first bought/initialized - M3
+        We create three variables: one for each tower (same difficulty because it does not matter as all towers start on level one either way). Then, we use assertEquals() to verify that the level variable for the towers are equal to 1 when first bought (this works because it checks their level as they are initialized which is when they are first bought).
+
+
+Case #9: Player score starts at 0 for all difficulties - M3
+        We create three variables: one for each player in each difficulty. Then, we use assertEquals() to check that the score variable for the player is equal to 0 in every difficulty (this works because it checks their score as they are initialized which is at the start of the game).
+
+
+Case #10: Each tower in the game is unique - M3
+        We create three variables: one for each tower (difficulty is set as hard but it could be any because we are just testing the tower object). Then, similar to cases #6 and #7, we use assertNotEquals() to check that the towers are not equal to each other aka unique (charmander/bulbasaur, bulbasaur/squirtle, squirtle/charmander).
