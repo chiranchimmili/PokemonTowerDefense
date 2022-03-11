@@ -14,6 +14,7 @@ import org.junit.runner.RunWith
 class M3UnitTest {
 
     @Test
+    // M3 - Each type of tower costs differently in each difficulty
     fun testPriceVariesByDifficulty() {
         val testTower1hard = CharmanderTower("hard")
         val testTower1med = CharmanderTower("medium")
@@ -39,6 +40,7 @@ class M3UnitTest {
 
 
     @Test
+    // M3 - Player is prevented from making a purchase if they have insufficient funds
     fun testInsufficientFunds() {
         val testShop = Shop()
         val testPlayer = Player("hard")
@@ -50,6 +52,7 @@ class M3UnitTest {
 
 
     @Test
+    // M3 - Player's money should be reduced by the cost of the tower when making a purchase
     fun testCorrectSubtraction() {
         val testShop = Shop()
         val testPlayerHard = Player("hard")
@@ -72,6 +75,7 @@ class M3UnitTest {
 
 
     @Test
+    // M2 - Player's starting money is different on easy, medium, and hard difficulty
     fun testVaryingStartingMoney() {
         val testPlayerHard = Player("hard")
         val testPlayerMedium = Player("medium")
@@ -83,7 +87,8 @@ class M3UnitTest {
 
 
     @Test
-    fun testCheckNameInvalid() { // M2 - Check if player's inputted name is valid
+    // M2 - Player's name shouldn't be empty or only spaces
+    fun testCheckNameInvalid() {
 
         assertEquals(ConfigScreen.checkNameInvalid(""), true)
         assertEquals(ConfigScreen.checkNameInvalid(" "), true)
@@ -93,7 +98,8 @@ class M3UnitTest {
 
 
     @Test
-    fun testTowerDamage() { // M3 - Each tower has a different damage based on difficulty
+    // M3 - Each tower has a different damage based on difficulty
+    fun testTowerDamage() {
         var charTowerE = CharmanderTower("easy");
         var bulbTowerE = BulbasaurTower("easy");
         var squirTowerE = SquirtleTower("easy");
@@ -124,7 +130,8 @@ class M3UnitTest {
 
 
     @Test
-    fun testMonumentHealth() { // M3 - Each tower has a different health value based on the difficulty
+    // M3 - Each tower has a different health value based on the difficulty
+    fun testMonumentHealth() {
         var monumentE = Monument("easy")
         var monumentM = Monument("medium")
         var monumentH = Monument("hard")
@@ -136,6 +143,7 @@ class M3UnitTest {
 
 
     @Test
+    // M3 - Each tower should begin at level one when first initialized
     fun testTowerLevelInit() {
         val charmTower = CharmanderTower("hard")
         val bulbTower = BulbasaurTower("hard")
@@ -148,6 +156,7 @@ class M3UnitTest {
 
 
     @Test
+    // M3 - Player's score should begin at zero for each difficulty
     fun testScoreInit() {
         val testPlayerHard = Player("hard")
         assertEquals(testPlayerHard.score, 0)
@@ -158,6 +167,7 @@ class M3UnitTest {
     }
 
     @Test
+    // M3 - Each tower in the game is unique
     fun testDistinctTower() {
         val charmTower = CharmanderTower("hard")
         val bulbTower = BulbasaurTower("hard")
