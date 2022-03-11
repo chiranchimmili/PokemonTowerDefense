@@ -22,23 +22,12 @@ open class GameScreen() : AppCompatActivity() {
             field = value
         }
 
-    var location1_on = false
-    var location2_on = false
-    var location3_on = false
-    var location4_on = false
-    var location5_on = false
-    var location6_on = false
-    var location7_on = false
-    var location8_on = false
-    var location9_on = false
-
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         var shop = Shop()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_screen)
 
-        var monumentHealth: Int
         val intent = intent
         val med: String = intent.getStringExtra("mediumbutton").toString()
         val hard: String = intent.getStringExtra("hardbutton").toString()
@@ -61,6 +50,21 @@ open class GameScreen() : AppCompatActivity() {
         val buyTower2 = findViewById<ImageButton>(R.id.buyTower2Image)
         val buyTower3 = findViewById<ImageButton>(R.id.buyTower3Image)
 
+        val location1 = Location(findViewById<Button>(R.id.location1button), location1relative)
+        val location2 = Location(findViewById<Button>(R.id.location2button), location2relative)
+        val location3 = Location(findViewById<Button>(R.id.location3button), location3relative)
+        val location4 = Location(findViewById<Button>(R.id.location4button), location4relative)
+        val location5 = Location(findViewById<Button>(R.id.location5button), location5relative)
+        val location6 = Location(findViewById<Button>(R.id.location6button), location6relative)
+        val location7 = Location(findViewById<Button>(R.id.location7button), location7relative)
+        val location8 = Location(findViewById<Button>(R.id.location8button), location8relative)
+        val location9 = Location(findViewById<Button>(R.id.location9button), location9relative)
+
+        val locations = arrayListOf(
+            location1, location2, location3, location4, location5, location6,
+            location7, location8, location9
+        )
+
         // Displays starting money, depending on difficulty
         var moneyView: TextView = findViewById<TextView>(R.id.startingMoney)
         moneyView.text = player.money.toString()
@@ -72,7 +76,7 @@ open class GameScreen() : AppCompatActivity() {
         buyTower1.setOnClickListener {
             if (shop.buyTower(CharmanderTower, player)) {
                 moneyView.text = player.money.toString()
-                placement(CharmanderTower.imgResId)
+                placement(CharmanderTower.imgResId, locations)
             } else {
                 insufficientFunds()
             }
@@ -80,7 +84,7 @@ open class GameScreen() : AppCompatActivity() {
         buyTower2.setOnClickListener {
             if (shop.buyTower(SquirtleTower, player)) {
                 moneyView.text = player.money.toString()
-                placement(SquirtleTower.imgResId)
+                placement(SquirtleTower.imgResId, locations)
             } else {
                 insufficientFunds()
             }
@@ -88,7 +92,7 @@ open class GameScreen() : AppCompatActivity() {
         buyTower3.setOnClickListener {
             if (shop.buyTower(BulbasaurTower, player)) {
                 moneyView.text = player.money.toString()
-                placement(BulbasaurTower.imgResId)
+                placement(BulbasaurTower.imgResId, locations)
             } else {
                 insufficientFunds()
             }
@@ -97,114 +101,34 @@ open class GameScreen() : AppCompatActivity() {
     }
 
     // placement of towers functionality, can currently place in one of nine spots on screen
-    fun placement(imgResId: Int) {
-        val location1 = findViewById<Button>(R.id.location1button)
-        val location2 = findViewById<Button>(R.id.location2button)
-        val location3 = findViewById<Button>(R.id.location3button)
-        val location4 = findViewById<Button>(R.id.location4button)
-        val location5 = findViewById<Button>(R.id.location5button)
-        val location6 = findViewById<Button>(R.id.location6button)
-        val location7 = findViewById<Button>(R.id.location7button)
-        val location8 = findViewById<Button>(R.id.location8button)
-        val location9 = findViewById<Button>(R.id.location9button)
-
-        val list = arrayListOf(location1, location2, location3, location4, location5, location6,
-            location7, location8, location9)
-
-        if (!(location1_on)) {
-            location1.visibility = View.VISIBLE
+    fun placement(imgResId: Int, locations: ArrayList<Location>) : Boolean {
+        for (location in locations) {
+            if (!(location.hasTower)) {
+                location.button.visibility = View.VISIBLE
+            }
         }
-        if (!(location2_on)) {
-            location2.visibility = View.VISIBLE
+        for (location in locations) {
+            location.button.setOnClickListener {
+                location.visibilityOff(locations)
+                location.hasTower = true
+                placeTower(location.layout, imgResId)
+            }
         }
-        if (!(location3_on)) {
-            location3.visibility = View.VISIBLE
-        }
-        if (!(location4_on)) {
-            location4.visibility = View.VISIBLE
-        }
-        if (!(location5_on)) {
-            location5.visibility = View.VISIBLE
-        }
-        if (!(location6_on)) {
-            location6.visibility = View.VISIBLE
-        }
-        if (!(location7_on)) {
-            location7.visibility = View.VISIBLE
-        }
-        if (!(location8_on)) {
-            location8.visibility = View.VISIBLE
-        }
-        if (!(location9_on)) {
-            location9.visibility = View.VISIBLE
-        }
-
-        location1.setOnClickListener {
-            visibilityOff(list)
-            location1_on = true
-            placeTower(location1relative, imgResId)
-        }
-        location2.setOnClickListener {
-            visibilityOff(list)
-            location2_on = true
-            placeTower(location2relative, imgResId)
-        }
-        location3.setOnClickListener {
-            visibilityOff(list)
-            location3_on = true
-            placeTower(location3relative, imgResId)
-        }
-        location4.setOnClickListener {
-            visibilityOff(list)
-            location4_on = true
-            placeTower(location4relative, imgResId)
-        }
-        location5.setOnClickListener {
-            visibilityOff(list)
-            location5_on = true
-            placeTower(location5relative, imgResId)
-        }
-        location6.setOnClickListener {
-            visibilityOff(list)
-            location6_on = true
-            placeTower(location6relative, imgResId)
-        }
-        location7.setOnClickListener {
-            visibilityOff(list)
-            location7_on = true
-            placeTower(location7relative, imgResId)
-        }
-        location8.setOnClickListener {
-            visibilityOff(list)
-            location8_on = true
-            placeTower(location8relative, imgResId)
-        }
-        location9.setOnClickListener {
-            visibilityOff(list)
-            location9_on = true
-            placeTower(location9relative, imgResId)
-        }
+        return true
     }
 
     fun placeTower(view: ViewGroup, resId: Int) {
         val imageButton = ImageButton(this)
-        imageButton.layoutParams= LinearLayout.LayoutParams(400, 400)
-        imageButton.x= 20F
-        imageButton.y= 20F
+        imageButton.layoutParams = LinearLayout.LayoutParams(800, 800)
+        imageButton.x = 20F
+        imageButton.y = 20F
         imageButton.setBackgroundColor(Color.TRANSPARENT)
         imageButton.setImageResource(resId)
-        imageButton.scaleType = ImageView.ScaleType.FIT_START
+        //imageButton.scaleType = ImageView.ScaleType.FIT_START
         view?.addView(imageButton)
     }
 
-    // turns off visibility of all tower placement buttons
-    private fun visibilityOff(buttons: ArrayList<Button>) {
-        for (b in buttons) {
-            b.visibility = View.INVISIBLE
-        }
-    }
-
-    private fun insufficientFunds() {
+    fun insufficientFunds() {
         val dialogBuilder = AlertDialog.Builder(this)
         dialogBuilder.setPositiveButton("Insufficient Funds") { dialog, _ ->
             dialog.cancel()
@@ -213,3 +137,5 @@ open class GameScreen() : AppCompatActivity() {
         alert.show()
     }
 }
+
+

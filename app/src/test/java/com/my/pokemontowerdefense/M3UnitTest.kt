@@ -12,151 +12,160 @@ import org.junit.runner.RunWith
 
 
 class M3UnitTest {
-    class TestTowerPriceVariesByDifficulty {
-        @Test
-        fun priceVariesByDifficulty() {
-            val testTower1hard = CharmanderTower("hard")
-            val testTower1med = CharmanderTower("medium")
-            val testTower1easy = CharmanderTower("easy")
-            assertEquals(testTower1hard.cost, 400)
-            assertEquals(testTower1med.cost, 300)
-            assertEquals(testTower1easy.cost, 200)
 
-            val testTower2hard = SquirtleTower("hard")
-            val testTower2med = SquirtleTower("medium")
-            val testTower2easy = SquirtleTower("easy")
-            assertEquals(testTower2hard.cost, 400)
-            assertEquals(testTower2med.cost, 300)
-            assertEquals(testTower2easy.cost, 200)
+    @Test
+    fun testPriceVariesByDifficulty() {
+        val testTower1hard = CharmanderTower("hard")
+        val testTower1med = CharmanderTower("medium")
+        val testTower1easy = CharmanderTower("easy")
+        assertEquals(testTower1hard.cost, 400)
+        assertEquals(testTower1med.cost, 300)
+        assertEquals(testTower1easy.cost, 200)
 
-            val testTower3hard = BulbasaurTower("hard")
-            val testTower3med = BulbasaurTower("medium")
-            val testTower3easy = BulbasaurTower("easy")
-            assertEquals(testTower3hard.cost, 400)
-            assertEquals(testTower3med.cost, 300)
-            assertEquals(testTower3easy.cost, 200)
+        val testTower2hard = SquirtleTower("hard")
+        val testTower2med = SquirtleTower("medium")
+        val testTower2easy = SquirtleTower("easy")
+        assertEquals(testTower2hard.cost, 400)
+        assertEquals(testTower2med.cost, 300)
+        assertEquals(testTower2easy.cost, 200)
 
-
-        }
+        val testTower3hard = BulbasaurTower("hard")
+        val testTower3med = BulbasaurTower("medium")
+        val testTower3easy = BulbasaurTower("easy")
+        assertEquals(testTower3hard.cost, 400)
+        assertEquals(testTower3med.cost, 300)
+        assertEquals(testTower3easy.cost, 200)
     }
 
-    class TestInsufficientFunds {
-        @Test
-        fun insufficientFundsTest() {
-            val testShop = Shop()
-            val testPlayer = Player("hard")
-            val testTower = SquirtleTower("hard")
 
-            testShop.buyTower(testTower, testPlayer)
-            assertFalse(testShop.buyTower(testTower,testPlayer))
-        }
+    @Test
+    fun testInsufficientFunds() {
+        val testShop = Shop()
+        val testPlayer = Player("hard")
+        val testTower = SquirtleTower("hard")
+
+        testShop.buyTower(testTower, testPlayer)
+        assertFalse(testShop.buyTower(testTower, testPlayer))
     }
 
-    class TestMathBuyingTower {
-        @Test
-        fun correctSubtraction() {
-            val testShop = Shop()
-            val testPlayerHard = Player("hard")
-            val testPlayerMed = Player("medium")
-            val testPlayerEasy = Player("easy")
 
-            val testTower3Hard = BulbasaurTower("hard")
-            val testTower3Medium = BulbasaurTower("medium")
-            val testTower3Easy = BulbasaurTower("easy")
+    @Test
+    fun testCorrectSubtraction() {
+        val testShop = Shop()
+        val testPlayerHard = Player("hard")
+        val testPlayerMed = Player("medium")
+        val testPlayerEasy = Player("easy")
 
-            testShop.buyTower(testTower3Hard, testPlayerHard)
-            assertEquals(testPlayerHard.money, 100)
+        val testTower3Hard = BulbasaurTower("hard")
+        val testTower3Medium = BulbasaurTower("medium")
+        val testTower3Easy = BulbasaurTower("easy")
 
-            testShop.buyTower(testTower3Medium, testPlayerMed)
-            assertEquals(testPlayerMed.money, 700)
+        testShop.buyTower(testTower3Hard, testPlayerHard)
+        assertEquals(testPlayerHard.money, 100)
 
-            testShop.buyTower(testTower3Easy, testPlayerEasy)
-            assertEquals(testPlayerEasy.money, 1800)
+        testShop.buyTower(testTower3Medium, testPlayerMed)
+        assertEquals(testPlayerMed.money, 700)
 
-        }
+        testShop.buyTower(testTower3Easy, testPlayerEasy)
+        assertEquals(testPlayerEasy.money, 1800)
     }
 
-    class TestStartingMoney {
-        @Test
-        fun varyingStartingMoney() {
-            val testPlayerHard = Player("hard")
-            val testPlayerMedium = Player("medium")
-            val testPlayerEasy = Player("easy")
-            assertEquals(testPlayerHard.money, 500)
-            assertEquals(testPlayerMedium.money, 1000)
-            assertEquals(testPlayerEasy.money, 2000)
-        }
+
+    @Test
+    fun testVaryingStartingMoney() {
+        val testPlayerHard = Player("hard")
+        val testPlayerMedium = Player("medium")
+        val testPlayerEasy = Player("easy")
+        assertEquals(testPlayerHard.money, 500)
+        assertEquals(testPlayerMedium.money, 1000)
+        assertEquals(testPlayerEasy.money, 2000)
     }
 
-    class ValidNameTest {
-        @Test
-        fun testCheckNameInvalid() { // M2 - Check if player's inputted name is valid
 
-            assertEquals(ConfigScreen.checkNameInvalid(""), true)
-            assertEquals(ConfigScreen.checkNameInvalid(" "), true)
-            assertEquals(ConfigScreen.checkNameInvalid("   "), true)
-            assertEquals(ConfigScreen.checkNameInvalid("    "), true)
-        }
+    @Test
+    fun testCheckNameInvalid() { // M2 - Check if player's inputted name is valid
+
+        assertEquals(ConfigScreen.checkNameInvalid(""), true)
+        assertEquals(ConfigScreen.checkNameInvalid(" "), true)
+        assertEquals(ConfigScreen.checkNameInvalid("   "), true)
+        assertEquals(ConfigScreen.checkNameInvalid("    "), true)
     }
 
-    class TowerDamageTest {
-        @Test
-        fun test() { // M3 - Each tower has a different damage based on difficulty
-            var charTowerE = CharmanderTower("easy");
-            var bulbTowerE = BulbasaurTower("easy");
-            var squirTowerE = SquirtleTower("easy");
 
-            var charTowerM = CharmanderTower("medium");
-            var bulbTowerM = BulbasaurTower("medium");
-            var squirTowerM = SquirtleTower("medium");
+    @Test
+    fun testTowerDamage() { // M3 - Each tower has a different damage based on difficulty
+        var charTowerE = CharmanderTower("easy");
+        var bulbTowerE = BulbasaurTower("easy");
+        var squirTowerE = SquirtleTower("easy");
 
-            var charTowerH = CharmanderTower("hard");
-            var bulbTowerH = BulbasaurTower("hard");
-            var squirTowerH = SquirtleTower("hard");
+        var charTowerM = CharmanderTower("medium");
+        var bulbTowerM = BulbasaurTower("medium");
+        var squirTowerM = SquirtleTower("medium");
 
-            // Checking that CharizardTower has different damage based on difficulty
-            assertNotEquals(charTowerE.damage, charTowerM.damage)
-            assertNotEquals(charTowerE.damage, charTowerH.damage)
-            assertNotEquals(charTowerM.damage, charTowerH.damage)
+        var charTowerH = CharmanderTower("hard");
+        var bulbTowerH = BulbasaurTower("hard");
+        var squirTowerH = SquirtleTower("hard");
 
-            // Checking that BulbasaurTower has different damage based on difficulty
-            assertNotEquals(bulbTowerE.damage, bulbTowerM.damage)
-            assertNotEquals(bulbTowerE.damage, bulbTowerH.damage)
-            assertNotEquals(bulbTowerM.damage, bulbTowerH.damage)
+        // Checking that CharizardTower has different damage based on difficulty
+        assertNotEquals(charTowerE.damage, charTowerM.damage)
+        assertNotEquals(charTowerE.damage, charTowerH.damage)
+        assertNotEquals(charTowerM.damage, charTowerH.damage)
 
-            // Checking that SquirtleTower has different damage based on difficulty
-            assertNotEquals(squirTowerE.damage, squirTowerM.damage)
-            assertNotEquals(squirTowerE.damage, squirTowerH.damage)
-            assertNotEquals(squirTowerM.damage, squirTowerH.damage)
-        }
+        // Checking that BulbasaurTower has different damage based on difficulty
+        assertNotEquals(bulbTowerE.damage, bulbTowerM.damage)
+        assertNotEquals(bulbTowerE.damage, bulbTowerH.damage)
+        assertNotEquals(bulbTowerM.damage, bulbTowerH.damage)
+
+        // Checking that SquirtleTower has different damage based on difficulty
+        assertNotEquals(squirTowerE.damage, squirTowerM.damage)
+        assertNotEquals(squirTowerE.damage, squirTowerH.damage)
+        assertNotEquals(squirTowerM.damage, squirTowerH.damage)
     }
 
-    class MonumentHealthTest {
-        @Test
-        fun test() { // M3 - Each tower has a different health value based on the difficulty
-            var monumentE = Monument("easy")
-            var monumentM = Monument("medium")
-            var monumentH = Monument("hard")
 
-            assertNotEquals(monumentE.health, monumentM.health)
-            assertNotEquals(monumentE.health, monumentH.health)
-            assertNotEquals(monumentM.health, monumentH.health)
-        }
+    @Test
+    fun testMonumentHealth() { // M3 - Each tower has a different health value based on the difficulty
+        var monumentE = Monument("easy")
+        var monumentM = Monument("medium")
+        var monumentH = Monument("hard")
+
+        assertNotEquals(monumentE.health, monumentM.health)
+        assertNotEquals(monumentE.health, monumentH.health)
+        assertNotEquals(monumentM.health, monumentH.health)
     }
 
-    class isTowerPlacedCorrectLocation {
-        @Test
-        fun test() {
 
-        }
+    @Test
+    fun testTowerLevelInit() {
+        val charmTower = CharmanderTower("hard")
+        val bulbTower = BulbasaurTower("hard")
+        val squirtTower = SquirtleTower("hard")
+
+        assertEquals(charmTower.level, 1)
+        assertEquals(bulbTower.level, 1)
+        assertEquals(squirtTower.level, 1)
     }
 
-    class TestScoreIsInitialized {
-        @Test
-        fun testScoreInit() {
-            val testPlayer = Player("hard")
-            assertEquals(testPlayer.score,0)
-        }
+
+    @Test
+    fun testScoreInit() {
+        val testPlayerHard = Player("hard")
+        assertEquals(testPlayerHard.score, 0)
+        val testPlayerMed = Player("medium")
+        assertEquals(testPlayerMed.score, 0)
+        val testPlayerEasy = Player("easy")
+        assertEquals(testPlayerEasy.score, 0)
     }
 
+    @Test
+    fun testDistinctTower() {
+        val charmTower = CharmanderTower("hard")
+        val bulbTower = BulbasaurTower("hard")
+        val squirtTower = SquirtleTower("hard")
+
+        assertNotEquals(charmTower, bulbTower)
+        assertNotEquals(bulbTower, squirtTower)
+        assertNotEquals(squirtTower, charmTower)
+
+    }
 }
