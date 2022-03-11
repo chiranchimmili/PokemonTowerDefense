@@ -46,15 +46,12 @@ open class GameScreen() : AppCompatActivity() {
         val hard: String = intent.getStringExtra("hardbutton").toString()
 
         if (hard == "true") {
-            monumentHealth = 50;
             player1.money = 500
             difficulty = "hard"
         } else if (med == "true") {
-            monumentHealth = 100;
             player1.money = 1000
             difficulty = "medium"
         } else {
-            monumentHealth = 200;
             player1.money = 2000
             difficulty = "easy"
         }
@@ -62,6 +59,7 @@ open class GameScreen() : AppCompatActivity() {
         val CharmanderTower = CharmanderTower(difficulty);
         val BulbasaurTower = BulbasaurTower(difficulty);
         val SquirtleTower = SquirtleTower(difficulty);
+        val monument = Monument(difficulty);
 
         val buyTower1 = findViewById<ImageButton>(R.id.buyTower1Image)
         val buyTower2 = findViewById<ImageButton>(R.id.buyTower2Image)
@@ -73,7 +71,7 @@ open class GameScreen() : AppCompatActivity() {
 
         // Displays monument health, depending on difficulty
         var healthView: TextView = findViewById<TextView>(R.id.monumentHealth)
-        healthView.text = monumentHealth.toString()
+        healthView.text = monument.health.toString()
 
         buyTower1.setOnClickListener {
             if (shop.buyTower(CharmanderTower, player1)) {
