@@ -130,7 +130,7 @@ class M3UnitTest {
 
 
     @Test
-    // M3 - Each tower has a different health value based on the difficulty
+    // M3 - The monument health varies based on if the difficulty is easy, medium, or hard
     fun testMonumentHealth() {
         var monumentE = Monument("easy")
         var monumentM = Monument("medium")
