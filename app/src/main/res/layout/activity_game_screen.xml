@@ -328,50 +328,86 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="130dp"
-        android:layout_height="145dp"
-        android:layout_marginTop="263dp"
-        android:layout_marginEnd="36dp"
+    <TableRow
+        android:layout_width="165dp"
+        android:layout_height="173dp"
         android:background="#B38231"
-        android:orientation="vertical"
+        android:padding="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageButton
-            android:id="@+id/buyTower1Image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="left"
-            android:background="@null"
-            android:contentDescription="Buy charmander tower"
-            android:scaleType="fitStart"
-            app:srcCompat="@drawable/charmander1" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/buyTower2Image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="left"
-            android:background="@null"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="3dp"
-            android:scaleType="fitStart"
-            app:srcCompat="@drawable/squirtle1" />
+            <ImageButton
+                android:id="@+id/buyTower1Image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="left"
+                android:background="@null"
+                android:contentDescription="Buy charmander tower"
+                android:scaleType="fitStart"
+                app:srcCompat="@drawable/charmander1" />
 
-        <ImageButton
-            android:id="@+id/buyTower3Image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="left"
-            android:background="@null"
-            android:scaleType="fitStart"
-            app:srcCompat="@drawable/bulbasaur1"
+            <ImageButton
+                android:id="@+id/buyTower2Image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="left"
+                android:background="@null"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="3dp"
+                android:scaleType="fitStart"
+                app:srcCompat="@drawable/squirtle1"
+                tools:ignore="SpeakableTextPresentCheck" />
 
-            />
-    </LinearLayout>
+            <ImageButton
+                android:id="@+id/buyTower3Image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="left"
+                android:background="@null"
+                android:scaleType="fitStart"
+                app:srcCompat="@drawable/bulbasaur1"
+
+                tools:ignore="SpeakableTextPresentCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="87dp"
+            android:layout_height="101dp"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <ImageButton
+                android:id="@+id/startRound"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@null"
+                android:scaleType="fitStart"
+                app:srcCompat="@drawable/greenplaybuttonremoved"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </LinearLayout>
+
+    </TableRow>
+
+    <ImageView
+        android:id="@+id/rattata"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitStart"
+        app:srcCompat="@drawable/rattataremoved"
+        tools:layout_editor_absoluteX="3dp" />
+
+    <ImageView
+        android:id="@+id/rattata1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/rattataremoved"
+        tools:layout_editor_absoluteX="50dp"
+        tools:layout_editor_absoluteY="50dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

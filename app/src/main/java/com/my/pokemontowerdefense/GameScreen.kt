@@ -1,14 +1,13 @@
 package com.my.pokemontowerdefense
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.app.Notification
 import android.graphics.Color
+import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_game_screen.*
 
 
@@ -40,11 +39,12 @@ open class GameScreen() : AppCompatActivity() {
             difficulty = "easy"
         }
 
-        val CharmanderTower = CharmanderTower(difficulty);
-        val BulbasaurTower = BulbasaurTower(difficulty);
-        val SquirtleTower = SquirtleTower(difficulty);
-        val monument = Monument(difficulty);
+        val CharmanderTower = CharmanderTower(difficulty)
+        val BulbasaurTower = BulbasaurTower(difficulty)
+        val SquirtleTower = SquirtleTower(difficulty)
+        val monument = Monument(difficulty)
         val player = Player(difficulty)
+
 
         val buyTower1 = findViewById<ImageButton>(R.id.buyTower1Image)
         val buyTower2 = findViewById<ImageButton>(R.id.buyTower2Image)
@@ -96,6 +96,30 @@ open class GameScreen() : AppCompatActivity() {
             } else {
                 insufficientFunds()
             }
+        }
+
+
+        val startRound = findViewById<ImageButton>(R.id.startRound)
+
+        var enemyList = arrayListOf<ImageView>()
+
+        var enemiesSpawned: Int = 0
+
+        var rattata = findViewById<ImageView>(R.id.rattata)
+        enemyList.add(rattata)
+        var rattata1 = findViewById<ImageView>(R.id.rattata1)
+        enemyList.add(rattata1)
+        /*while (enemiesSpawned < 4) {
+            var rattata = findViewById<ImageView>(R.id.rattata)
+            rattata.visibility = View.INVISIBLE
+            enemyList.add(rattata)
+            enemiesSpawned++
+        }*/
+
+        val enemy1 = Enemy1(difficulty, enemyList)
+
+        startRound.setOnClickListener {
+            enemy1.spawnEnemies()
         }
 
     }

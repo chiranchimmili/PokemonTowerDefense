@@ -4,17 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Chiranjeevi/AndroidStudioProjects/PokemonTowerDefense/app/src/main/res/layout/activity_config_screen.xml" value="0.22135416666666666" />
-        <entry key="..\:/Users/Chiranjeevi/AndroidStudioProjects/PokemonTowerDefense/app/src/main/res/layout/activity_game_screen.xml" value="0.375" />
-        <entry key="..\:/Users/Chiranjeevi/AndroidStudioProjects/PokemonTowerDefense/app/src/main/res/layout/activity_test_second_screen.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/jywu1/Desktop/School/CS2340/PokemonTowerDefense/app/src/main/res/drawable/centered.xml" value="0.169" />
         <entry key="..\:/Users/jywu1/Desktop/School/CS2340/PokemonTowerDefense/app/src/main/res/layout/activity_config_screen.xml" value="0.12409420289855072" />
+        <entry key="..\:/Users/jywu1/Desktop/School/CS2340/PokemonTowerDefense/app/src/main/res/layout/activity_game_screen.xml" value="0.2" />
         <entry key="..\:/Users/jywu1/Desktop/School/CS2340/PokemonTowerDefense/app/src/main/res/layout/activity_test_second_screen.xml" value="0.11367753623188406" />
         <entry key="..\:/Users/jywu1/Desktop/School/CS2340/PokemonTowerDefense/app/src/main/res/layout/activity_welcome_screen.xml" value="0.16666666666666666" />
         <entry key="app/src/main/res/drawable/buttoncolor.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/hardbuttonchange.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/textcolor.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_config_screen.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_game_screen.xml" value="0.6078423541525135" />
+        <entry key="app/src/main/res/layout/activity_game_screen.xml" value="0.22302027163298227" />
         <entry key="app/src/main/res/layout/activity_test_second_screen.xml" value="0.33739099917204485" />
         <entry key="app/src/main/res/layout/activity_welcome_screen.xml" value="0.15489130434782608" />
         <entry key="app/src/main/res/layout/layout.xml" value="0.19655797101449277" />
