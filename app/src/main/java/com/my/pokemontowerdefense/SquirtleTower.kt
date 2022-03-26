@@ -3,7 +3,7 @@ package com.my.pokemontowerdefense
 class SquirtleTower(difficulty: String): Tower() {
     constructor() : this("easy")
 
-    var imgResId = R.drawable.squirtle1
+    override var imgResId = R.drawable.squirtle1
 
     init {
         imageString="@drawable/charmander1";

@@ -3,7 +3,7 @@ package com.my.pokemontowerdefense
 class CharmanderTower(difficulty: String) : Tower() {
     constructor() : this("easy")
 
-    var imgResId = R.drawable.charmander1
+    override var imgResId = R.drawable.charmander1
 
     init {
         imageString="@drawable/charmander1";

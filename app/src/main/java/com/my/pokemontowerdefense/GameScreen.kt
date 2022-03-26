@@ -21,9 +21,27 @@ open class GameScreen() : AppCompatActivity() {
             field = value
         }
 
+    private lateinit var player: Player;
+    private lateinit var CharmanderTower: CharmanderTower;
+    private lateinit var BulbasaurTower: BulbasaurTower;
+    private lateinit var SquirtleTower: SquirtleTower;
+    private lateinit var monument: Monument;
+    private lateinit var shop: Shop;
+    private lateinit var moneyView: TextView;
+    private lateinit var healthView: TextView;
+
+    private fun updateMoneyView() {
+        moneyView.text = player.money.toString()
+    }
+
+    private fun updateHealthView() {
+        healthView.text = monument.health.toString()
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
-        var shop = Shop()
+        shop = Shop()
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_screen)
 
@@ -39,12 +57,11 @@ open class GameScreen() : AppCompatActivity() {
             difficulty = "easy"
         }
 
-        val CharmanderTower = CharmanderTower(difficulty)
-        val BulbasaurTower = BulbasaurTower(difficulty)
-        val SquirtleTower = SquirtleTower(difficulty)
-        val monument = Monument(difficulty)
-        val player = Player(difficulty)
-
+        CharmanderTower = CharmanderTower(difficulty)
+        BulbasaurTower = BulbasaurTower(difficulty)
+        SquirtleTower = SquirtleTower(difficulty)
+        monument = Monument(difficulty)
+        player = Player(difficulty)
 
         val buyTower1 = findViewById<ImageButton>(R.id.buyTower1Image)
         val buyTower2 = findViewById<ImageButton>(R.id.buyTower2Image)
@@ -66,17 +83,17 @@ open class GameScreen() : AppCompatActivity() {
         )
 
         // Displays starting money, depending on difficulty
-        var moneyView: TextView = findViewById<TextView>(R.id.startingMoney)
-        moneyView.text = player.money.toString()
+        moneyView = findViewById<TextView>(R.id.startingMoney)
+        updateMoneyView()
 
         // Displays monument health, depending on difficulty
-        var healthView: TextView = findViewById<TextView>(R.id.monumentHealth)
-        healthView.text = monument.health.toString()
+        healthView = findViewById<TextView>(R.id.monumentHealth)
+        updateHealthView()
 
         buyTower1.setOnClickListener {
             if (shop.buyTower(CharmanderTower, player)) {
                 moneyView.text = player.money.toString()
-                placement(CharmanderTower.imgResId, locations)
+                placeTower(CharmanderTower, locations)
             } else {
                 insufficientFunds()
             }
@@ -84,7 +101,7 @@ open class GameScreen() : AppCompatActivity() {
         buyTower2.setOnClickListener {
             if (shop.buyTower(SquirtleTower, player)) {
                 moneyView.text = player.money.toString()
-                placement(SquirtleTower.imgResId, locations)
+                placeTower(SquirtleTower, locations)
             } else {
                 insufficientFunds()
             }
@@ -92,7 +109,7 @@ open class GameScreen() : AppCompatActivity() {
         buyTower3.setOnClickListener {
             if (shop.buyTower(BulbasaurTower, player)) {
                 moneyView.text = player.money.toString()
-                placement(BulbasaurTower.imgResId, locations)
+                placeTower(BulbasaurTower, locations)
             } else {
                 insufficientFunds()
             }
@@ -125,7 +142,7 @@ open class GameScreen() : AppCompatActivity() {
     }
 
     // placement of towers functionality, can currently place in one of nine spots on screen
-    fun placement(imgResId: Int, locations: ArrayList<Location>) : Boolean {
+    fun placeTower(tower: Tower, locations: ArrayList<Location>) : Boolean {
         for (location in locations) {
             if (!(location.hasTower)) {
                 location.button.visibility = View.VISIBLE
@@ -135,13 +152,16 @@ open class GameScreen() : AppCompatActivity() {
             location.button.setOnClickListener {
                 location.visibilityOff(locations)
                 location.hasTower = true
-                placeTower(location.layout, imgResId)
+                placeTowerSprite(location.layout, tower.imgResId)
+                shop.subtractBalance(tower, player)
+                updateMoneyView()
             }
         }
         return true
     }
 
-    fun placeTower(view: ViewGroup, resId: Int) {
+    // Helper function to draw sprite onto grid
+    fun placeTowerSprite(view: ViewGroup, resId: Int) {
         val imageButton = ImageButton(this)
         imageButton.layoutParams = LinearLayout.LayoutParams(800, 800)
         imageButton.x = 20F

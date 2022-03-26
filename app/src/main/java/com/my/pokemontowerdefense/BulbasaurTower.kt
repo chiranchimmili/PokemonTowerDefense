@@ -3,7 +3,7 @@ package com.my.pokemontowerdefense
 class BulbasaurTower(difficulty: String): Tower() {
     constructor() : this("easy")
 
-    var imgResId = R.drawable.bulbasaur1
+    override var imgResId = R.drawable.bulbasaur1
 
     init {
         imageString="@drawable/bulbasaur1";
