@@ -101,12 +101,20 @@ open class GameScreen() : AppCompatActivity() {
         updateHealthView()
 
         val startRound = findViewById<ImageButton>(R.id.startRound)
+        startRound.setOnClickListener {
+            startWave()
+        }
+    }
+
+    fun startWave() {
+        // TODO: draw a set amount of ImageViews based on an integer, instead of ones that already exist
+
         var enemyList = arrayListOf<ImageView>()
         var enemiesSpawned: Int = 0
 
         var rattata = findViewById<ImageView>(R.id.rattata)
-        enemyList.add(rattata)
         var rattata1 = findViewById<ImageView>(R.id.rattata1)
+        enemyList.add(rattata)
         enemyList.add(rattata1)
         /*while (enemiesSpawned < 4) {
             var rattata = findViewById<ImageView>(R.id.rattata)
@@ -114,12 +122,8 @@ open class GameScreen() : AppCompatActivity() {
             enemyList.add(rattata)
             enemiesSpawned++
         }*/
-
         val enemy1 = Enemy1(difficulty, enemyList)
-
-        startRound.setOnClickListener {
-            enemy1.spawnEnemies()
-        }
+        enemy1.spawnEnemies()
     }
 
     // placement of towers functionality, can currently place in one of nine spots on screen

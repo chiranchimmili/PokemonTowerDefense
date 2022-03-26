@@ -1,9 +1,12 @@
 package com.my.pokemontowerdefense
 
+import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.graphics.Path
 import android.view.View
 import android.widget.ImageView
+import kotlinx.coroutines.delay
 
 class Enemy1(difficulty: String, var enemyList: ArrayList<ImageView>):Enemy() {
 //class Enemy1(difficulty: String, var enemy: ImageView):Enemy() {
@@ -23,27 +26,58 @@ class Enemy1(difficulty: String, var enemyList: ArrayList<ImageView>):Enemy() {
 
 
     override fun spawnEnemies() {
-        enemyList[0].x = -130F
-        enemyList[0].y = 160F
+        var path = Path();
+        path.moveTo(-130F, 200F)
+        path.lineTo(900F, 200F)
+        path.lineTo(900F, 1100F)
+        path.lineTo(1600F, 1100F)
+        path.lineTo(1600F, 600F)
+        path.lineTo(2500F, 600F)
 
+        var delayCounter = 0L
 
-        //animate(enemyList[0])
-        enemyList[1].x = -200F
-        enemyList[1].y = 160F
-
-        enemyList[0].visibility = View.VISIBLE
-        enemyList[1].visibility = View.VISIBLE
-
-        val animation1 = ObjectAnimator.ofFloat(enemyList[0], "translationX",725F).apply {
-            duration = 7000
-        }
-        val animation2 = ObjectAnimator.ofFloat(enemyList[1], "translationX",725F).apply {
-            duration = 7000
+        val animationList = ArrayList<Animator>()
+        for (enemy in enemyList) {
+            enemy.x = -130F
+            enemy.y = 200F
+            enemy.visibility = View.VISIBLE
+            val animation = ObjectAnimator.ofFloat(enemy, "translationX","translationY", path).apply {
+                duration = 10000
+                startDelay = delayCounter
+                interpolator = null
+            }
+            delayCounter += 500L;
+            animationList.add(animation)
         }
 
         val animationSet = AnimatorSet()
-        animationSet.playSequentially(animation1, animation2)
+        animationSet.playTogether(animationList)
         animationSet.start()
+
+        /*
+                enemyList[0].x = -130F
+                enemyList[0].y = 160F
+
+
+                //animate(enemyList[0])
+                enemyList[1].x = -200F
+                enemyList[1].y = 160F
+
+                enemyList[0].visibility = View.VISIBLE
+                enemyList[1].visibility = View.VISIBLE
+
+                val animation1 = ObjectAnimator.ofFloat(enemyList[0], "translationX",725F).apply {
+                    duration = 7000
+                }
+                val animation2 = ObjectAnimator.ofFloat(enemyList[1], "translationX",725F).apply {
+                    duration = 7000
+                }
+
+                val animationSet = AnimatorSet()
+                animationSet.playSequentially(animation1, animation2)
+                animationSet.start()
+         */
+
 
 
         //animate(enemyList[1])
