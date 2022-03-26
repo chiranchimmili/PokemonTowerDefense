@@ -29,6 +29,7 @@ open class GameScreen() : AppCompatActivity() {
     private lateinit var shop: Shop;
     private lateinit var moneyView: TextView;
     private lateinit var healthView: TextView;
+    private lateinit var locations: ArrayList<Location>;
 
     private fun updateMoneyView() {
         moneyView.text = player.money.toString()
@@ -40,15 +41,13 @@ open class GameScreen() : AppCompatActivity() {
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
-        shop = Shop()
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_screen)
 
         val intent = intent
+
         val med: String = intent.getStringExtra("mediumbutton").toString()
         val hard: String = intent.getStringExtra("hardbutton").toString()
-
         if (hard == "true") {
             difficulty = "hard"
         } else if (med == "true") {
@@ -57,6 +56,7 @@ open class GameScreen() : AppCompatActivity() {
             difficulty = "easy"
         }
 
+        shop = Shop()
         CharmanderTower = CharmanderTower(difficulty)
         BulbasaurTower = BulbasaurTower(difficulty)
         SquirtleTower = SquirtleTower(difficulty)
@@ -66,6 +66,16 @@ open class GameScreen() : AppCompatActivity() {
         val buyTower1 = findViewById<ImageButton>(R.id.buyTower1Image)
         val buyTower2 = findViewById<ImageButton>(R.id.buyTower2Image)
         val buyTower3 = findViewById<ImageButton>(R.id.buyTower3Image)
+
+        buyTower1.setOnClickListener {
+            buyTowerEvent(CharmanderTower)
+        }
+        buyTower2.setOnClickListener {
+            buyTowerEvent(SquirtleTower)
+        }
+        buyTower3.setOnClickListener {
+            buyTowerEvent(BulbasaurTower)
+        }
 
         val location1 = Location(findViewById<Button>(R.id.location1button), location1relative)
         val location2 = Location(findViewById<Button>(R.id.location2button), location2relative)
@@ -77,7 +87,7 @@ open class GameScreen() : AppCompatActivity() {
         val location8 = Location(findViewById<Button>(R.id.location8button), location8relative)
         val location9 = Location(findViewById<Button>(R.id.location9button), location9relative)
 
-        val locations = arrayListOf(
+        locations = arrayListOf(
             location1, location2, location3, location4, location5, location6,
             location7, location8, location9
         )
@@ -90,36 +100,8 @@ open class GameScreen() : AppCompatActivity() {
         healthView = findViewById<TextView>(R.id.monumentHealth)
         updateHealthView()
 
-        buyTower1.setOnClickListener {
-            if (shop.buyTower(CharmanderTower, player)) {
-                moneyView.text = player.money.toString()
-                placeTower(CharmanderTower, locations)
-            } else {
-                insufficientFunds()
-            }
-        }
-        buyTower2.setOnClickListener {
-            if (shop.buyTower(SquirtleTower, player)) {
-                moneyView.text = player.money.toString()
-                placeTower(SquirtleTower, locations)
-            } else {
-                insufficientFunds()
-            }
-        }
-        buyTower3.setOnClickListener {
-            if (shop.buyTower(BulbasaurTower, player)) {
-                moneyView.text = player.money.toString()
-                placeTower(BulbasaurTower, locations)
-            } else {
-                insufficientFunds()
-            }
-        }
-
-
         val startRound = findViewById<ImageButton>(R.id.startRound)
-
         var enemyList = arrayListOf<ImageView>()
-
         var enemiesSpawned: Int = 0
 
         var rattata = findViewById<ImageView>(R.id.rattata)
@@ -138,26 +120,22 @@ open class GameScreen() : AppCompatActivity() {
         startRound.setOnClickListener {
             enemy1.spawnEnemies()
         }
-
     }
 
     // placement of towers functionality, can currently place in one of nine spots on screen
-    fun placeTower(tower: Tower, locations: ArrayList<Location>) : Boolean {
+    fun placeTower(tower: Tower) {
         for (location in locations) {
             if (!(location.hasTower)) {
-                location.button.visibility = View.VISIBLE
+                location.setVisible()
             }
-        }
-        for (location in locations) {
             location.button.setOnClickListener {
-                location.visibilityOff(locations)
+                Location.allVisibilityOff(locations)
                 location.hasTower = true
                 placeTowerSprite(location.layout, tower.imgResId)
                 shop.subtractBalance(tower, player)
                 updateMoneyView()
             }
         }
-        return true
     }
 
     // Helper function to draw sprite onto grid
@@ -174,11 +152,20 @@ open class GameScreen() : AppCompatActivity() {
 
     fun insufficientFunds() {
         val dialogBuilder = AlertDialog.Builder(this)
-        dialogBuilder.setPositiveButton("Insufficient Funds") { dialog, _ ->
+        dialogBuilder.setPositiveButton("Okay") { dialog, _ ->
             dialog.cancel()
         }
+        dialogBuilder.setMessage("Insufficient funds!")
         val alert = dialogBuilder.create()
         alert.show()
+    }
+
+    private fun buyTowerEvent(tower : Tower) {
+        if (shop.buyTower(tower, player)) {
+            placeTower(tower)
+        } else {
+            insufficientFunds()
+        }
     }
 }
 

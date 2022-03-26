@@ -11,10 +11,16 @@ class Location(var button: Button, var layout: RelativeLayout) {
     var buttonLocation: Button = button
     var layoutSpot: RelativeLayout = layout
 
+    fun setVisible () {
+        button.visibility = View.VISIBLE
+    }
+
     // turns off visibility of all tower placement buttons
-    fun visibilityOff(locations: ArrayList<Location>) {
-        for (location in locations) {
-            location.button.visibility = View.INVISIBLE
+    companion object {
+        fun allVisibilityOff(locations: ArrayList<Location>) {
+            for (location in locations) {
+                location.button.visibility = View.INVISIBLE
+            }
         }
     }
 }
