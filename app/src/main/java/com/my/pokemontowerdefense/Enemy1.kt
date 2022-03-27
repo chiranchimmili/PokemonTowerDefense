@@ -29,8 +29,8 @@ class Enemy1(difficulty: String, var enemyList: ArrayList<ImageView>):Enemy() {
         var path = Path();
         path.moveTo(-130F, 200F)
         path.lineTo(900F, 200F)
-        path.lineTo(900F, 1100F)
-        path.lineTo(1600F, 1100F)
+        path.lineTo(900F, 1000F)
+        path.lineTo(1600F, 1000F)
         path.lineTo(1600F, 600F)
         path.lineTo(2500F, 600F)
 

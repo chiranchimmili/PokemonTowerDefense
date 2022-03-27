@@ -2,12 +2,14 @@ package com.my.pokemontowerdefense
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.activity_game_screen.*
 
 
@@ -107,23 +109,29 @@ open class GameScreen() : AppCompatActivity() {
     }
 
     fun startWave() {
-        // TODO: draw a set amount of ImageViews based on an integer, instead of ones that already exist
-
         var enemyList = arrayListOf<ImageView>()
-        var enemiesSpawned: Int = 0
+        var ratattaCount = 3
 
-        var rattata = findViewById<ImageView>(R.id.rattata)
-        var rattata1 = findViewById<ImageView>(R.id.rattata1)
-        enemyList.add(rattata)
-        enemyList.add(rattata1)
+        // Create number of imageViews based on the number of enemies to be generated
+        val density = Resources.getSystem().displayMetrics.density
+        for (i in 1..ratattaCount) {
+            var newEnemyView = ImageView(this)
+            newEnemyView.layoutParams = LinearLayout.LayoutParams((50 * density).toInt(), (50 * density).toInt())
+            newEnemyView.setImageResource(R.drawable.rattataremoved)
+            newEnemyView.id = View.generateViewId()
+            gameScreen.addView(newEnemyView)
+            enemyList.add(newEnemyView)
+        }
+
+        val enemy1 = Enemy1(difficulty, enemyList)
+        enemy1.spawnEnemies()
+
         /*while (enemiesSpawned < 4) {
             var rattata = findViewById<ImageView>(R.id.rattata)
             rattata.visibility = View.INVISIBLE
             enemyList.add(rattata)
             enemiesSpawned++
         }*/
-        val enemy1 = Enemy1(difficulty, enemyList)
-        enemy1.spawnEnemies()
     }
 
     // placement of towers functionality, can currently place in one of nine spots on screen

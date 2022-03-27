@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/map"
-    tools:context=".GameScreen">
+    tools:context=".GameScreen"
+    android:id="@+id/gameScreen"
+    >
 
     <ImageView
         android:id="@+id/moneyImage"
@@ -392,22 +394,6 @@
         </LinearLayout>
 
     </TableRow>
-
-    <ImageView
-        android:id="@+id/rattata"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:scaleType="fitStart"
-        app:srcCompat="@drawable/rattataremoved"
-        tools:layout_editor_absoluteX="3dp" />
-
-    <ImageView
-        android:id="@+id/rattata1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:srcCompat="@drawable/rattataremoved"
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="50dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
