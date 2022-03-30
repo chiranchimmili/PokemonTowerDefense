@@ -11,6 +11,7 @@ import com.my.pokemontowerdefense.ui.login.ConfigScreen
 class Monument(textView: TextView, difficulty: String) {
     var health: Int = 0
     var healthView: TextView = textView;
+    var gameIsOver: Boolean = false;
 
     init {
         if (difficulty == "hard") {
@@ -25,7 +26,8 @@ class Monument(textView: TextView, difficulty: String) {
 
     fun reduceMonumentHealth(context: Context) {
         health -= 10
-        if (health <= 0) {
+        if (health <= 0 && !gameIsOver) {
+            gameIsOver = true
             val intent = Intent(context, GameOverScreen::class.java)
             context.startActivity(intent)
         }
