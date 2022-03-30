@@ -106,7 +106,7 @@ open class GameScreen() : AppCompatActivity() {
     fun startWave() {
         var enemyList = arrayListOf<ImageView>()
         var rattataCount = 1
-        var wheezingCount = 1
+        var grimerCount = 1
         var haunterCount = 1
 
         // Create number of imageViews based on the number of enemies to be generated
@@ -119,10 +119,10 @@ open class GameScreen() : AppCompatActivity() {
             gameScreen.addView(newEnemyView)
             enemyList.add(newEnemyView)
         }
-        for (i in 1..wheezingCount) {
+        for (i in 1..grimerCount) {
             var newEnemyView = ImageView(this)
             newEnemyView.layoutParams = LinearLayout.LayoutParams((75 * density).toInt(), (75 * density).toInt())
-            newEnemyView.setImageResource(R.drawable.wheezing8bit)
+            newEnemyView.setImageResource(R.drawable.grimer8bit)
             newEnemyView.id = View.generateViewId()
             gameScreen.addView(newEnemyView)
             enemyList.add(newEnemyView)
