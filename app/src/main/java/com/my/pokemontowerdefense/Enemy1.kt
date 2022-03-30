@@ -29,26 +29,26 @@ class Enemy1(difficulty: String, var enemyList: ArrayList<ImageView>):Enemy() {
 
     override fun spawnEnemies(monument: Monument, context: Context) {
         var path = Path();
-        path.moveTo(-130F, 200F)
-        path.lineTo(900F, 200F)
-        path.lineTo(900F, 1000F)
-        path.lineTo(1650F, 1000F)
-        path.lineTo(1650F, 630F)
-        path.lineTo(2500F, 630F)
+        path.moveTo(100F, 100F)
+        path.lineTo(825F, 100F)
+        path.lineTo(825F, 925F)
+        path.lineTo(1575F, 925F)
+        path.lineTo(1575F, 580F)
+        path.lineTo(2500F, 580F)
 
         var delayCounter = 0L
 
         val animationList = ArrayList<Animator>()
         for (enemy in enemyList) {
-            enemy.x = -130F
-            enemy.y = 200F
+            enemy.x = 100F
+            enemy.y = 100F
             enemy.visibility = View.VISIBLE
             val animation = ObjectAnimator.ofFloat(enemy, "translationX","translationY", path).apply {
                 duration = 10000
                 startDelay = delayCounter
                 interpolator = null
             }
-            delayCounter += 500L;
+            delayCounter += 650L;
             animation.start()
             animation.doOnEnd {
                 if (enemy.visibility == View.VISIBLE) {

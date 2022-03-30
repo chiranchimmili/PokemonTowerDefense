@@ -105,19 +105,36 @@ open class GameScreen() : AppCompatActivity() {
 
     fun startWave() {
         var enemyList = arrayListOf<ImageView>()
-        var ratattaCount = 3
+        var rattataCount = 1
+        var wheezingCount = 1
+        var haunterCount = 1
 
         // Create number of imageViews based on the number of enemies to be generated
         val density = Resources.getSystem().displayMetrics.density
-        for (i in 1..ratattaCount) {
+        for (i in 1..rattataCount) {
             var newEnemyView = ImageView(this)
-            newEnemyView.layoutParams = LinearLayout.LayoutParams((50 * density).toInt(), (50 * density).toInt())
-            newEnemyView.setImageResource(R.drawable.rattataremoved)
+            newEnemyView.layoutParams = LinearLayout.LayoutParams((100 * density).toInt(), (100 * density).toInt())
+            newEnemyView.setImageResource(R.drawable.rattata8bit)
             newEnemyView.id = View.generateViewId()
             gameScreen.addView(newEnemyView)
             enemyList.add(newEnemyView)
         }
-
+        for (i in 1..wheezingCount) {
+            var newEnemyView = ImageView(this)
+            newEnemyView.layoutParams = LinearLayout.LayoutParams((75 * density).toInt(), (75 * density).toInt())
+            newEnemyView.setImageResource(R.drawable.wheezing8bit)
+            newEnemyView.id = View.generateViewId()
+            gameScreen.addView(newEnemyView)
+            enemyList.add(newEnemyView)
+        }
+        for (i in 1..haunterCount) {
+            var newEnemyView = ImageView(this)
+            newEnemyView.layoutParams = LinearLayout.LayoutParams((100 * density).toInt(), (100 * density).toInt())
+            newEnemyView.setImageResource(R.drawable.haunter8bit)
+            newEnemyView.id = View.generateViewId()
+            gameScreen.addView(newEnemyView)
+            enemyList.add(newEnemyView)
+        }
         val enemy1 = Enemy1(difficulty, enemyList)
         enemy1.spawnEnemies(monument, this@GameScreen)
 
