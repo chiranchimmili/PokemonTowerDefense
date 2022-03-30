@@ -3,9 +3,11 @@ package com.my.pokemontowerdefense
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Context
 import android.graphics.Path
 import android.view.View
 import android.widget.ImageView
+import androidx.core.animation.doOnEnd
 import kotlinx.coroutines.delay
 
 class Enemy1(difficulty: String, var enemyList: ArrayList<ImageView>):Enemy() {
@@ -25,14 +27,14 @@ class Enemy1(difficulty: String, var enemyList: ArrayList<ImageView>):Enemy() {
     }
 
 
-    override fun spawnEnemies() {
+    override fun spawnEnemies(monument: Monument, context: Context) {
         var path = Path();
         path.moveTo(-130F, 200F)
         path.lineTo(900F, 200F)
         path.lineTo(900F, 1000F)
-        path.lineTo(1600F, 1000F)
-        path.lineTo(1600F, 600F)
-        path.lineTo(2500F, 600F)
+        path.lineTo(1650F, 1000F)
+        path.lineTo(1650F, 630F)
+        path.lineTo(2500F, 630F)
 
         var delayCounter = 0L
 
@@ -47,12 +49,13 @@ class Enemy1(difficulty: String, var enemyList: ArrayList<ImageView>):Enemy() {
                 interpolator = null
             }
             delayCounter += 500L;
-            animationList.add(animation)
+            animation.start()
+            animation.doOnEnd {
+                if (enemy.visibility == View.VISIBLE) {
+                    monument.reduceMonumentHealth(context)
+                }
+            }
         }
-
-        val animationSet = AnimatorSet()
-        animationSet.playTogether(animationList)
-        animationSet.start()
 
         /*
                 enemyList[0].x = -130F
@@ -102,8 +105,6 @@ class Enemy1(difficulty: String, var enemyList: ArrayList<ImageView>):Enemy() {
         }
 
     }
-
-
 
 }
 

@@ -331,16 +331,16 @@
     </RelativeLayout>
 
     <TableRow
-        android:layout_width="165dp"
-        android:layout_height="173dp"
+        android:layout_width="161dp"
+        android:layout_height="149dp"
         android:background="#B38231"
-        android:padding="12dp"
+        android:padding="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="150dp"
             android:orientation="vertical">
 
             <ImageButton
@@ -378,8 +378,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="87dp"
-            android:layout_height="101dp"
+            android:layout_width="79dp"
+            android:layout_height="80dp"
             android:orientation="vertical"
             android:padding="15dp">
 

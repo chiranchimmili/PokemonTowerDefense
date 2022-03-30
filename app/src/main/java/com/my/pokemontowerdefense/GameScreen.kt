@@ -2,6 +2,7 @@ package com.my.pokemontowerdefense
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
@@ -30,15 +31,10 @@ open class GameScreen() : AppCompatActivity() {
     private lateinit var monument: Monument;
     private lateinit var shop: Shop;
     private lateinit var moneyView: TextView;
-    private lateinit var healthView: TextView;
     private lateinit var locations: ArrayList<Location>;
 
     private fun updateMoneyView() {
         moneyView.text = player.money.toString()
-    }
-
-    private fun updateHealthView() {
-        healthView.text = monument.health.toString()
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -47,6 +43,7 @@ open class GameScreen() : AppCompatActivity() {
         setContentView(R.layout.activity_game_screen)
 
         val intent = intent
+
 
         val med: String = intent.getStringExtra("mediumbutton").toString()
         val hard: String = intent.getStringExtra("hardbutton").toString()
@@ -62,7 +59,6 @@ open class GameScreen() : AppCompatActivity() {
         CharmanderTower = CharmanderTower(difficulty)
         BulbasaurTower = BulbasaurTower(difficulty)
         SquirtleTower = SquirtleTower(difficulty)
-        monument = Monument(difficulty)
         player = Player(difficulty)
 
         val buyTower1 = findViewById<ImageButton>(R.id.buyTower1Image)
@@ -98,14 +94,13 @@ open class GameScreen() : AppCompatActivity() {
         moneyView = findViewById<TextView>(R.id.startingMoney)
         updateMoneyView()
 
-        // Displays monument health, depending on difficulty
-        healthView = findViewById<TextView>(R.id.monumentHealth)
-        updateHealthView()
+        monument = Monument(findViewById<TextView>(R.id.monumentHealth), difficulty)
 
         val startRound = findViewById<ImageButton>(R.id.startRound)
         startRound.setOnClickListener {
             startWave()
         }
+
     }
 
     fun startWave() {
@@ -124,7 +119,7 @@ open class GameScreen() : AppCompatActivity() {
         }
 
         val enemy1 = Enemy1(difficulty, enemyList)
-        enemy1.spawnEnemies()
+        enemy1.spawnEnemies(monument, this@GameScreen)
 
         /*while (enemiesSpawned < 4) {
             var rattata = findViewById<ImageView>(R.id.rattata)

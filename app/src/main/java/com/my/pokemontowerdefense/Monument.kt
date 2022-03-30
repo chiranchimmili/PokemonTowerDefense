@@ -1,16 +1,35 @@
 package com.my.pokemontowerdefense
 
-class Monument(difficulty: String) {
+import android.content.Context
+import android.content.Intent
+import android.graphics.Bitmap
+import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
+import com.my.pokemontowerdefense.ui.login.ConfigScreen
+
+
+class Monument(textView: TextView, difficulty: String) {
     var health: Int = 0
+    var healthView: TextView = textView;
 
     init {
         if (difficulty == "hard") {
-            health = 50;
+            health = 50
         } else if (difficulty == "medium") {
-            health = 100;
+            health = 100
         } else {
-            health = 200;
+            health = 200
         }
+        healthView.text = health.toString()
+    }
+
+    fun reduceMonumentHealth(context: Context) {
+        health -= 10
+        if (health <= 0) {
+            val intent = Intent(context, GameOverScreen::class.java)
+            context.startActivity(intent)
+        }
+        healthView.text = health.toString()
     }
 
 }
