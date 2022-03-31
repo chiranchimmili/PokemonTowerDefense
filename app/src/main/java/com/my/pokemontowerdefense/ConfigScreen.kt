@@ -104,6 +104,7 @@ open class ConfigScreen : AppCompatActivity() {
                 intent.putExtra("mediumbutton",medClicked.toString())
                 intent.putExtra("hardbutton", hardClicked.toString())
                 startActivity(intent)
+                System.exit(0)
             }
         }
     }

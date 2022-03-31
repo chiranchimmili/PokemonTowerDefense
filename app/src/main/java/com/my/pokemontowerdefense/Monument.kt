@@ -30,6 +30,7 @@ class Monument(textView: TextView, difficulty: String) {
             gameIsOver = true
             val intent = Intent(context, GameOverScreen::class.java)
             context.startActivity(intent)
+            System.exit(0)
         }
         healthView.text = health.toString()
     }

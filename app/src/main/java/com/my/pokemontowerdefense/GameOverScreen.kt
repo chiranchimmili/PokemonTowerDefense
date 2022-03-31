@@ -29,8 +29,10 @@ class GameOverScreen : AppCompatActivity() {
         val restartButton = findViewById<Button>(R.id.restartButton)
 
         restartButton.setOnClickListener{
-            val intent = Intent(this, ConfigScreen::class.java)
+            val intent = Intent(this, WelcomeScreen::class.java)
             startActivity(intent)
+            finish()
+            System.exit(0)
         }
     }
 }

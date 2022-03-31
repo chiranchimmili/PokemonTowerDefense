@@ -32,6 +32,7 @@ class WelcomeScreen : AppCompatActivity() {
         startButton.setOnClickListener{
             val intent = Intent(this, ConfigScreen::class.java)
             startActivity(intent)
+            System.exit(0)
         }
 
         quitButton.setOnClickListener{

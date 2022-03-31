@@ -12,6 +12,12 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.activity_game_screen.*
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.concurrent.schedule
+import android.os.Handler;
+
+
 
 
 open class GameScreen() : AppCompatActivity() {
@@ -106,12 +112,19 @@ open class GameScreen() : AppCompatActivity() {
         var enemyList = arrayListOf<ImageView>()
         var enemyList2 = arrayListOf<ImageView>()
         var enemyList3 = arrayListOf<ImageView>()
-        var rattataCount = 1
-        var grimerCount = 1
-        var haunterCount = 1
+
+        val density = Resources.getSystem().displayMetrics.density
+
+        val rattataEnemy = RattataEnemy(difficulty, enemyList)
+        val grimerEnemy = GrimerEnemy(difficulty, enemyList2)
+        val haunterEnemy = HaunterEnemy(difficulty, enemyList3)
+
+        var rattataCount = rattataEnemy.amount
+        var grimerCount = grimerEnemy.amount
+        var haunterCount = haunterEnemy.amount
 
         // Create number of imageViews based on the number of enemies to be generated
-        val density = Resources.getSystem().displayMetrics.density
+
         for (i in 1..rattataCount) {
             var newEnemyView = ImageView(this)
             newEnemyView.layoutParams = LinearLayout.LayoutParams((100 * density).toInt(), (100 * density).toInt())
@@ -136,15 +149,13 @@ open class GameScreen() : AppCompatActivity() {
             gameScreen.addView(newEnemyView3)
             enemyList3.add(newEnemyView3)
         }
-        val wave = Wave(difficulty, enemyList,enemyList2, enemyList3)
-        wave.spawnEnemies(monument, this@GameScreen)
 
-        /*while (enemiesSpawned < 4) {
-            var rattata = findViewById<ImageView>(R.id.rattata)
-            rattata.visibility = View.INVISIBLE
-            enemyList.add(rattata)
-            enemiesSpawned++
-        }*/
+        rattataEnemy.spawnEnemies(monument, this@GameScreen)
+        haunterEnemy.delayCounter += 650 * haunterCount
+        haunterEnemy.spawnEnemies(monument, this@GameScreen)
+        grimerEnemy.delayCounter += 1300 * grimerCount
+        grimerEnemy.spawnEnemies(monument, this@GameScreen)
+
     }
 
     // placement of towers functionality, can currently place in one of nine spots on screen
