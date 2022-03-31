@@ -119,13 +119,9 @@ open class GameScreen() : AppCompatActivity() {
         val grimerEnemy = GrimerEnemy(difficulty, enemyList2)
         val haunterEnemy = HaunterEnemy(difficulty, enemyList3)
 
-        var rattataCount = rattataEnemy.amount
-        var grimerCount = grimerEnemy.amount
-        var haunterCount = haunterEnemy.amount
-
         // Create number of imageViews based on the number of enemies to be generated
 
-        for (i in 1..rattataCount) {
+        for (i in 1..rattataEnemy.amount) {
             var newEnemyView = ImageView(this)
             newEnemyView.layoutParams = LinearLayout.LayoutParams((100 * density).toInt(), (100 * density).toInt())
             newEnemyView.setImageResource(R.drawable.rattata8bit)
@@ -133,7 +129,7 @@ open class GameScreen() : AppCompatActivity() {
             gameScreen.addView(newEnemyView)
             enemyList.add(newEnemyView)
         }
-        for (i in 1..grimerCount) {
+        for (i in 1..grimerEnemy.amount) {
             var newEnemyView2 = ImageView(this)
             newEnemyView2.layoutParams = LinearLayout.LayoutParams((60 * density).toInt(), (60 * density).toInt())
             newEnemyView2.setImageResource(R.drawable.grimer8bit)
@@ -141,7 +137,7 @@ open class GameScreen() : AppCompatActivity() {
             gameScreen.addView(newEnemyView2)
             enemyList2.add(newEnemyView2)
         }
-        for (i in 1..haunterCount) {
+        for (i in 1..haunterEnemy.amount) {
             var newEnemyView3 = ImageView(this)
             newEnemyView3.layoutParams = LinearLayout.LayoutParams((73 * density).toInt(), (73 * density).toInt())
             newEnemyView3.setImageResource(R.drawable.haunter8bit)
@@ -151,9 +147,9 @@ open class GameScreen() : AppCompatActivity() {
         }
 
         rattataEnemy.spawnEnemies(monument, this@GameScreen)
-        haunterEnemy.delayCounter += 650 * haunterCount
+        haunterEnemy.delayCounter += 650 * haunterEnemy.amount
         haunterEnemy.spawnEnemies(monument, this@GameScreen)
-        grimerEnemy.delayCounter += 1300 * grimerCount
+        grimerEnemy.delayCounter += 1300 * grimerEnemy.amount
         grimerEnemy.spawnEnemies(monument, this@GameScreen)
 
     }

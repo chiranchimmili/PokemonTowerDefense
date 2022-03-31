@@ -35,4 +35,5 @@ class Monument(textView: TextView, difficulty: String) {
         healthView.text = health.toString()
     }
 
+
 }

@@ -10,9 +10,12 @@ import androidx.core.animation.doOnEnd
 
 class GrimerEnemy (difficulty: String, var enemyList: ArrayList<ImageView>) :Enemy() {
 
+    var path = Path();
+
     init {
         level = 1
-        hp = 1
+        hp = 3
+        damage = 10
 
         if (difficulty == "easy") {
             amount = 1
@@ -22,10 +25,12 @@ class GrimerEnemy (difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
             amount = 3
         }
 
+
+
     }
 
     override fun spawnEnemies(monument: Monument, context: Context) {
-        var path = Path();
+
         path.moveTo(-250F, 185F)
         path.lineTo(885F, 185F)
         path.lineTo(885F, 1010F)
