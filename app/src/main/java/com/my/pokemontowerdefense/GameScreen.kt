@@ -44,7 +44,6 @@ open class GameScreen() : AppCompatActivity() {
 
         val intent = intent
 
-
         val med: String = intent.getStringExtra("mediumbutton").toString()
         val hard: String = intent.getStringExtra("hardbutton").toString()
         if (hard == "true") {
@@ -137,8 +136,8 @@ open class GameScreen() : AppCompatActivity() {
             gameScreen.addView(newEnemyView3)
             enemyList3.add(newEnemyView3)
         }
-        val enemy1 = Enemy1(difficulty, enemyList,enemyList2, enemyList3)
-        enemy1.spawnEnemies(monument, this@GameScreen)
+        val wave = Wave(difficulty, enemyList,enemyList2, enemyList3)
+        wave.spawnEnemies(monument, this@GameScreen)
 
         /*while (enemiesSpawned < 4) {
             var rattata = findViewById<ImageView>(R.id.rattata)
