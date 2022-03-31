@@ -10,7 +10,7 @@ import android.widget.ImageView
 import androidx.core.animation.doOnEnd
 import kotlinx.coroutines.delay
 
-class Enemy1(difficulty: String, var enemyList: ArrayList<ImageView>):Enemy() {
+class Enemy1(difficulty: String, var enemyList: ArrayList<ImageView>, var enemyList2: ArrayList<ImageView>, var enemyList3: ArrayList<ImageView>):Enemy() {
 //class Enemy1(difficulty: String, var enemy: ImageView):Enemy() {
 
     init {
@@ -36,6 +36,21 @@ class Enemy1(difficulty: String, var enemyList: ArrayList<ImageView>):Enemy() {
         path.lineTo(1575F, 580F)
         path.lineTo(2500F, 580F)
 
+        var path2 = Path();
+        path2.moveTo(-250F, 160F)
+        path2.lineTo(860F, 160F)
+        path2.lineTo(860F, 990F)
+        path2.lineTo(1625F, 990F)
+        path2.lineTo(1625F, 625F)
+        path2.lineTo(2500F, 625F)
+
+        var path3 = Path();
+        path3.moveTo(-250F, 100F)
+        path3.lineTo(835F, 100F)
+        path3.lineTo(835F, 925F)
+        path3.lineTo(1585F, 925F)
+        path3.lineTo(1585F, 570F)
+        path3.lineTo(2500F, 570F)
         var delayCounter = 0L
 
         val animationList = ArrayList<Animator>()
@@ -44,6 +59,40 @@ class Enemy1(difficulty: String, var enemyList: ArrayList<ImageView>):Enemy() {
             enemy.y = 100F
             enemy.visibility = View.VISIBLE
             val animation = ObjectAnimator.ofFloat(enemy, "translationX","translationY", path).apply {
+                duration = 10000
+                startDelay = delayCounter
+                interpolator = null
+            }
+            delayCounter += 650L;
+            animation.start()
+            animation.doOnEnd {
+                if (enemy.visibility == View.VISIBLE) {
+                    monument.reduceMonumentHealth(context)
+                }
+            }
+        }
+        for (enemy in enemyList2) {
+            enemy.x = -250F
+            enemy.y = 100F
+            enemy.visibility = View.VISIBLE
+            val animation = ObjectAnimator.ofFloat(enemy, "translationX","translationY", path2).apply {
+                duration = 10000
+                startDelay = delayCounter
+                interpolator = null
+            }
+            delayCounter += 650L;
+            animation.start()
+            animation.doOnEnd {
+                if (enemy.visibility == View.VISIBLE) {
+                    monument.reduceMonumentHealth(context)
+                }
+            }
+        }
+        for (enemy in enemyList3) {
+            enemy.x = -250F
+            enemy.y = 100F
+            enemy.visibility = View.VISIBLE
+            val animation = ObjectAnimator.ofFloat(enemy, "translationX","translationY", path3).apply {
                 duration = 10000
                 startDelay = delayCounter
                 interpolator = null

@@ -105,6 +105,8 @@ open class GameScreen() : AppCompatActivity() {
 
     fun startWave() {
         var enemyList = arrayListOf<ImageView>()
+        var enemyList2 = arrayListOf<ImageView>()
+        var enemyList3 = arrayListOf<ImageView>()
         var rattataCount = 1
         var grimerCount = 1
         var haunterCount = 1
@@ -120,22 +122,22 @@ open class GameScreen() : AppCompatActivity() {
             enemyList.add(newEnemyView)
         }
         for (i in 1..grimerCount) {
-            var newEnemyView = ImageView(this)
-            newEnemyView.layoutParams = LinearLayout.LayoutParams((75 * density).toInt(), (75 * density).toInt())
-            newEnemyView.setImageResource(R.drawable.grimer8bit)
-            newEnemyView.id = View.generateViewId()
-            gameScreen.addView(newEnemyView)
-            enemyList.add(newEnemyView)
+            var newEnemyView2 = ImageView(this)
+            newEnemyView2.layoutParams = LinearLayout.LayoutParams((60 * density).toInt(), (60 * density).toInt())
+            newEnemyView2.setImageResource(R.drawable.grimer8bit)
+            newEnemyView2.id = View.generateViewId()
+            gameScreen.addView(newEnemyView2)
+            enemyList2.add(newEnemyView2)
         }
         for (i in 1..haunterCount) {
-            var newEnemyView = ImageView(this)
-            newEnemyView.layoutParams = LinearLayout.LayoutParams((100 * density).toInt(), (100 * density).toInt())
-            newEnemyView.setImageResource(R.drawable.haunter8bit)
-            newEnemyView.id = View.generateViewId()
-            gameScreen.addView(newEnemyView)
-            enemyList.add(newEnemyView)
+            var newEnemyView3 = ImageView(this)
+            newEnemyView3.layoutParams = LinearLayout.LayoutParams((73 * density).toInt(), (73 * density).toInt())
+            newEnemyView3.setImageResource(R.drawable.haunter8bit)
+            newEnemyView3.id = View.generateViewId()
+            gameScreen.addView(newEnemyView3)
+            enemyList3.add(newEnemyView3)
         }
-        val enemy1 = Enemy1(difficulty, enemyList)
+        val enemy1 = Enemy1(difficulty, enemyList,enemyList2, enemyList3)
         enemy1.spawnEnemies(monument, this@GameScreen)
 
         /*while (enemiesSpawned < 4) {
