@@ -19,10 +19,13 @@ class HaunterEnemy(difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
         damage = 10
 
         if (difficulty == "easy") {
+            awardMoney = 50
             amount = 1
         } else if (difficulty == "medium") {
+            awardMoney = 10
             amount = 2
         } else {
+            awardMoney = 2
             amount = 3
         }
 

@@ -1,29 +1,31 @@
 M3 Test Case Writeup
 Case #1: M4 - Test number of enemies spawned varies by difficulty
-
+        We have three enemies (Rattata, Haunter, and Grimer) as well as three difficulties (easy, medium, and hard). For each enemy, we set 3 variables for the enemy with the difficulty passed in as the parameter. Then, we use assertEquals to check if the enemy has the right spawn count for the difficulty given to it. For example, rattata(hard) is tested to have an amount of 3, while rattata(easy) is tested to have an amount of 1.
 
 Case #2: M4 - Each enemy in the game is unique
+        We create three variables: one for each enemy (difficulty is set as hard but it could be any because we are just testing the enemy object). We use assertNotEquals() to check that the enemies are not equal to each other aka unique (rattata/haunter, haunter/grimer, grimer/rattata).
 
-
-Case #3: M4 - Each enemy has their health initialized by difficulty
-
+Case #3: M4 - Each enemy has their health initialized
+        We have three enemies (Rattata, Haunter, and Grimer) as well as three difficulties (easy, medium, and hard). For each enemy, we set 3 variables for the enemy with the difficulty passed in as the parameter. Then, we use assertEquals to check if the enemy has the right health. For example, rattata is tested to have a health of 1, while grimer is tested to have a health of 3.
 
 Case #4: M4 - Monument health is reduced properly
-
+        We create one monument variable on the hard difficulty. Then by using reduceMonumentHealth, we use assertEquals() to verify that the monument has the right amount of health remaining after.
 
 Case #5: M4 - The enemy paths exist and are valid
+        Using our existing enemy variables, we verify that all of the paths that the enemies will take exist and are valid.
 
 
 Case #6: M4 - Monument's gameIsOver variable is true when monument runs out of health
-    We create an instance of the Monument class, passing in a null text view, and a string "hard" to set the game difficulty to hard. We then reduce the monument health five times, as each enemy does 10 damage to a tower and the Monument has 50 health on hard. If everything goes well, the gameIsOver variable should be properly set to true as monument health is equal to zero.
+        We create an instance of the Monument class, passing in a null text view, and a string "hard" to set the game difficulty to hard. We then reduce the monument health five times, as each enemy does 10 damage to a tower and the Monument has 50 health on hard. If everything goes well, the gameIsOver variable should be properly set to true as monument health is equal to zero.
 
 Case #7: M4 - The enemy levels are initialized properly on instantiation
-    Upon initialization of the three enemy classes, want the enemies to be initialized to have a value of 1 for the level variable. We go through an instance of each type of enemy, making sure that the level is set to 1.
+        Upon initialization of the three enemy classes, want the enemies to be initialized to have a value of 1 for the level variable. We go through an instance of each type of enemy, making sure that the level is set to 1.
 
-Case #8:
+Case #8: M4 - The amount of damage the enemy will do to the monument is initialized
+        Upon initialization of the three enemy classes, we ensure that the damage that each enemy will do to the monument is initialized accordingly. We use assertEquals to check if each enemy does 10 damage.
 
+Case #9: M4 - The award money for killing the enemy is initialized
+        Upon initialization of the three enemy classes, we ensure that the award money that will be given to the player for killing the enemy is initialized.
 
-Case #9:
-
-
-Case #10:
+Case #10: M4 - The award money for killing each enemy varies by difficulty
+        We create 2 more rattata enemy objects with easy and medium difficulties are parameters to verify that the award money matches their difficulty and that the 3 enemies do not award the same amount of money.

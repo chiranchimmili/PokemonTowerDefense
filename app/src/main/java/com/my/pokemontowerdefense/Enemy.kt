@@ -9,6 +9,7 @@ open abstract class Enemy {
     open var amount: Int = 0
     open var damage: Int = 0
     open var delayCounter: Long = 0
+    open var awardMoney: Int = 0
 
     abstract fun spawnEnemies(monument: Monument, context: Context)
 }

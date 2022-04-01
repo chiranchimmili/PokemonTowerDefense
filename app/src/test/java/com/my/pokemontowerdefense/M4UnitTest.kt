@@ -17,7 +17,7 @@ class M4UnitTest {
 
     @Test
     // M4 - Test number of enemies spawned varies by difficulty
-    fun testAmountVaries() {
+    fun testSpawnAmountVaries() {
         val rattataEnemy2 = RattataEnemy("medium", enemyList)
         val haunterEnemy2 = HaunterEnemy("easy", enemyList2)
         assertEquals(1, haunterEnemy2.amount)
@@ -32,6 +32,27 @@ class M4UnitTest {
         assertNotEquals(grimerEnemy, haunterEnemy)
         assertNotEquals(rattataEnemy, grimerEnemy)
     }
+
+    @Test
+    // M4 - Monument's gameIsOver variable is true when monument runs out of health
+    fun testGameOver() {
+        var monument = Monument(null, "hard")
+        print(monument)
+        monument.reduceMonumentHealth(null)
+        monument.reduceMonumentHealth(null)
+        monument.reduceMonumentHealth(null)
+        monument.reduceMonumentHealth(null)
+        monument.reduceMonumentHealth(null)
+        assertEquals(true,monument.gameIsOver)
+    }
+
+    @Test
+    fun testHealthReduction() {
+        var monument = Monument(null, "hard")
+        monument.reduceMonumentHealth(null)
+        assertEquals(40,monument.health)
+    }
+
 
     @Test
     // M4 - Each enemy has their health initialized by difficulty
@@ -57,26 +78,29 @@ class M4UnitTest {
         assertNotNull(grimerEnemy.path)
     }
 
-
-    @Test
-    // M4 - Monument's gameIsOver variable is true when monument runs out of health
-    fun testGameOver() {
-        var monument = Monument(null, "hard")
-        print(monument)
-        monument.reduceMonumentHealth(null)
-        monument.reduceMonumentHealth(null)
-        monument.reduceMonumentHealth(null)
-        monument.reduceMonumentHealth(null)
-        monument.reduceMonumentHealth(null)
-        assertEquals(true,monument.gameIsOver)
-    }
-
     @Test
     // M4 - The enemy levels are initialized properly upon instantiation
     fun testLevelIsInitialized() {
         assertEquals(1, rattataEnemy.level)
         assertEquals(1, haunterEnemy.level)
         assertEquals(1, grimerEnemy.level)
+    }
+
+    @Test
+    fun testAwardMoneyInitalized() {
+        assertEquals(1, rattataEnemy.awardMoney)
+        assertEquals(2, haunterEnemy.awardMoney)
+        assertEquals(3, grimerEnemy.awardMoney)
+    }
+
+    @Test
+    fun testAwardMoneyVaries() {
+        var rattataEnemy2 = RattataEnemy("medium", arrayListOf<ImageView>())
+        var rattataEnemy3 = RattataEnemy("easy", arrayListOf<ImageView>())
+
+        assertEquals(1, rattataEnemy.awardMoney)
+        assertEquals(5, rattataEnemy2.awardMoney)
+        assertEquals(25, rattataEnemy3.awardMoney)
     }
 
 }

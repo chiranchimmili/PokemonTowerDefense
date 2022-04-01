@@ -18,10 +18,13 @@ class GrimerEnemy (difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
         damage = 10
 
         if (difficulty == "easy") {
+            awardMoney = 75
             amount = 1
         } else if (difficulty == "medium") {
+            awardMoney = 15
             amount = 2
         } else {
+            awardMoney = 3
             amount = 3
         }
 

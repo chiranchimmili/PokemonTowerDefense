@@ -20,11 +20,14 @@ class RattataEnemy(difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
         damage = 10
 
         if (difficulty == "easy") {
+            awardMoney = 25
             amount = 1
         } else if (difficulty == "medium") {
+            awardMoney = 5
             amount = 2
         } else {
             amount = 3
+            awardMoney = 1
         }
 
 
