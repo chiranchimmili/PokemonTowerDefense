@@ -8,7 +8,6 @@ import android.graphics.Path
 import android.view.View
 import android.widget.ImageView
 import androidx.core.animation.doOnEnd
-import kotlinx.coroutines.delay
 
 class Wave(difficulty: String, var enemyList: ArrayList<ImageView>, var enemyList2: ArrayList<ImageView>, var enemyList3: ArrayList<ImageView>):Enemy() {
 //class Enemy1(difficulty: String, var enemy: ImageView):Enemy() {

@@ -2,7 +2,6 @@ package com.my.pokemontowerdefense
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
@@ -10,14 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.activity_game_screen.*
-import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.concurrent.schedule
-import android.os.Handler;
-
-
 
 
 open class GameScreen() : AppCompatActivity() {

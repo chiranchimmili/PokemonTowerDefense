@@ -1,23 +1,9 @@
 package com.my.pokemontowerdefense
 
 
-import android.content.Context
-import android.os.Handler
-import android.text.SpannableStringBuilder
-import android.widget.Button
 import android.widget.ImageView
-import android.graphics.Path
-import android.widget.TextView
-import com.my.pokemontowerdefense.ui.login.ConfigScreen
-import kotlinx.android.synthetic.main.activity_config_screen.*
-import kotlinx.android.synthetic.main.activity_game_screen.*
-import kotlinx.android.synthetic.main.activity_game_screen.monumentHealth
 import org.junit.Test
-import org.junit.Rule
-import org.junit.Before
 import org.junit.Assert.*
-import org.junit.runner.RunWith
-import org.w3c.dom.Text
 
 
 class M4UnitTest {
@@ -45,11 +31,10 @@ class M4UnitTest {
         assertNotEquals(rattataEnemy, haunterEnemy)
         assertNotEquals(grimerEnemy, haunterEnemy)
         assertNotEquals(rattataEnemy, grimerEnemy)
-
     }
 
     @Test
-    // M4 - Each enemy has their health initalized by difficulty
+    // M4 - Each enemy has their health initialized by difficulty
     fun testEnemyHPInitialized(){
         assertEquals(1, rattataEnemy.hp)
         assertEquals(2, haunterEnemy.hp)
@@ -58,31 +43,40 @@ class M4UnitTest {
 
     @Test
     // M4 - Monument health is reduced
-    fun testDamageInitalized() {
+    fun testDamageInitialized() {
         assertEquals(10, rattataEnemy.damage)
         assertEquals(10, haunterEnemy.damage)
         assertEquals(10, grimerEnemy.damage)
     }
 
     @Test
-    fun testPathIsInitiazlied() {
+    // M4 - The enemy paths exist and are valid
+    fun testPathIsInitialized() {
         assertNotNull(rattataEnemy.path)
         assertNotNull(haunterEnemy.path)
         assertNotNull(grimerEnemy.path)
     }
 
 
+    @Test
+    // M4 - Test Game is over is true when monument has no more health
+    fun testGameOver() {
+        var monument = Monument(null, "hard")
+        print(monument)
+        monument.reduceMonumentHealth(null)
+        monument.reduceMonumentHealth(null)
+        monument.reduceMonumentHealth(null)
+        monument.reduceMonumentHealth(null)
+        monument.reduceMonumentHealth(null)
+        assertEquals(true,monument.gameIsOver)
+    }
 
-
-
-
-
-
-
-
-
-
-
-
+    @Test
+    // M4 - Make sure enemy levels are initialized properly
+    fun testLevelIsInitialized() {
+        assertEquals(1, rattataEnemy.level)
+        assertEquals(1, haunterEnemy.level)
+        assertEquals(1, grimerEnemy.level)
+    }
 
 }

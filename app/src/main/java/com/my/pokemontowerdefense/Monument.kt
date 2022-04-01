@@ -8,9 +8,9 @@ import androidx.core.content.ContextCompat.startActivity
 import com.my.pokemontowerdefense.ui.login.ConfigScreen
 
 
-class Monument(textView: TextView, difficulty: String) {
+class Monument(textView: TextView?, difficulty: String) {
     var health: Int = 0
-    var healthView: TextView = textView;
+    var healthView: TextView? = textView;
     var gameIsOver: Boolean = false;
 
     init {
@@ -21,18 +21,25 @@ class Monument(textView: TextView, difficulty: String) {
         } else {
             health = 200
         }
-        healthView.text = health.toString()
+        if (healthView != null) {
+            healthView!!.text = health.toString()
+        }
     }
 
-    fun reduceMonumentHealth(context: Context) {
+    fun reduceMonumentHealth(context: Context?) { // This stuff is added just for testing lol
         health -= 10
         if (health <= 0 && !gameIsOver) {
             gameIsOver = true
-            val intent = Intent(context, GameOverScreen::class.java)
-            context.startActivity(intent)
-            System.exit(0)
+            if (context != null) {
+                val intent = Intent(context, GameOverScreen::class.java)
+                context.startActivity(intent)
+                System.exit(0)
+            }
         }
-        healthView.text = health.toString()
+        if (healthView != null) {
+            healthView!!.text = health.toString()
+        }
+
     }
 
 
