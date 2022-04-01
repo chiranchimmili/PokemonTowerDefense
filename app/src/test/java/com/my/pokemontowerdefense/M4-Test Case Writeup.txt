@@ -1,0 +1,29 @@
+M3 Test Case Writeup
+Case #1: M4 - Test number of enemies spawned varies by difficulty
+
+
+Case #2: M4 - Each enemy in the game is unique
+
+
+Case #3: M4 - Each enemy has their health initialized by difficulty
+
+
+Case #4: M4 - Monument health is reduced properly
+
+
+Case #5: M4 - The enemy paths exist and are valid
+
+
+Case #6: M4 - Monument's gameIsOver variable is true when monument runs out of health
+    We create an instance of the Monument class, passing in a null text view, and a string "hard" to set the game difficulty to hard. We then reduce the monument health five times, as each enemy does 10 damage to a tower and the Monument has 50 health on hard. If everything goes well, the gameIsOver variable should be properly set to true as monument health is equal to zero.
+
+Case #7: M4 - The enemy levels are initialized properly on instantiation
+    Upon initialization of the three enemy classes, want the enemies to be initialized to have a value of 1 for the level variable. We go through an instance of each type of enemy, making sure that the level is set to 1.
+
+Case #8:
+
+
+Case #9:
+
+
+Case #10:

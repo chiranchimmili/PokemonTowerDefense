@@ -42,7 +42,7 @@ class M4UnitTest {
     }
 
     @Test
-    // M4 - Monument health is reduced
+    // M4 - Monument health is reduced properly
     fun testDamageInitialized() {
         assertEquals(10, rattataEnemy.damage)
         assertEquals(10, haunterEnemy.damage)
@@ -59,7 +59,7 @@ class M4UnitTest {
 
 
     @Test
-    // M4 - Test Game is over is true when monument has no more health
+    // M4 - Monument's gameIsOver variable is true when monument runs out of health
     fun testGameOver() {
         var monument = Monument(null, "hard")
         print(monument)
@@ -72,7 +72,7 @@ class M4UnitTest {
     }
 
     @Test
-    // M4 - Make sure enemy levels are initialized properly
+    // M4 - The enemy levels are initialized properly upon instantiation
     fun testLevelIsInitialized() {
         assertEquals(1, rattataEnemy.level)
         assertEquals(1, haunterEnemy.level)
