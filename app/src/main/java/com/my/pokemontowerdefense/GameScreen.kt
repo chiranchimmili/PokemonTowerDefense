@@ -73,15 +73,15 @@ open class GameScreen() : AppCompatActivity() {
             buyTowerEvent(BulbasaurTower)
         }
 
-        val location1 = Location(findViewById<Button>(R.id.location1button), location1relative, true)
-        val location2 = Location(findViewById<Button>(R.id.location2button), location2relative, false)
-        val location3 = Location(findViewById<Button>(R.id.location3button), location3relative, true)
-        val location4 = Location(findViewById<Button>(R.id.location4button), location4relative, false)
-        val location5 = Location(findViewById<Button>(R.id.location5button), location5relative, false)
-        val location6 = Location(findViewById<Button>(R.id.location6button), location6relative, false)
-        val location7 = Location(findViewById<Button>(R.id.location7button), location7relative, true)
-        val location8 = Location(findViewById<Button>(R.id.location8button), location8relative, true)
-        val location9 = Location(findViewById<Button>(R.id.location9button), location9relative, true)
+        val location1 = Location(findViewById<Button>(R.id.location1button), location1relative, true, false, 0, 100F, 0F, 400F, 0F)
+        val location2 = Location(findViewById<Button>(R.id.location2button), location2relative, true, true, 0, 820F, 50F, 900F, 250F)
+        val location3 = Location(findViewById<Button>(R.id.location3button), location3relative, false, false, 0, 500F, 200F, 800F, 500F)
+        val location4 = Location(findViewById<Button>(R.id.location4button), location4relative, true, true, 0,820F, 550F, 900F, 750F)
+        val location5 = Location(findViewById<Button>(R.id.location5button), location5relative, true, true, 0,820F, 800F, 990F, 1100F)
+        val location6 = Location(findViewById<Button>(R.id.location6button), location6relative, false, true, 0,0F, 200F, 0F, 500F)
+        val location7 = Location(findViewById<Button>(R.id.location7button), location7relative, false, false, 1,900F, 700F, 1100F, 900F)
+        val location8 = Location(findViewById<Button>(R.id.location8button), location8relative, false, false, 2,1275F, 700F, 1525F, 900F)
+        val location9 = Location(findViewById<Button>(R.id.location9button), location9relative, true, true, 0,1500F, 500F, 1800F, 700F)
 
         locations = arrayListOf(
             location1, location2, location3, location4, location5, location6,

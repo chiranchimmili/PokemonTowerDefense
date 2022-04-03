@@ -56,18 +56,28 @@ class RattataEnemy(difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
             delayCounter += 650L;
             animation.start()
             animation.addUpdateListener {
+//                if (enemy.x > 500F) {
+//                    if (hp >= 0) {
+//                        reduceEnemyHealth()
+//                    }
+//                    else {
+//                        enemy.visibility = View.INVISIBLE
+//                    }
+//                }
+
                 for (location in locations) {
-                    if (location.attackH && !location.attackV) {
-                        if (enemy.x > location.xStart && enemy.x < location.xEnd && location.hasTower) {
-                            if (hp >= 0) {
-                                reduceEnemyHealth()
-                            } else {
-                                enemy.visibility = View.INVISIBLE
-                            }
+                    if (location.hasTower && location.attackH && !location.attackV) {
+                        if (enemy.x > location.xStart && enemy.x < location.xEnd) {
+                            enemy.visibility = View.INVISIBLE
+//                            if (hp >= 0) {
+//                                reduceEnemyHealth()
+//                            } else {
+//                                enemy.visibility = View.INVISIBLE
+//                            }
                         }
                     }
-                    else if (!location.attackH && location.attackV) {
-                        if (enemy.y > location.yStart && enemy.y < location.yEnd && location.hasTower) {
+                    else if (location.hasTower && !location.attackH && location.attackV) {
+                        if (enemy.y > location.yStart && enemy.y < location.yEnd) {
                             if (hp >= 0) {
                                 reduceEnemyHealth()
                             } else {
@@ -76,15 +86,14 @@ class RattataEnemy(difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
                         }
                     }
                     else {
-                        if (enemy.x > location.xStart && enemy.x < location.xEnd && enemy.y >
-                            location.yStart && enemy.y < location.yEnd && location.hasTower) {
+                        if (location.hasTower && enemy.x > location.xStart && enemy.x < location.xEnd && enemy.y >
+                            location.yStart && enemy.y < location.yEnd) {
                             if (hp >= 0) {
                                 reduceEnemyHealth()
                             } else {
                                 enemy.visibility = View.INVISIBLE
                             }
                         }
-
                     }
                 }
             }

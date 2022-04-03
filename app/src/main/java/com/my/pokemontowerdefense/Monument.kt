@@ -19,7 +19,7 @@ class Monument(textView: TextView?, difficulty: String) {
         } else if (difficulty == "medium") {
             health = 100
         } else {
-            health = 200
+            health = 20000
         }
         if (healthView != null) {
             healthView!!.text = health.toString()
