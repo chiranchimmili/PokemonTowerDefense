@@ -34,7 +34,7 @@ class RattataEnemy(difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
 
     }
 
-    override fun spawnEnemies(monument: Monument, context: Context) {
+    override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>) {
 
         path.moveTo(-250F, 100F)
         path.lineTo(825F, 100F)
@@ -42,7 +42,7 @@ class RattataEnemy(difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
         path.lineTo(1575F, 925F)
         path.lineTo(1575F, 580F)
         path.lineTo(2500F, 580F)
-        val animationList = ArrayList<Animator>()
+
         for (enemy in enemyList) {
             enemy.x = -250F
             enemy.y = 100F
@@ -55,11 +55,47 @@ class RattataEnemy(difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
                 }
             delayCounter += 650L;
             animation.start()
+            animation.addUpdateListener {
+                for (location in locations) {
+                    if (location.attackH && !location.attackV) {
+                        if (enemy.x > location.xStart && enemy.x < location.xEnd && location.hasTower) {
+                            if (hp >= 0) {
+                                reduceEnemyHealth()
+                            } else {
+                                enemy.visibility = View.INVISIBLE
+                            }
+                        }
+                    }
+                    else if (!location.attackH && location.attackV) {
+                        if (enemy.y > location.yStart && enemy.y < location.yEnd && location.hasTower) {
+                            if (hp >= 0) {
+                                reduceEnemyHealth()
+                            } else {
+                                enemy.visibility = View.INVISIBLE
+                            }
+                        }
+                    }
+                    else {
+                        if (enemy.x > location.xStart && enemy.x < location.xEnd && enemy.y >
+                            location.yStart && enemy.y < location.yEnd && location.hasTower) {
+                            if (hp >= 0) {
+                                reduceEnemyHealth()
+                            } else {
+                                enemy.visibility = View.INVISIBLE
+                            }
+                        }
+
+                    }
+                }
+            }
             animation.doOnEnd {
                 if (enemy.visibility == View.VISIBLE) {
                     monument.reduceMonumentHealth(context)
                 }
             }
         }
+    }
+    override fun reduceEnemyHealth() {
+        hp -= 5
     }
 }

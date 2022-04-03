@@ -94,6 +94,24 @@
             tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/location3layout"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="175dp"
+        android:layout_marginBottom="240dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/location3button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="HERE"
+            android:textSize="8sp"
+            android:visibility="gone" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/location9layout"
@@ -193,24 +211,6 @@
             android:visibility="gone" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/location3layout"
-        android:layout_width="60dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="175dp"
-        android:layout_marginBottom="240dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/location3button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="HERE"
-            android:textSize="8sp"
-            android:visibility="gone" />
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/location8layout"

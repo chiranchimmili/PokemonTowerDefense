@@ -11,5 +11,7 @@ open abstract class Enemy {
     open var delayCounter: Long = 0
     open var awardMoney: Int = 0
 
-    abstract fun spawnEnemies(monument: Monument, context: Context)
+    abstract fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>)
+
+    abstract fun reduceEnemyHealth()
 }

@@ -73,15 +73,15 @@ open class GameScreen() : AppCompatActivity() {
             buyTowerEvent(BulbasaurTower)
         }
 
-        val location1 = Location(findViewById<Button>(R.id.location1button), location1relative)
-        val location2 = Location(findViewById<Button>(R.id.location2button), location2relative)
-        val location3 = Location(findViewById<Button>(R.id.location3button), location3relative)
-        val location4 = Location(findViewById<Button>(R.id.location4button), location4relative)
-        val location5 = Location(findViewById<Button>(R.id.location5button), location5relative)
-        val location6 = Location(findViewById<Button>(R.id.location6button), location6relative)
-        val location7 = Location(findViewById<Button>(R.id.location7button), location7relative)
-        val location8 = Location(findViewById<Button>(R.id.location8button), location8relative)
-        val location9 = Location(findViewById<Button>(R.id.location9button), location9relative)
+        val location1 = Location(findViewById<Button>(R.id.location1button), location1relative, true)
+        val location2 = Location(findViewById<Button>(R.id.location2button), location2relative, false)
+        val location3 = Location(findViewById<Button>(R.id.location3button), location3relative, true)
+        val location4 = Location(findViewById<Button>(R.id.location4button), location4relative, false)
+        val location5 = Location(findViewById<Button>(R.id.location5button), location5relative, false)
+        val location6 = Location(findViewById<Button>(R.id.location6button), location6relative, false)
+        val location7 = Location(findViewById<Button>(R.id.location7button), location7relative, true)
+        val location8 = Location(findViewById<Button>(R.id.location8button), location8relative, true)
+        val location9 = Location(findViewById<Button>(R.id.location9button), location9relative, true)
 
         locations = arrayListOf(
             location1, location2, location3, location4, location5, location6,
@@ -139,11 +139,11 @@ open class GameScreen() : AppCompatActivity() {
             enemyList3.add(newEnemyView3)
         }
 
-        rattataEnemy.spawnEnemies(monument, this@GameScreen)
+        rattataEnemy.spawnEnemies(monument, this@GameScreen, locations)
         haunterEnemy.delayCounter += 650 * haunterEnemy.amount
-        haunterEnemy.spawnEnemies(monument, this@GameScreen)
+        haunterEnemy.spawnEnemies(monument, this@GameScreen, locations)
         grimerEnemy.delayCounter += 1300 * grimerEnemy.amount
-        grimerEnemy.spawnEnemies(monument, this@GameScreen)
+        grimerEnemy.spawnEnemies(monument, this@GameScreen, locations)
 
     }
 

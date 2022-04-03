@@ -6,7 +6,10 @@ import android.content.Context
 import android.graphics.Path
 import android.view.View
 import android.widget.ImageView
+import androidx.core.animation.addListener
 import androidx.core.animation.doOnEnd
+import androidx.core.animation.doOnRepeat
+import androidx.core.animation.doOnStart
 
 class GrimerEnemy (difficulty: String, var enemyList: ArrayList<ImageView>) :Enemy() {
 
@@ -14,7 +17,7 @@ class GrimerEnemy (difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
 
     init {
         level = 1
-        hp = 3
+        hp = 50
         damage = 10
 
         if (difficulty == "easy") {
@@ -29,10 +32,8 @@ class GrimerEnemy (difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
         }
 
 
-
     }
-
-    override fun spawnEnemies(monument: Monument, context: Context) {
+    override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>) {
 
         path.moveTo(-250F, 185F)
         path.lineTo(885F, 185F)
@@ -41,7 +42,7 @@ class GrimerEnemy (difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
         path.lineTo(1640F, 620F)
         path.lineTo(2500F, 620F)
 
-        val animationList = ArrayList<Animator>()
+
         for (enemy in enemyList) {
             enemy.x = -250F
             enemy.y = 100F
@@ -53,6 +54,47 @@ class GrimerEnemy (difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
             }
             delayCounter += 650L;
             animation.start()
+            animation.addUpdateListener {
+//                if (enemy.x > 500F) {
+//                    if (hp >= 0) {
+//                        reduceEnemyHealth()
+//                    }
+//                    else {
+//                        enemy.visibility = View.INVISIBLE
+//                    }
+//                }
+
+                for (location in locations) {
+                    if (location.hasTower && location.attackH && !location.attackV) {
+                        if (enemy.x > location.xStart && enemy.x < location.xEnd) {
+                            if (hp >= 0) {
+                                reduceEnemyHealth()
+                            } else {
+                                enemy.visibility = View.INVISIBLE
+                            }
+                        }
+                    }
+                    else if (location.hasTower && !location.attackH && location.attackV) {
+                        if (enemy.y > location.yStart && enemy.y < location.yEnd && location.hasTower) {
+                            if (hp >= 0) {
+                                reduceEnemyHealth()
+                            } else {
+                                enemy.visibility = View.INVISIBLE
+                            }
+                        }
+                    }
+                    else {
+                        if (location.hasTower && enemy.x > location.xStart && enemy.x < location.xEnd && enemy.y >
+                            location.yStart && enemy.y < location.yEnd && location.hasTower) {
+                            if (hp >= 0) {
+                                reduceEnemyHealth()
+                            } else {
+                                enemy.visibility = View.INVISIBLE
+                            }
+                        }
+                    }
+                }
+            }
             animation.doOnEnd {
                 if (enemy.visibility == View.VISIBLE) {
                     monument.reduceMonumentHealth(context)
@@ -61,4 +103,7 @@ class GrimerEnemy (difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
         }
     }
 
+    override fun reduceEnemyHealth() {
+        hp -= 10
+    }
 }
