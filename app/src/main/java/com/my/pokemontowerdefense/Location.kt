@@ -28,7 +28,6 @@ right : Float, bottom : Float) {
         }
     }
 
-
     fun setVisible () {
         button.visibility = View.VISIBLE
     }

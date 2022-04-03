@@ -15,7 +15,7 @@ class HaunterEnemy(difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
 
     init {
         level = 1
-        hp = 2000
+        hp = 250
         damage = 10
 
         if (difficulty == "easy") {
@@ -53,34 +53,42 @@ class HaunterEnemy(difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
             animation.start()
             animation.addUpdateListener {
                 for (location in locations) {
-                    if (location.attackH && !location.attackV) {
-                        if (enemy.x > location.xStart && enemy.x < location.xEnd && location.hasTower) {
-                            if (hp >= 0) {
-                                reduceEnemyHealth()
-                            } else {
-                                enemy.visibility = View.INVISIBLE
+                    if (location.hasTower) {
+                        if (location.attackH && !location.attackV) {
+                            if (enemy.x > location.xStart && enemy.x < location.xEnd) {
+                                combat(enemy)
+                            }
+                        } else if (!location.attackH && location.attackV) {
+                            if (enemy.y > location.yStart && enemy.y < location.yEnd) {
+                                combat(enemy)
+                            }
+                        } else if (location.attackH && location.attackV) {
+                            if (enemy.x > location.xStart && enemy.x < location.xEnd && enemy.y >
+                                location.yStart && enemy.y < location.yEnd) {
+                                combat(enemy)
+                            }
+                        } else if (!location.attackV && !location.attackH && location.isSpecial == 0) {
+                            if (enemy.x > location.xStart && enemy.x < location.xEnd) {
+                                combat(enemy)
+                            } else if (enemy.y > location.yStart && enemy.y < location.yEnd) {
+                                combat(enemy)
+                            }
+                        } else {
+                            if (location.isSpecial == 1) {
+                                if (enemy.x > 820F && enemy.x < 900F && enemy.y > location.yStart && enemy.y < location.yEnd) {
+                                    combat(enemy)
+                                } else if (enemy.x > location.xStart && enemy.x < location.xEnd) {
+                                    combat(enemy)
+                                }
+                            } else if (location.isSpecial == 2) {
+                                if (enemy.x > 1550F && enemy.x < 1650F && enemy.y > location.yStart && enemy.y < location.yEnd) {
+                                    combat(enemy)
+                                }
+                                else if (enemy.x > location.xStart && enemy.x < location.xEnd) {
+                                    combat(enemy)
+                                }
                             }
                         }
-                    }
-                    else if (!location.attackH && location.attackV) {
-                        if (enemy.y > location.yStart && enemy.y < location.yEnd && location.hasTower) {
-                            if (hp >= 0) {
-                                reduceEnemyHealth()
-                            } else {
-                                enemy.visibility = View.INVISIBLE
-                            }
-                        }
-                    }
-                    else {
-                        if (enemy.x > location.xStart && enemy.x < location.xEnd && enemy.y >
-                            location.yStart && enemy.y < location.yEnd && location.hasTower) {
-                            if (hp >= 0) {
-                                reduceEnemyHealth()
-                            } else {
-                                enemy.visibility = View.INVISIBLE
-                            }
-                        }
-
                     }
                 }
             }

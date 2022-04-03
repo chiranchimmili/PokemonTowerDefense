@@ -12,11 +12,10 @@ class RattataEnemy(difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
 
     var path = Path();
 
-
     init {
 
         level = 1
-        hp = 1
+        hp = 100
         damage = 10
 
         if (difficulty == "easy") {
@@ -29,9 +28,6 @@ class RattataEnemy(difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
             amount = 3
             awardMoney = 1
         }
-
-
-
     }
 
     override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>) {
@@ -56,42 +52,41 @@ class RattataEnemy(difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
             delayCounter += 650L;
             animation.start()
             animation.addUpdateListener {
-//                if (enemy.x > 500F) {
-//                    if (hp >= 0) {
-//                        reduceEnemyHealth()
-//                    }
-//                    else {
-//                        enemy.visibility = View.INVISIBLE
-//                    }
-//                }
-
                 for (location in locations) {
-                    if (location.hasTower && location.attackH && !location.attackV) {
-                        if (enemy.x > location.xStart && enemy.x < location.xEnd) {
-                            enemy.visibility = View.INVISIBLE
-//                            if (hp >= 0) {
-//                                reduceEnemyHealth()
-//                            } else {
-//                                enemy.visibility = View.INVISIBLE
-//                            }
-                        }
-                    }
-                    else if (location.hasTower && !location.attackH && location.attackV) {
-                        if (enemy.y > location.yStart && enemy.y < location.yEnd) {
-                            if (hp >= 0) {
-                                reduceEnemyHealth()
-                            } else {
-                                enemy.visibility = View.INVISIBLE
+                    if (location.hasTower) {
+                        if (location.attackH && !location.attackV) {
+                            if (enemy.x > location.xStart && enemy.x < location.xEnd) {
+                                combat(enemy)
                             }
-                        }
-                    }
-                    else {
-                        if (location.hasTower && enemy.x > location.xStart && enemy.x < location.xEnd && enemy.y >
-                            location.yStart && enemy.y < location.yEnd) {
-                            if (hp >= 0) {
-                                reduceEnemyHealth()
-                            } else {
-                                enemy.visibility = View.INVISIBLE
+                        } else if (!location.attackH && location.attackV) {
+                            if (enemy.y > location.yStart && enemy.y < location.yEnd) {
+                                combat(enemy)
+                            }
+                        } else if (location.attackH && location.attackV) {
+                            if (enemy.x > location.xStart && enemy.x < location.xEnd && enemy.y >
+                                location.yStart && enemy.y < location.yEnd) {
+                                combat(enemy)
+                            }
+                        } else if (!location.attackV && !location.attackH && location.isSpecial == 0) {
+                            if (enemy.x > location.xStart && enemy.x < location.xEnd) {
+                                combat(enemy)
+                            } else if (enemy.y > location.yStart && enemy.y < location.yEnd) {
+                                combat(enemy)
+                            }
+                        } else {
+                            if (location.isSpecial == 1) {
+                                if (enemy.x > 820F && enemy.x < 900F && enemy.y > location.yStart && enemy.y < location.yEnd) {
+                                    combat(enemy)
+                                } else if (enemy.x > location.xStart && enemy.x < location.xEnd) {
+                                    combat(enemy)
+                                }
+                            } else if (location.isSpecial == 2) {
+                                if (enemy.x > 1550F && enemy.x < 1650F && enemy.y > location.yStart && enemy.y < location.yEnd) {
+                                    combat(enemy)
+                                }
+                                else if (enemy.x > location.xStart && enemy.x < location.xEnd) {
+                                    combat(enemy)
+                                }
                             }
                         }
                     }

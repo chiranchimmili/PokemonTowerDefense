@@ -1,6 +1,7 @@
 package com.my.pokemontowerdefense
 
 import android.content.Context
+import android.view.View
 import android.widget.ImageView
 
 open abstract class Enemy {
@@ -14,4 +15,12 @@ open abstract class Enemy {
     abstract fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>)
 
     abstract fun reduceEnemyHealth()
+
+    fun combat(enemy: ImageView) {
+        if (hp >= 0) {
+            reduceEnemyHealth()
+        } else {
+            enemy.visibility = View.INVISIBLE
+        }
+    }
 }
