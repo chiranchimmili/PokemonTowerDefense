@@ -8,10 +8,10 @@ import android.view.View
 import android.widget.ImageView
 import androidx.core.animation.doOnEnd
 
-class HaunterEnemy(difficulty: String, var enemyList: ArrayList<ImageView>) :Enemy() {
+class HaunterEnemy(difficulty: String, var enemyList: ArrayList<ImageView>, numberOfEnemies: Int) :Enemy() {
 
     var path = Path();
-
+    override var amount = numberOfEnemies
 
     init {
         level = 1
@@ -20,13 +20,10 @@ class HaunterEnemy(difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
 
         if (difficulty == "easy") {
             awardMoney = 50
-            amount = 1
         } else if (difficulty == "medium") {
             awardMoney = 10
-            amount = 2
         } else {
             awardMoney = 2
-            amount = 3
         }
     }
 
@@ -94,7 +91,7 @@ class HaunterEnemy(difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
             }
             animation.doOnEnd {
                 if (enemy.visibility == View.VISIBLE) {
-                    monument.reduceMonumentHealth(context)
+                    monument.reduceMonumentHealth(context, damage)
                 }
             }
         }

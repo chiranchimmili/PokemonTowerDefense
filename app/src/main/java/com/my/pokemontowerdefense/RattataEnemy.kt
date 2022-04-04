@@ -8,9 +8,10 @@ import android.view.View
 import android.widget.ImageView
 import androidx.core.animation.doOnEnd
 
-class RattataEnemy(difficulty: String, var enemyList: ArrayList<ImageView>) :Enemy() {
+class RattataEnemy(difficulty: String, var enemyList: ArrayList<ImageView>, numberOfEnemies: Int) :Enemy() {
 
     var path = Path();
+    override var amount = numberOfEnemies
 
     init {
 
@@ -20,12 +21,9 @@ class RattataEnemy(difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
 
         if (difficulty == "easy") {
             awardMoney = 25
-            amount = 1
         } else if (difficulty == "medium") {
             awardMoney = 5
-            amount = 2
         } else {
-            amount = 3
             awardMoney = 1
         }
     }
@@ -94,7 +92,7 @@ class RattataEnemy(difficulty: String, var enemyList: ArrayList<ImageView>) :Ene
             }
             animation.doOnEnd {
                 if (enemy.visibility == View.VISIBLE) {
-                    monument.reduceMonumentHealth(context)
+                    monument.reduceMonumentHealth(context, damage)
                 }
             }
         }

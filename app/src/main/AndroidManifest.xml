@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PokemonTowerDefense">
         <activity
+            android:name=".WinScreen"
+            android:exported="false" />
+        <activity
             android:name=".GameOverScreen"
             android:exported="false" />
         <activity
@@ -35,7 +38,7 @@
             android:name=".ui.login.ConfigScreen"
             android:exported="true"
             android:label="@string/title_activity_config_screen"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".GameScreen"
             android:exported="false"

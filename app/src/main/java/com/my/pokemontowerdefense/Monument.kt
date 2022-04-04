@@ -26,8 +26,8 @@ class Monument(textView: TextView?, difficulty: String) {
         }
     }
 
-    fun reduceMonumentHealth(context: Context?) {
-        health -= 10
+    fun reduceMonumentHealth(context: Context?, damage : Int) {
+        health -= damage
         if (health <= 0 && !gameIsOver) {
             gameIsOver = true
             if (context != null) {
@@ -39,8 +39,6 @@ class Monument(textView: TextView?, difficulty: String) {
         if (healthView != null) {
             healthView!!.text = health.toString()
         }
-
     }
-
 
 }
