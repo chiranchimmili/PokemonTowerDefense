@@ -6,12 +6,15 @@ import android.content.Context
 import android.graphics.Path
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.addListener
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnRepeat
 import androidx.core.animation.doOnStart
+import kotlinx.android.synthetic.main.activity_game_screen.*
 
-class GrimerEnemy (difficulty: String, var enemyList: ArrayList<ImageView>, var numberOfEnemies: Int) :Enemy() {
+class GrimerEnemy (difficulty: String, var numberOfEnemies: Int) :Enemy() {
 
     var path = Path();
     override var amount = numberOfEnemies
@@ -31,7 +34,17 @@ class GrimerEnemy (difficulty: String, var enemyList: ArrayList<ImageView>, var 
 
 
     }
-    override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>) {
+    override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout) {
+
+        for (i in 1..amount) {
+            var newEnemyView2 = ImageView(context)
+            newEnemyView2.layoutParams =
+                LinearLayout.LayoutParams((60 * density).toInt(), (60 * density).toInt())
+            newEnemyView2.setImageResource(R.drawable.grimer8bit)
+            newEnemyView2.id = View.generateViewId()
+            gameScreen.addView(newEnemyView2)
+            enemyList.add(newEnemyView2)
+        }
 
         path.moveTo(-250F, 185F)
         path.lineTo(885F, 185F)

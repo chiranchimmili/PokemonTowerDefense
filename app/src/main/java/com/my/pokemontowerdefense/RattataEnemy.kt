@@ -3,12 +3,16 @@ package com.my.pokemontowerdefense
 import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Path
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.doOnEnd
+import kotlinx.android.synthetic.main.activity_game_screen.*
 
-class RattataEnemy(difficulty: String, var enemyList: ArrayList<ImageView>, numberOfEnemies: Int) :Enemy() {
+class RattataEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
 
     var path = Path();
     override var amount = numberOfEnemies
@@ -28,7 +32,17 @@ class RattataEnemy(difficulty: String, var enemyList: ArrayList<ImageView>, numb
         }
     }
 
-    override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>) {
+    override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout) {
+
+        for (i in 1..amount) {
+            var newEnemyView = ImageView(context)
+            newEnemyView.layoutParams =
+                LinearLayout.LayoutParams((100 * density).toInt(), (100 * density).toInt())
+            newEnemyView.setImageResource(R.drawable.rattata8bit)
+            newEnemyView.id = View.generateViewId()
+            gameScreen.addView(newEnemyView)
+            enemyList.add(newEnemyView)
+        }
 
         path.moveTo(-250F, 100F)
         path.lineTo(825F, 100F)

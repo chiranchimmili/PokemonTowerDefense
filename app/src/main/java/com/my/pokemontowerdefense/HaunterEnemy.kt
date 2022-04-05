@@ -6,9 +6,12 @@ import android.content.Context
 import android.graphics.Path
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.doOnEnd
+import kotlinx.android.synthetic.main.activity_game_screen.*
 
-class HaunterEnemy(difficulty: String, var enemyList: ArrayList<ImageView>, numberOfEnemies: Int) :Enemy() {
+class HaunterEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
 
     var path = Path();
     override var amount = numberOfEnemies
@@ -27,7 +30,17 @@ class HaunterEnemy(difficulty: String, var enemyList: ArrayList<ImageView>, numb
         }
     }
 
-    override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>) {
+    override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout) {
+
+        for (i in 1..amount) {
+            var newEnemyView3 = ImageView(context)
+            newEnemyView3.layoutParams =
+                LinearLayout.LayoutParams((73 * density).toInt(), (73 * density).toInt())
+            newEnemyView3.setImageResource(R.drawable.haunter8bit)
+            newEnemyView3.id = View.generateViewId()
+            gameScreen.addView(newEnemyView3)
+            enemyList.add(newEnemyView3)
+        }
 
         path.moveTo(-250F, 100F)
         path.lineTo(850F, 100F)

@@ -103,62 +103,24 @@ open class GameScreen() : AppCompatActivity() {
 
     fun startWave() {
         var amount = level
-        var enemyList = arrayListOf<ImageView>()
-        var enemyList2 = arrayListOf<ImageView>()
-        var enemyList3 = arrayListOf<ImageView>()
-        var enemyList4 = arrayListOf<ImageView>()
 
-        val density = Resources.getSystem().displayMetrics.density
 
-        val rattataEnemy = RattataEnemy(difficulty, enemyList, amount)
-        val grimerEnemy = GrimerEnemy(difficulty, enemyList2, amount)
-        val haunterEnemy = HaunterEnemy(difficulty, enemyList3, amount)
-        val giratinaEnemy = Giratina(difficulty, enemyList4, 1)
 
-        // Create number of imageViews based on the number of enemies to be generated
+        val rattataEnemy = RattataEnemy(difficulty, amount)
+        val grimerEnemy = GrimerEnemy(difficulty, amount)
+        val haunterEnemy = HaunterEnemy(difficulty, amount)
+        val giratinaEnemy = Giratina(difficulty, 1)
+
 
         if (level == 6) {
-            var newEnemyView = ImageView(this)
-            newEnemyView.layoutParams = LinearLayout.LayoutParams((80 * density).toInt(), (80 * density).toInt())
-            newEnemyView.setImageResource(R.drawable.giratina)
-            newEnemyView.id = View.generateViewId()
-            gameScreen.addView(newEnemyView)
-            enemyList4.add(newEnemyView)
-            giratinaEnemy.spawnEnemies(monument, this@GameScreen, locations)
+            giratinaEnemy.spawnEnemies(monument, this@GameScreen, locations, gameScreen)
 
         } else {
-            for (i in 1..rattataEnemy.amount) {
-                var newEnemyView = ImageView(this)
-                newEnemyView.layoutParams =
-                    LinearLayout.LayoutParams((100 * density).toInt(), (100 * density).toInt())
-                newEnemyView.setImageResource(R.drawable.rattata8bit)
-                newEnemyView.id = View.generateViewId()
-                gameScreen.addView(newEnemyView)
-                enemyList.add(newEnemyView)
-            }
-            for (i in 1..grimerEnemy.amount) {
-                var newEnemyView2 = ImageView(this)
-                newEnemyView2.layoutParams =
-                    LinearLayout.LayoutParams((60 * density).toInt(), (60 * density).toInt())
-                newEnemyView2.setImageResource(R.drawable.grimer8bit)
-                newEnemyView2.id = View.generateViewId()
-                gameScreen.addView(newEnemyView2)
-                enemyList2.add(newEnemyView2)
-            }
-            for (i in 1..haunterEnemy.amount) {
-                var newEnemyView3 = ImageView(this)
-                newEnemyView3.layoutParams =
-                    LinearLayout.LayoutParams((73 * density).toInt(), (73 * density).toInt())
-                newEnemyView3.setImageResource(R.drawable.haunter8bit)
-                newEnemyView3.id = View.generateViewId()
-                gameScreen.addView(newEnemyView3)
-                enemyList3.add(newEnemyView3)
-            }
-            rattataEnemy.spawnEnemies(monument, this@GameScreen, locations)
+            rattataEnemy.spawnEnemies(monument, this@GameScreen, locations, gameScreen)
             haunterEnemy.delayCounter += 650 * haunterEnemy.amount
-            haunterEnemy.spawnEnemies(monument, this@GameScreen, locations)
+            haunterEnemy.spawnEnemies(monument, this@GameScreen, locations, gameScreen)
             grimerEnemy.delayCounter += 1300 * grimerEnemy.amount
-            grimerEnemy.spawnEnemies(monument, this@GameScreen, locations)
+            grimerEnemy.spawnEnemies(monument, this@GameScreen, locations, gameScreen)
         }
 
     }

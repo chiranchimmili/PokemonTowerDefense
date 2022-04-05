@@ -4,10 +4,13 @@ import android.content.Intent
 import android.graphics.Path
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.doOnEnd
 import com.my.pokemontowerdefense.*
+import kotlinx.android.synthetic.main.activity_game_screen.*
 
-class Giratina(difficulty: String, var enemyList: ArrayList<ImageView>, numberOfEnemies: Int) :
+class Giratina(difficulty: String, numberOfEnemies: Int) :
     Enemy() {
 
     var path = Path();
@@ -27,7 +30,14 @@ class Giratina(difficulty: String, var enemyList: ArrayList<ImageView>, numberOf
         }
     }
 
-    override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>) {
+    override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout) {
+
+        var newEnemyView = ImageView(context)
+        newEnemyView.layoutParams = LinearLayout.LayoutParams((80 * density).toInt(), (80 * density).toInt())
+        newEnemyView.setImageResource(R.drawable.giratina)
+        newEnemyView.id = View.generateViewId()
+        gameScreen.addView(newEnemyView)
+        enemyList.add(newEnemyView)
 
         path.moveTo(-250F, 100F)
         path.lineTo(850F, 100F)
