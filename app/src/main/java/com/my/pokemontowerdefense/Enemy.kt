@@ -17,15 +17,18 @@ open abstract class Enemy {
     open var enemyList = arrayListOf<ImageView>()
 
 
-    abstract fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout)
+    abstract fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout, player : Player)
 
     abstract fun reduceEnemyHealth()
 
-    fun combat(enemy: ImageView) {
+    fun combat(enemyView: ImageView, player : Player) {
         if (hp >= 0) {
             reduceEnemyHealth()
         } else {
-            enemy.visibility = View.INVISIBLE
+            if (enemyView.visibility == View.VISIBLE) {
+                player.addMoney(awardMoney)
+            }
+            enemyView.visibility = View.INVISIBLE
         }
     }
 }

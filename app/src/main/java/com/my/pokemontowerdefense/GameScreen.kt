@@ -32,11 +32,8 @@ open class GameScreen() : AppCompatActivity() {
     private lateinit var shop: Shop;
     private lateinit var moneyView: TextView;
     private lateinit var locations: ArrayList<Location>;
-    private var level: Int = 0
+    private var level: Int = 1
 
-    private fun updateMoneyView() {
-        moneyView.text = player.money.toString()
-    }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +56,8 @@ open class GameScreen() : AppCompatActivity() {
         CharmanderTower = CharmanderTower(difficulty)
         BulbasaurTower = BulbasaurTower(difficulty)
         SquirtleTower = SquirtleTower(difficulty)
-        player = Player(difficulty)
+        player = Player(findViewById<TextView>(R.id.startingMoney), difficulty)
+        player.moneyViewUpdate()
 
         val buyTower1 = findViewById<ImageButton>(R.id.buyTower1Image)
         val buyTower2 = findViewById<ImageButton>(R.id.buyTower2Image)
@@ -80,8 +78,6 @@ open class GameScreen() : AppCompatActivity() {
         )
         // Displays starting money, depending on difficulty
         monument = Monument(findViewById<TextView>(R.id.monumentHealth), difficulty)
-        moneyView = findViewById<TextView>(R.id.startingMoney)
-        updateMoneyView()
 
         buyTower1.setOnClickListener {
             buyTowerEvent(CharmanderTower)
@@ -104,8 +100,6 @@ open class GameScreen() : AppCompatActivity() {
     fun startWave() {
         var amount = level
 
-
-
         val rattataEnemy = RattataEnemy(difficulty, amount)
         val grimerEnemy = GrimerEnemy(difficulty, amount)
         val haunterEnemy = HaunterEnemy(difficulty, amount)
@@ -113,14 +107,14 @@ open class GameScreen() : AppCompatActivity() {
 
 
         if (level == 6) {
-            giratinaEnemy.spawnEnemies(monument, this@GameScreen, locations, gameScreen)
+            giratinaEnemy.spawnEnemies(monument, this@GameScreen, locations, gameScreen, player)
 
         } else {
-            rattataEnemy.spawnEnemies(monument, this@GameScreen, locations, gameScreen)
+            rattataEnemy.spawnEnemies(monument, this@GameScreen, locations, gameScreen, player)
             haunterEnemy.delayCounter += 650 * haunterEnemy.amount
-            haunterEnemy.spawnEnemies(monument, this@GameScreen, locations, gameScreen)
+            haunterEnemy.spawnEnemies(monument, this@GameScreen, locations, gameScreen, player)
             grimerEnemy.delayCounter += 1300 * grimerEnemy.amount
-            grimerEnemy.spawnEnemies(monument, this@GameScreen, locations, gameScreen)
+            grimerEnemy.spawnEnemies(monument, this@GameScreen, locations, gameScreen, player)
         }
 
     }
@@ -136,7 +130,7 @@ open class GameScreen() : AppCompatActivity() {
                 location.hasTower = true
                 placeTowerSprite(location.layout, tower.imgResId)
                 shop.subtractBalance(tower, player)
-                updateMoneyView()
+                player.subtractMoney(tower.cost)
             }
         }
     }

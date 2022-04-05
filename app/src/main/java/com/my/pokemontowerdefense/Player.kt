@@ -1,10 +1,13 @@
 package com.my.pokemontowerdefense
 
-class Player (difficulty: String) {
+import android.widget.TextView
+
+class Player (textView: TextView?, difficulty: String) {
 
     var money: Int = 0
     var score: Int = 0
     var name: String = ""
+    var moneyView = textView
 
     init {
         if (difficulty == "hard") {
@@ -14,5 +17,17 @@ class Player (difficulty: String) {
         } else {
             money = 2000;
         }
+    }
+
+    fun moneyViewUpdate() {
+        moneyView!!.text = money.toString()
+    }
+    fun addMoney(amount : Int) {
+        money += amount
+        moneyView!!.text = money.toString()
+    }
+    fun subtractMoney(amount : Int) {
+        money -= amount
+        moneyView!!.text = money.toString()
     }
 }

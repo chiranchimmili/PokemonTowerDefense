@@ -32,7 +32,7 @@ class RattataEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
         }
     }
 
-    override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout) {
+    override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout, player : Player) {
 
         for (i in 1..amount) {
             var newEnemyView = ImageView(context)
@@ -68,36 +68,36 @@ class RattataEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
                     if (location.hasTower) {
                         if (location.attackH && !location.attackV) {
                             if (enemy.x > location.xStart && enemy.x < location.xEnd) {
-                                combat(enemy)
+                                combat(enemy, player)
                             }
                         } else if (!location.attackH && location.attackV) {
                             if (enemy.y > location.yStart && enemy.y < location.yEnd) {
-                                combat(enemy)
+                                combat(enemy, player)
                             }
                         } else if (location.attackH && location.attackV) {
                             if (enemy.x > location.xStart && enemy.x < location.xEnd && enemy.y >
                                 location.yStart && enemy.y < location.yEnd) {
-                                combat(enemy)
+                                combat(enemy, player)
                             }
                         } else if (!location.attackV && !location.attackH && location.isSpecial == 0) {
                             if (enemy.x > location.xStart && enemy.x < location.xEnd) {
-                                combat(enemy)
+                                combat(enemy, player)
                             } else if (enemy.y > location.yStart && enemy.y < location.yEnd) {
-                                combat(enemy)
+                                combat(enemy, player)
                             }
                         } else {
                             if (location.isSpecial == 1) {
                                 if (enemy.x > 820F && enemy.x < 900F && enemy.y > location.yStart && enemy.y < location.yEnd) {
-                                    combat(enemy)
+                                    combat(enemy, player)
                                 } else if (enemy.x > location.xStart && enemy.x < location.xEnd) {
-                                    combat(enemy)
+                                    combat(enemy, player)
                                 }
                             } else if (location.isSpecial == 2) {
                                 if (enemy.x > 1550F && enemy.x < 1650F && enemy.y > location.yStart && enemy.y < location.yEnd) {
-                                    combat(enemy)
+                                    combat(enemy, player)
                                 }
                                 else if (enemy.x > location.xStart && enemy.x < location.xEnd) {
-                                    combat(enemy)
+                                    combat(enemy, player)
                                 }
                             }
                         }
