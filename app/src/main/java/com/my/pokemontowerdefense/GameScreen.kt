@@ -128,6 +128,7 @@ open class GameScreen() : AppCompatActivity() {
             location.button.setOnClickListener {
                 Location.allVisibilityOff(locations)
                 location.hasTower = true
+                location.towerReference = tower
                 placeTowerSprite(location.layout, tower.imgResId)
                 player.subtractMoney(tower.cost)
             }

@@ -9,6 +9,7 @@ class Location(var button: Button, var layout: RelativeLayout, attackHorizontal 
 right : Float, bottom : Float) {
 
     var hasTower: Boolean = false
+    lateinit var towerReference: Tower
     var buttonLocation: Button = button
     var layoutSpot: RelativeLayout = layout
     var attackH : Boolean = false
