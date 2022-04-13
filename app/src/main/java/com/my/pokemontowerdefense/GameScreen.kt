@@ -129,7 +129,6 @@ open class GameScreen() : AppCompatActivity() {
                 Location.allVisibilityOff(locations)
                 location.hasTower = true
                 placeTowerSprite(location.layout, tower.imgResId)
-                shop.subtractBalance(tower, player)
                 player.subtractMoney(tower.cost)
             }
         }
