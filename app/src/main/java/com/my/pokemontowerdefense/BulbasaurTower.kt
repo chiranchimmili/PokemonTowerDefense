@@ -10,7 +10,7 @@ class BulbasaurTower(difficulty: String): Tower() {
     constructor() : this("easy")
 
     override var imgResId = R.drawable.bulbasaur1
-    override var cooldownTime = 100
+    override var cooldownTime = 500
     override var atkResId = R.drawable.razor_leaf
 
     init {

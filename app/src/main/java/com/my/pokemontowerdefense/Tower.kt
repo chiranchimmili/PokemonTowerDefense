@@ -14,7 +14,6 @@ import androidx.core.animation.doOnEnd
 open abstract class Tower {
     abstract val imgResId: Int
     open var cooldownTime = 0
-    var timeStamp = System.currentTimeMillis()
     val density = Resources.getSystem().displayMetrics.density
     abstract val atkResId: Int
     open var cost: Int = 0
@@ -70,7 +69,7 @@ open abstract class Tower {
 
 
         if (healthVal > 0) {
-
+            if (System.currentTimeMillis() - location.timeStamp > cooldownTime) {
                 var bullet = ImageView(context)
                 bullet.layoutParams = LinearLayout.LayoutParams((30 * density).toInt(), (30 * density).toInt())
                 bullet.setImageResource(atkResId)
@@ -87,9 +86,9 @@ open abstract class Tower {
                 path.moveTo(towerX.toFloat(), towerY.toFloat())
                 path.lineTo(enemyX.toFloat(), enemyY.toFloat())
                 val animation = ObjectAnimator.ofFloat(bullet, "translationX", "translationY", path).apply {
-                        duration = 100
-                        interpolator = null
-                    }
+                    duration = 100
+                    interpolator = null
+                }
 
                 animation.start()
                 animation.doOnEnd {
@@ -97,6 +96,8 @@ open abstract class Tower {
                 }
 
                 enemyClass.enemyListHealth[enemyView.id] = healthVal - damage
+                location.timeStamp = System.currentTimeMillis()
+            }
 
         } else {
             if (enemyView.visibility == View.VISIBLE) {

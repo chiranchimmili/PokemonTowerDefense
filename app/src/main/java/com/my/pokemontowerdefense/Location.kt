@@ -19,6 +19,7 @@ right : Float, bottom : Float) {
     var xEnd = right
     var yEnd = bottom
     var isSpecial = special
+    var timeStamp = System.currentTimeMillis()
 
     init {
         if (attackHorizontal) {
