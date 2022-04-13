@@ -55,7 +55,7 @@ class BulbasaurTower(difficulty: String): Tower() {
 
         println("The distance is $distance")
         if (distance < 500) {
-            towerCombat(enemy, enemyClass, player)
+            towerCombat(enemy, enemyClass, player, context, gameScreen, location)
         }
 
     }
