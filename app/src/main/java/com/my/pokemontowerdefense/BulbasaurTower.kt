@@ -4,6 +4,7 @@ class BulbasaurTower(difficulty: String): Tower() {
     constructor() : this("easy")
 
     override var imgResId = R.drawable.bulbasaur1
+    override var atkResId = R.drawable.razor_leaf
 
     init {
         imageString="@drawable/bulbasaur1";

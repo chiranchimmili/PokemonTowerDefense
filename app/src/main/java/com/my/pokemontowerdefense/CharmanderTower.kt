@@ -4,6 +4,7 @@ class CharmanderTower(difficulty: String) : Tower() {
     constructor() : this("easy")
 
     override var imgResId = R.drawable.charmander1
+    override var atkResId = R.drawable.fireball
 
     init {
         imageString="@drawable/charmander1";

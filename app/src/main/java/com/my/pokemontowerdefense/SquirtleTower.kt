@@ -4,6 +4,7 @@ class SquirtleTower(difficulty: String): Tower() {
     constructor() : this("easy")
 
     override var imgResId = R.drawable.squirtle1
+    override var atkResId = R.drawable.hydro_pump
 
     init {
         imageString="@drawable/charmander1";

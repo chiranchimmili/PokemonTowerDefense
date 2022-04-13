@@ -2,6 +2,7 @@ package com.my.pokemontowerdefense
 
 open abstract class Tower {
     abstract val imgResId: Int
+    abstract val atkResId: Int
     open var cost: Int = 0
         get() {
             return field
