@@ -10,6 +10,7 @@ class CharmanderTower(difficulty: String) : Tower() {
 
     override var imgResId = R.drawable.charmander1
     override var cooldownTime = 2000
+    override var atkResId = R.drawable.fireball
 
     init {
         imageString="@drawable/charmander1";

@@ -10,6 +10,7 @@ class SquirtleTower(difficulty: String): Tower() {
 
     override var imgResId = R.drawable.squirtle1
     override var cooldownTime = 1000
+    override var atkResId = R.drawable.hydro_pump
 
     init {
         imageString="@drawable/charmander1";

@@ -11,6 +11,7 @@ open abstract class Tower {
     abstract val imgResId: Int
     open var cooldownTime = 0
     var timeStamp = System.currentTimeMillis()
+    abstract val atkResId: Int
     open var cost: Int = 0
         get() {
             return field
