@@ -1,9 +1,15 @@
 package com.my.pokemontowerdefense
 
+import android.animation.ObjectAnimator
+import android.content.Context
+import android.widget.ImageView
+import androidx.constraintlayout.widget.ConstraintLayout
+
 class SquirtleTower(difficulty: String): Tower() {
     constructor() : this("easy")
 
     override var imgResId = R.drawable.squirtle1
+    override var cooldownTime = 1000
 
     init {
         imageString="@drawable/charmander1";
@@ -20,6 +26,18 @@ class SquirtleTower(difficulty: String): Tower() {
         }
     }
     override fun update() {
+
+    }
+
+    override fun shootEnemy(
+        enemy: ImageView,
+        enemyClass: Enemy,
+        anim: ObjectAnimator,
+        context: Context,
+        location: Location,
+        gameScreen: ConstraintLayout,
+        player: Player
+    ) {
 
     }
 }

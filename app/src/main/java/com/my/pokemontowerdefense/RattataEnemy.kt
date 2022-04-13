@@ -34,6 +34,8 @@ class RattataEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
 
     override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout, player : Player) {
 
+        enemyListHealth.clear()
+
         for (i in 1..amount) {
             var newEnemyView = ImageView(context)
             newEnemyView.layoutParams =
@@ -42,6 +44,7 @@ class RattataEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
             newEnemyView.id = View.generateViewId()
             gameScreen.addView(newEnemyView)
             enemyList.add(newEnemyView)
+            enemyListHealth[newEnemyView.id] = hp
         }
 
         path.moveTo(-250F, 100F)
@@ -63,47 +66,9 @@ class RattataEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
                 }
             delayCounter += 650L;
             animation.start()
-            animation.addUpdateListener {
-                for (location in locations) {
-                    if (location.hasTower) {
-                        if (location.attackH && !location.attackV) {
-                            if (enemy.x > location.xStart && enemy.x < location.xEnd) {
-                                combat(enemy, player)
-                            }
-                        } else if (!location.attackH && location.attackV) {
-                            if (enemy.y > location.yStart && enemy.y < location.yEnd) {
-                                combat(enemy, player)
-                            }
-                        } else if (location.attackH && location.attackV) {
-                            if (enemy.x > location.xStart && enemy.x < location.xEnd && enemy.y >
-                                location.yStart && enemy.y < location.yEnd) {
-                                combat(enemy, player)
-                            }
-                        } else if (!location.attackV && !location.attackH && location.isSpecial == 0) {
-                            if (enemy.x > location.xStart && enemy.x < location.xEnd) {
-                                combat(enemy, player)
-                            } else if (enemy.y > location.yStart && enemy.y < location.yEnd) {
-                                combat(enemy, player)
-                            }
-                        } else {
-                            if (location.isSpecial == 1) {
-                                if (enemy.x > 820F && enemy.x < 900F && enemy.y > location.yStart && enemy.y < location.yEnd) {
-                                    combat(enemy, player)
-                                } else if (enemy.x > location.xStart && enemy.x < location.xEnd) {
-                                    combat(enemy, player)
-                                }
-                            } else if (location.isSpecial == 2) {
-                                if (enemy.x > 1550F && enemy.x < 1650F && enemy.y > location.yStart && enemy.y < location.yEnd) {
-                                    combat(enemy, player)
-                                }
-                                else if (enemy.x > location.xStart && enemy.x < location.xEnd) {
-                                    combat(enemy, player)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+
+            scanForDamage(enemy, this, animation, context, locations, gameScreen, player)
+
             animation.doOnEnd {
                 if (enemy.visibility == View.VISIBLE) {
                     monument.reduceMonumentHealth(context, damage)
