@@ -3,10 +3,8 @@ package com.my.pokemontowerdefense
 import Giratina
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
-import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +14,6 @@ import kotlinx.coroutines.*
 import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 import kotlin.math.floor
-import kotlin.math.round
 
 
 open class GameScreen() : AppCompatActivity() {

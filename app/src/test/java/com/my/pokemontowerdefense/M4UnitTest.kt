@@ -11,15 +11,15 @@ class M4UnitTest {
     var enemyList = arrayListOf<ImageView>()
     var enemyList2 = arrayListOf<ImageView>()
     var enemyList3 = arrayListOf<ImageView>()
-    val rattataEnemy = RattataEnemy("hard", enemyList)
-    val haunterEnemy = HaunterEnemy("hard", enemyList2)
-    val grimerEnemy = GrimerEnemy("hard",enemyList3)
+    val rattataEnemy = RattataEnemy("hard", enemyList.size)
+    val haunterEnemy = HaunterEnemy("hard", enemyList2.size)
+    val grimerEnemy = GrimerEnemy("hard",enemyList3.size)
 
     @Test
     // M4 - Test number of enemies spawned varies by difficulty
     fun testSpawnAmountVaries() {
-        val rattataEnemy2 = RattataEnemy("medium", enemyList)
-        val haunterEnemy2 = HaunterEnemy("easy", enemyList2)
+        val rattataEnemy2 = RattataEnemy("medium", enemyList.size)
+        val haunterEnemy2 = HaunterEnemy("easy", enemyList2.size)
         assertEquals(1, haunterEnemy2.amount)
         assertEquals(2, rattataEnemy2.amount)
         assertEquals(3, rattataEnemy.amount)
