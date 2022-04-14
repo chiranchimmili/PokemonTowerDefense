@@ -20,6 +20,8 @@ open abstract class Enemy {
     open val density = Resources.getSystem().displayMetrics.density
     open var enemyList = arrayListOf<ImageView>()
     open val enemyListHealth = hashMapOf<Int, Int>()
+    open var dead: Int = 0
+    open var bad: Int = 0
 
 
     abstract fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout, player : Player)

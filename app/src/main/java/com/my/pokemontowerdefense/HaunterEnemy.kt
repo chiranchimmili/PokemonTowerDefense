@@ -18,8 +18,10 @@ class HaunterEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
 
     init {
         level = 1
-        hp = 250
+        hp = 10
         damage = 10
+        dead = 0
+        bad = 0
 
         if (difficulty == "easy") {
             awardMoney = 50
@@ -69,6 +71,7 @@ class HaunterEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
 
             animation.doOnEnd {
                 if (enemy.visibility == View.VISIBLE) {
+                    bad += 1
                     monument.reduceMonumentHealth(context, damage)
                 }
             }

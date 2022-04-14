@@ -14,11 +14,6 @@ right : Float, bottom : Float) {
     var layoutSpot: RelativeLayout = layout
     var attackH : Boolean = false
     var attackV : Boolean = false
-    var xStart = left
-    var yStart = top
-    var xEnd = right
-    var yEnd = bottom
-    var isSpecial = special
     var timeStamp = System.currentTimeMillis()
 
     init {

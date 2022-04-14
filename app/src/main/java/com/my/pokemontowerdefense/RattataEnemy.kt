@@ -22,6 +22,8 @@ class RattataEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
         level = 1
         hp = 100
         damage = 10
+        dead = 0
+        bad = 0
 
         if (difficulty == "easy") {
             awardMoney = 25
@@ -71,6 +73,7 @@ class RattataEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
 
             animation.doOnEnd {
                 if (enemy.visibility == View.VISIBLE) {
+                    bad += 1
                     monument.reduceMonumentHealth(context, damage)
                 }
             }

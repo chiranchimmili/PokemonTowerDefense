@@ -1,7 +1,9 @@
 package com.my.pokemontowerdefense
 
+import Giratina
 import android.animation.ObjectAnimator
 import android.content.Context
+import android.content.Intent
 import android.graphics.Path
 import android.view.View
 import android.widget.ImageView
@@ -103,13 +105,17 @@ class CharmanderTower(difficulty: String) : Tower() {
                 animation.doOnEnd {
                     gameScreen.removeView(bullet)
                 }
-
                 enemyClass.enemyListHealth[enemyView.id] = healthVal - damage
                 location.timeStamp = System.currentTimeMillis()
             }
 
         } else {
             if (enemyView.visibility == View.VISIBLE) {
+                if (enemyClass is Giratina) {
+                    val intent = Intent(context, WinScreen::class.java)
+                    context.startActivity(intent)
+                    System.exit(0)
+                }
                 player.addMoney(enemyClass.awardMoney)
                 enemyView.visibility = View.INVISIBLE
             }
