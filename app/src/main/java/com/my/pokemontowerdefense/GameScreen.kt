@@ -10,8 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_game_screen.*
+import kotlinx.coroutines.*
+import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
+import kotlin.math.floor
+import kotlin.math.round
 
 
 open class GameScreen() : AppCompatActivity() {
@@ -91,6 +96,7 @@ open class GameScreen() : AppCompatActivity() {
 
         val startRound = findViewById<ImageButton>(R.id.startRound)
         startRound.setOnClickListener {
+            startRound.visibility
             startWave()
             level += 1
         }
@@ -98,6 +104,8 @@ open class GameScreen() : AppCompatActivity() {
     }
 
     fun startWave() {
+        startRound.isEnabled = false
+        startRound.isVisible = false
         var amount = level
 
         val rattataEnemy = RattataEnemy(difficulty, amount)
@@ -105,7 +113,13 @@ open class GameScreen() : AppCompatActivity() {
         val haunterEnemy = HaunterEnemy(difficulty, amount)
         val giratinaEnemy = Giratina(difficulty, 1)
 
-
+        CoroutineScope(Dispatchers.IO).launch {
+            delay(TimeUnit.SECONDS.toMillis(floor(10 + 0.65 * (rattataEnemy.amount + grimerEnemy.amount + haunterEnemy.amount + giratinaEnemy.amount)).toLong() - 1))
+            withContext(Dispatchers.Main) {
+                startRound.isEnabled = true
+                startRound.isVisible = true
+            }
+        }
         if (level == 6) {
             giratinaEnemy.spawnEnemies(monument, this@GameScreen, locations, gameScreen, player)
 
@@ -116,8 +130,9 @@ open class GameScreen() : AppCompatActivity() {
             grimerEnemy.delayCounter += 1300 * grimerEnemy.amount
             grimerEnemy.spawnEnemies(monument, this@GameScreen, locations, gameScreen, player)
         }
-
     }
+
+
 
     // placement of towers functionality, can currently place in one of nine spots on screen
     fun placeTower(tower: Tower) {

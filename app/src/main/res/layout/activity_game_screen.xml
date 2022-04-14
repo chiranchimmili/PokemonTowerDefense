@@ -390,6 +390,7 @@
                 android:layout_height="50dp"
                 android:background="@null"
                 android:scaleType="fitStart"
+                android:clickable="true"
                 app:srcCompat="@drawable/greenplaybuttonremoved"
                 tools:ignore="SpeakableTextPresentCheck" />
         </LinearLayout>
