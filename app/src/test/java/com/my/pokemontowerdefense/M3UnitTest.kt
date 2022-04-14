@@ -13,7 +13,7 @@ import org.junit.runner.RunWith
 
 class M3UnitTest {
 
-    @Test
+    /*@Test
     // M3 - Each type of tower costs differently in each difficulty
     fun testPriceVariesByDifficulty() {
         val testTower1hard = CharmanderTower("hard")
@@ -176,5 +176,5 @@ class M3UnitTest {
         assertNotEquals(bulbTower, squirtTower)
         assertNotEquals(squirtTower, charmTower)
 
-    }
+    }*/
 }

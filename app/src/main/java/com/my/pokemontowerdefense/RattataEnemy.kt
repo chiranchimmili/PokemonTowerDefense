@@ -36,6 +36,7 @@ class RattataEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
 
     override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout, player : Player) {
 
+        val density = Resources.getSystem().displayMetrics.density
         enemyListHealth.clear()
 
         for (i in 1..amount) {

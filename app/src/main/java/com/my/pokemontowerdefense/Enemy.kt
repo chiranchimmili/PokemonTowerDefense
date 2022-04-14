@@ -17,7 +17,6 @@ open abstract class Enemy {
     open var damage: Int = 0
     open var delayCounter: Long = 0
     open var awardMoney: Int = 0
-    open val density = Resources.getSystem().displayMetrics.density
     open var enemyList = arrayListOf<ImageView>()
     open val enemyListHealth = hashMapOf<Int, Int>()
     open var dead: Int = 0

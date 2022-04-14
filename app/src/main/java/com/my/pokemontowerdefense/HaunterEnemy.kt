@@ -3,6 +3,7 @@ package com.my.pokemontowerdefense
 import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Path
 import android.view.View
 import android.widget.ImageView
@@ -34,6 +35,7 @@ class HaunterEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
 
     override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout, player : Player) {
 
+        val density = Resources.getSystem().displayMetrics.density
         enemyListHealth.clear()
 
         for (i in 1..amount) {

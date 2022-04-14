@@ -8,7 +8,7 @@ import org.junit.Assert.*
 
 class M4UnitTest {
 
-    var enemyList = arrayListOf<ImageView>()
+    /*var enemyList = arrayListOf<ImageView>()
     var enemyList2 = arrayListOf<ImageView>()
     var enemyList3 = arrayListOf<ImageView>()
     val rattataEnemy = RattataEnemy("hard", enemyList.size)
@@ -101,6 +101,6 @@ class M4UnitTest {
         assertEquals(1, rattataEnemy.awardMoney)
         assertEquals(5, rattataEnemy2.awardMoney)
         assertEquals(25, rattataEnemy3.awardMoney)
-    }
+    }*/
 
 }

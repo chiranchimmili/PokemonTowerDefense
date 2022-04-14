@@ -1,6 +1,7 @@
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.graphics.Path
 import android.view.View
 import android.widget.ImageView
@@ -31,6 +32,7 @@ class Giratina(difficulty: String, numberOfEnemies: Int) : Enemy() {
 
     override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout, player : Player) {
 
+        val density = Resources.getSystem().displayMetrics.density
         enemyListHealth.clear()
 
         var newEnemyView = ImageView(context)
