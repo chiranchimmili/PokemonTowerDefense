@@ -2,8 +2,12 @@ package com.my.pokemontowerdefense
 
 import android.animation.ObjectAnimator
 import android.content.Context
+import android.graphics.Path
+import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.animation.doOnEnd
 import kotlin.math.sqrt
 
 class BulbasaurTower(difficulty: String): Tower() {
@@ -21,10 +25,10 @@ class BulbasaurTower(difficulty: String): Tower() {
             damage = 10;
         } else if (difficulty == "medium") {
             cost = 300;
-            damage = 15;
+            damage = 20;
         } else {
             cost = 400;
-            damage = 20;
+            damage = 30;
         }
     }
     override fun update() {
@@ -58,5 +62,57 @@ class BulbasaurTower(difficulty: String): Tower() {
             towerCombat(enemy, enemyClass, player, context, gameScreen, location)
         }
 
+    }
+    override fun towerCombat(
+        enemyView: ImageView,
+        enemyClass: Enemy,
+        player : Player,
+        context: Context,
+        gameScreen: ConstraintLayout,
+        location: Location
+    ) {
+        var healthVal = enemyClass.enemyListHealth.getValue(enemyView.id)
+        var point = IntArray(2)
+        location.buttonLocation.getLocationOnScreen(point)
+        val (towerX, towerY) = point
+
+
+        if (healthVal > 0) {
+            if (System.currentTimeMillis() - location.timeStamp > cooldownTime) {
+                var bullet = ImageView(context)
+                bullet.layoutParams = LinearLayout.LayoutParams((30 * density).toInt(), (30 * density).toInt())
+                bullet.setImageResource(atkResId)
+                bullet.id = View.generateViewId()
+                bullet.x = towerX.toFloat();
+                bullet.y = towerY.toFloat();
+                gameScreen.addView(bullet)
+
+
+                point = IntArray(2)
+                enemyView.getLocationOnScreen(point)
+                val (enemyX, enemyY) = point
+                var path = Path();
+                path.moveTo(towerX.toFloat(), towerY.toFloat())
+                path.lineTo(enemyX.toFloat(), enemyY.toFloat())
+                val animation = ObjectAnimator.ofFloat(bullet, "translationX", "translationY", path).apply {
+                    duration = 100
+                    interpolator = null
+                }
+
+                animation.start()
+                animation.doOnEnd {
+                    gameScreen.removeView(bullet)
+                }
+
+                enemyClass.enemyListHealth[enemyView.id] = healthVal - damage
+                location.timeStamp = System.currentTimeMillis()
+            }
+
+        } else {
+            if (enemyView.visibility == View.VISIBLE) {
+                player.addMoney(enemyClass.awardMoney)
+                enemyView.visibility = View.INVISIBLE
+            }
+        }
     }
 }
