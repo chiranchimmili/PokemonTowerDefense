@@ -1,0 +1,13 @@
+M5 Test Case Writeup
+Case #1: M5 - Test enemy HP decreases
+        We have three enemies (Rattata, Haunter, and Grimer). The reduceHP method is called on each enemy. Then, we use assertEquals to check if the enemy has the right HP. For example, rattata is tested to have an HP of 95 after reduceHP is called.
+
+Case #2: M5 - Test enemy gameplay distinction
+        We create three variables: one for each enemy (difficulty is set as hard but it could be any because we are just testing the enemy object). We use assertNotEquals() to check that the enemies' HP values are not equal to each other (rattata/haunter, haunter/grimer, grimer/rattata).
+
+Case #3: M5 - Test award money differs
+        We have three enemies (Rattata, Haunter, and Grimer). We use assertNotEquals to check if the enemies have differing award money amounts.
+
+Case #4: M5 - Test tower behavior differs
+        We have three towers (charmander, squirtle, and bulbasaur). We use assertNotEquals() to verify that the towers have differing cooldown values when attacking.
+

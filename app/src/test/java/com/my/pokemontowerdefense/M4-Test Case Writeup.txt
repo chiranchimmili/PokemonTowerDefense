@@ -1,5 +1,5 @@
 M3 Test Case Writeup
-Case #1: M4 - Test number of enemies spawned varies by difficulty
+Case #1: M5 - Test number of enemies spawned varies by difficulty
         We have three enemies (Rattata, Haunter, and Grimer) as well as three difficulties (easy, medium, and hard). For each enemy, we set 3 variables for the enemy with the difficulty passed in as the parameter. Then, we use assertEquals to check if the enemy has the right spawn count for the difficulty given to it. For example, rattata(hard) is tested to have an amount of 3, while rattata(easy) is tested to have an amount of 1.
 
 Case #2: M4 - Each enemy in the game is unique
