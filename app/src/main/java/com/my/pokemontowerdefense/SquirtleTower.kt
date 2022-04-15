@@ -4,6 +4,7 @@ import Giratina
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.graphics.Path
 import android.view.View
 import android.widget.ImageView
@@ -75,6 +76,7 @@ class SquirtleTower(difficulty: String): Tower() {
         gameScreen: ConstraintLayout,
         location: Location
     ) {
+        val density = Resources.getSystem().displayMetrics.density
         var healthVal = enemyClass.enemyListHealth.getValue(enemyView.id)
         var point = IntArray(2)
         location.buttonLocation.getLocationOnScreen(point)
