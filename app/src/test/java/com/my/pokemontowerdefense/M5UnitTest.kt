@@ -91,24 +91,24 @@ class M5UnitTest {
         var rattataView = ImageView(null)
         rattataView.setImageResource(R.drawable.rattata8bit)
         Enemy.removeEnemy(rattataView)
-        assertEquals(rattataView.visibility, false)
+        assertEquals(rattataView.visibility, 0)
     }
-//
-//    @Test
-//    fun checkRemoveEnemyGrimer() {
-//        var grimerView = ImageView(InstrumentationRegistry.getInstrumentation().context)
-//        grimerView.setImageResource(R.drawable.grimer8bit)
-//        Enemy.removeEnemy(grimerView)
-//        assertEquals(grimerView.visibility, false)
-//    }
-//
-//    @Test
-//    fun checkRemoveEnemyHaunter() {
-//        var haunterView = ImageView(InstrumentationRegistry.getInstrumentation().context)
-//        haunterView.setImageResource(R.drawable.haunter8bit)
-//        Enemy.removeEnemy(haunterView)
-//        assertEquals(haunterView.visibility, false)
-//    }
+
+    @Test
+    fun checkRemoveEnemyGrimer() {
+        var grimerView = ImageView(null)
+        grimerView.setImageResource(R.drawable.grimer8bit)
+        Enemy.removeEnemy(grimerView)
+        assertEquals(grimerView.visibility, 0)
+    }
+
+    @Test
+    fun checkRemoveEnemyHaunter() {
+        var haunterView = ImageView(null)
+        haunterView.setImageResource(R.drawable.haunter8bit)
+        Enemy.removeEnemy(haunterView)
+        assertEquals(haunterView.visibility, 0)
+    }
 
 
 
