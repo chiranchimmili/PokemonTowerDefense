@@ -27,6 +27,12 @@ class M5UnitTest {
     var grimerH = GrimerEnemy("hard", 3)
     var rattataM = RattataEnemy("medium", 2)
     var rattataE = RattataEnemy("easy", 1)
+    var enemyList = arrayListOf<ImageView>()
+    var enemyList2 = arrayListOf<ImageView>()
+    var enemyList3 = arrayListOf<ImageView>()
+    val rattataEnemy = RattataEnemy("hard", enemyList.size)
+    val haunterEnemy = HaunterEnemy("hard", enemyList2.size)
+    val grimerEnemy = GrimerEnemy("hard", enemyList3.size)
 
 
     @Test
@@ -65,19 +71,21 @@ class M5UnitTest {
         assertNotEquals(bulbTower.cooldownTime, squirTower.cooldownTime)
     }
 
-//    @Test
-//    fun towersBoughtAfterCombat() {
-//        gamescreen.startWave()
-//        Espresso.onView(withId(R.id.buyTower1Image)).check(matches(ViewMatchers.isEnabled()));
-//        Espresso.onView(withId(R.id.buyTower2Image)).check(matches(ViewMatchers.isEnabled()));
-//        Espresso.onView(withId(R.id.buyTower3Image)).check(matches(ViewMatchers.isEnabled()));
-//    }
-//
-//    @Test
-//    fun startButtonVaries() {
-//        gamescreen.startWave()
-//        Espresso.onView(withId(R.id.startRound)).check(matches(not(ViewMatchers.isEnabled())));
-//    }
+    @Test
+    fun testSpawnAmountVaries() {
+        val rattataEnemy2 = RattataEnemy("medium", enemyList.size)
+        val haunterEnemy2 = HaunterEnemy("easy", enemyList2.size)
+        assertEquals(0, haunterEnemy2.amount)
+        assertEquals(0, rattataEnemy2.amount)
+        assertEquals(0, rattataEnemy.amount)
+    }
+
+    @Test
+    fun testDistinctEnemy() {
+        assertNotEquals(rattataEnemy, haunterEnemy)
+        assertNotEquals(grimerEnemy, haunterEnemy)
+        assertNotEquals(rattataEnemy, grimerEnemy)
+    }
 
     @Test
     fun towerRangeSame() {
@@ -109,7 +117,6 @@ class M5UnitTest {
         Enemy.removeEnemy(haunterView)
         assertEquals(haunterView.visibility, 0)
     }
-
 
 
 }
