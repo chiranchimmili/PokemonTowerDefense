@@ -11,3 +11,20 @@ Case #3: M5 - Test award money differs
 Case #4: M5 - Test tower behavior differs
         We have three towers (charmander, squirtle, and bulbasaur). We use assertNotEquals() to verify that the towers have differing cooldown values when attacking.
 
+Case #5: M5 - Test tower can be bought after combat
+        We have three towers (charmander, squirtle, and bulbasaur). We call the startWave() method and test if the buttons to buy new towers are still clickable.
+
+Case #6: M5 - Test start button disappears and reappears after combat
+        We call the startWave() method and then check after a certain time has passed if the start button can still be pressed.
+
+Case #7: M5 - Test tower range is the same
+        We have three towers (charmander, squirtle, and bulbasaur). We use assertEquals() to check that the range property of the towers are the same.
+
+Case #8: M5 - Test if rattata is killed
+        We test if rattata is not visible by calling the removeEnemy() function (killed by tower). We then use assertEquals() to check if the visibility of rattata is false.
+
+Case #9: M5 - Test if haunter is killed
+        We test if haunter is not visible by calling the removeEnemy() function (killed by tower). We then use assertEquals() to check if the visibility of haunter is false.
+
+Case #10: M5 - Test if grimer is killed
+        We test if grimer is not visible by calling the removeEnemy() function (killed by tower). We then use assertEquals() to check if the visibility of grimer is false.
