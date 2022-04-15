@@ -176,6 +176,13 @@ open class GameScreen() : AppCompatActivity() {
             insufficientFunds()
         }
     }
+
+    fun getPlayerMoney(): Int {
+        return player.money
+    }
+    fun getLocations(): ArrayList<Location> {
+        return locations
+    }
 }
 
 

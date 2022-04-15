@@ -14,6 +14,7 @@ import androidx.core.animation.doOnEnd
 open abstract class Tower {
     abstract val imgResId: Int
     open var cooldownTime = 0
+    abstract val towerRange: Int
     val density = Resources.getSystem().displayMetrics.density
     abstract val atkResId: Int
     open var cost: Int = 0

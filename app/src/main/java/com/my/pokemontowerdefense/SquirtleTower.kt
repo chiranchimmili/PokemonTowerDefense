@@ -18,6 +18,8 @@ class SquirtleTower(difficulty: String): Tower() {
     override var imgResId = R.drawable.squirtle1
     override var cooldownTime = 1000
     override var atkResId = R.drawable.hydro_pump
+    override var towerRange = 500
+
 
     init {
         imageString="@drawable/squirtle1";
@@ -60,7 +62,7 @@ class SquirtleTower(difficulty: String): Tower() {
         val distance = sqrt(((_xdif*_xdif) + (_ydif*_ydif)).toDouble())
 
         println("The distance is $distance")
-        if (distance < 500) {
+        if (distance < towerRange) {
             towerCombat(enemy, enemyClass, player, context, gameScreen, location)
         }
 
@@ -118,7 +120,7 @@ class SquirtleTower(difficulty: String): Tower() {
                     System.exit(0)
                 }
                 player.addMoney(enemyClass.awardMoney)
-                enemyView.visibility = View.INVISIBLE
+                Enemy.removeEnemy(enemyView)
             }
         }
     }

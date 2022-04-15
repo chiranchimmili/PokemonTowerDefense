@@ -1,10 +1,20 @@
 package com.my.pokemontowerdefense
 
+
+import android.os.Trace.isEnabled
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.platform.app.InstrumentationRegistry
 import kotlinx.android.synthetic.main.activity_game_screen.*
+import org.hamcrest.CoreMatchers.not
+import org.junit.Assert.*
+import org.junit.Before
 import org.junit.Test
 
-
-import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -22,6 +32,7 @@ class M5UnitTest {
     var rattataM = RattataEnemy("medium", 2)
     var rattataE = RattataEnemy("easy", 1)
 
+
     @Test
     fun testEnemyHPDecrease() {
         rattataH.reduceEnemyHealth()
@@ -35,7 +46,6 @@ class M5UnitTest {
         haunterH.reduceEnemyHealth()
         haunterH.reduceEnemyHealth()
         assertEquals(0, haunterH.hp)
-
     }
 
     @Test
@@ -59,10 +69,51 @@ class M5UnitTest {
         assertNotEquals(bulbTower.cooldownTime, squirTower.cooldownTime)
     }
 
-
+    @Test
     fun towersBoughtAfterCombat() {
         gamescreen.startWave()
-        onView(withId(R.id. your_button)).check(matches(isEnabled()));
+        Espresso.onView(withId(R.id.buyTower1Image)).check(matches(ViewMatchers.isEnabled()));
+        Espresso.onView(withId(R.id.buyTower2Image)).check(matches(ViewMatchers.isEnabled()));
+        Espresso.onView(withId(R.id.buyTower3Image)).check(matches(ViewMatchers.isEnabled()));
     }
+
+    @Test
+    fun startButtonVaries() {
+        gamescreen.startWave()
+        Espresso.onView(withId(R.id.startRound)).check(matches(not(ViewMatchers.isEnabled())));
+    }
+
+    @Test
+    fun towerRangeSame() {
+        assertEquals(charTower.towerRange, squirTower.towerRange)
+        assertEquals(bulbTower.towerRange, squirTower.towerRange)
+        assertEquals(charTower.towerRange, bulbTower.towerRange)
+    }
+
+    @Test
+    fun checkRemoveEnemyRattata() {
+        var rattataView = ImageView(InstrumentationRegistry.getInstrumentation().context)
+        rattataView.setImageResource(R.drawable.rattata8bit)
+        Enemy.removeEnemy(rattataView)
+        assertEquals(rattataView.visibility, false)
+    }
+
+    @Test
+    fun checkRemoveEnemyGrimer() {
+        var grimerView = ImageView(InstrumentationRegistry.getInstrumentation().context)
+        grimerView.setImageResource(R.drawable.grimer8bit)
+        Enemy.removeEnemy(grimerView)
+        assertEquals(grimerView.visibility, false)
+    }
+
+    @Test
+    fun checkRemoveEnemyHaunter() {
+        var haunterView = ImageView(InstrumentationRegistry.getInstrumentation().context)
+        haunterView.setImageResource(R.drawable.haunter8bit)
+        Enemy.removeEnemy(haunterView)
+        assertEquals(haunterView.visibility, false)
+    }
+
+
 
 }

@@ -38,7 +38,6 @@ class RattataEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
 
         val density = Resources.getSystem().displayMetrics.density
         enemyListHealth.clear()
-
         for (i in 1..amount) {
             var newEnemyView = ImageView(context)
             newEnemyView.layoutParams =
@@ -49,6 +48,7 @@ class RattataEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
             enemyList.add(newEnemyView)
             enemyListHealth[newEnemyView.id] = hp
         }
+
 
         path.moveTo(-250F, 100F)
         path.lineTo(825F, 100F)

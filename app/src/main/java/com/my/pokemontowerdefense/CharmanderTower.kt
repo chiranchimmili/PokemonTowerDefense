@@ -18,6 +18,7 @@ class CharmanderTower(difficulty: String) : Tower() {
     override var imgResId = R.drawable.charmander1
     override var cooldownTime = 1500
     override var atkResId = R.drawable.fireball
+    override var towerRange = 500
 
     init {
         imageString="@drawable/charmander1";
@@ -60,7 +61,7 @@ class CharmanderTower(difficulty: String) : Tower() {
         val distance = sqrt(((_xdif*_xdif) + (_ydif*_ydif)).toDouble())
 
         println("The distance is $distance")
-        if (distance < 500) {
+        if (distance < towerRange) {
             towerCombat(enemy, enemyClass, player, context, gameScreen, location)
         }
 
@@ -117,7 +118,7 @@ class CharmanderTower(difficulty: String) : Tower() {
                     System.exit(0)
                 }
                 player.addMoney(enemyClass.awardMoney)
-                enemyView.visibility = View.INVISIBLE
+                Enemy.removeEnemy(enemyView)
             }
         }
     }

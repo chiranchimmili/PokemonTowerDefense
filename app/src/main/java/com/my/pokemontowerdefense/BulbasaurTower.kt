@@ -18,6 +18,8 @@ class BulbasaurTower(difficulty: String): Tower() {
     override var imgResId = R.drawable.bulbasaur1
     override var cooldownTime = 500
     override var atkResId = R.drawable.razor_leaf
+    override var towerRange = 500
+
 
     init {
         imageString="@drawable/bulbasaur1";
@@ -60,7 +62,7 @@ class BulbasaurTower(difficulty: String): Tower() {
         val distance = sqrt(((_xdif*_xdif) + (_ydif*_ydif)).toDouble())
 
         println("The distance is $distance")
-        if (distance < 500) {
+        if (distance < towerRange) {
             towerCombat(enemy, enemyClass, player, context, gameScreen, location)
         }
 
@@ -118,7 +120,7 @@ class BulbasaurTower(difficulty: String): Tower() {
                     System.exit(0)
                 }
                 player.addMoney(enemyClass.awardMoney)
-                enemyView.visibility = View.INVISIBLE
+                Enemy.removeEnemy(enemyView)
             }
         }
     }

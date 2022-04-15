@@ -47,4 +47,9 @@ open abstract class Enemy {
             }
         }
     }
+    companion object {
+        fun removeEnemy(enemyView: ImageView) {
+            enemyView.visibility = View.INVISIBLE
+        }
+    }
 }
