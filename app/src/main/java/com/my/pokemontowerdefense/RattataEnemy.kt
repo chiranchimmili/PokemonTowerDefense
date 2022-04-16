@@ -20,7 +20,7 @@ class RattataEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
     init {
 
         level = 1
-        hp = 100
+        hp = 50
         damage = 10
         dead = 0
         bad = 0
@@ -34,7 +34,7 @@ class RattataEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
         }
     }
 
-    override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout, player : Player) {
+    override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout, player : Player, stats : Stats) {
 
         val density = Resources.getSystem().displayMetrics.density
         enemyListHealth.clear()
@@ -70,12 +70,12 @@ class RattataEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
             delayCounter += 650L;
             animation.start()
 
-            scanForDamage(enemy, this, animation, context, locations, gameScreen, player)
+            scanForDamage(enemy, this, animation, context, locations, gameScreen, player, monument, stats)
 
             animation.doOnEnd {
                 if (enemy.visibility == View.VISIBLE) {
                     bad += 1
-                    monument.reduceMonumentHealth(context, damage)
+                    monument.reduceMonumentHealth(context, damage, stats)
                 }
             }
         }

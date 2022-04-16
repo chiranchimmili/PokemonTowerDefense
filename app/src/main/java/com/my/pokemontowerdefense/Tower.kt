@@ -59,6 +59,6 @@ open abstract class Tower {
             field = value;
         }
     abstract fun update();
-    abstract fun shootEnemy(enemy: ImageView, enemyClass: Enemy, anim: ObjectAnimator, context: Context, location : Location, gameScreen: ConstraintLayout, player : Player);
-    abstract fun towerCombat(enemyView: ImageView, enemyClass: Enemy, player : Player, context: Context, gameScreen: ConstraintLayout, location: Location)
+    abstract fun shootEnemy(enemy: ImageView, enemyClass: Enemy, anim: ObjectAnimator, context: Context, location : Location, gameScreen: ConstraintLayout, player : Player, monument : Monument, stats: Stats);
+    abstract fun towerCombat(enemyView: ImageView, enemyClass: Enemy, player : Player, context: Context, gameScreen: ConstraintLayout, location: Location, monument : Monument, stats: Stats)
 }

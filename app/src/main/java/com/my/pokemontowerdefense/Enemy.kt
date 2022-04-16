@@ -9,8 +9,9 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
+import java.io.Serializable
 
-open abstract class Enemy {
+open abstract class Enemy : Serializable{
     open var hp: Int = 0
     open var level: Int = 0
     open var amount: Int = 0
@@ -23,7 +24,7 @@ open abstract class Enemy {
     open var bad: Int = 0
 
 
-    abstract fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout, player : Player)
+    abstract fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout, player : Player, stats: Stats)
 
     abstract fun reduceEnemyHealth()
 
@@ -38,16 +39,18 @@ open abstract class Enemy {
         }
     }
 
-    fun scanForDamage(enemy: ImageView, enemyClass: Enemy, anim: ObjectAnimator, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout, player : Player) {
+    fun scanForDamage(enemy: ImageView, enemyClass: Enemy, anim: ObjectAnimator, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout, player : Player, monument : Monument, stats: Stats) {
         anim.addUpdateListener {
             for (location in locations) {
                 if (location.hasTower) {
-                    location.towerReference.shootEnemy(enemy, enemyClass, anim, context, location, gameScreen, player);
+                    location.towerReference.shootEnemy(enemy, enemyClass, anim, context, location, gameScreen, player, monument, stats);
                 }
             }
         }
     }
     companion object {
+        var killed: Int = 0
+
         fun removeEnemy(enemyView: ImageView) {
             enemyView.visibility = View.INVISIBLE
         }

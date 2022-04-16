@@ -22,7 +22,7 @@ class GrimerEnemy (difficulty: String, var numberOfEnemies: Int) :Enemy() {
 
     init {
         level = 1
-        hp = 1
+        hp = 40
         damage = 10
         dead = 0
         bad = 0
@@ -37,7 +37,7 @@ class GrimerEnemy (difficulty: String, var numberOfEnemies: Int) :Enemy() {
 
 
     }
-    override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout, player : Player) {
+    override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout, player : Player, stats : Stats) {
 
         val density = Resources.getSystem().displayMetrics.density
         enemyListHealth.clear()
@@ -72,12 +72,12 @@ class GrimerEnemy (difficulty: String, var numberOfEnemies: Int) :Enemy() {
             delayCounter += 650L;
             animation.start()
 
-            scanForDamage(enemy, this, animation, context, locations, gameScreen, player)
+            scanForDamage(enemy, this, animation, context, locations, gameScreen, player, monument, stats)
 
             animation.doOnEnd {
                 if (enemy.visibility == View.VISIBLE) {
                     bad += 1
-                    monument.reduceMonumentHealth(context, damage)
+                    monument.reduceMonumentHealth(context, damage, stats)
                 }
             }
         }

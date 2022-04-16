@@ -47,7 +47,9 @@ class SquirtleTower(difficulty: String): Tower() {
         context: Context,
         location: Location,
         gameScreen: ConstraintLayout,
-        player: Player
+        player: Player,
+        monument : Monument,
+    stats : Stats
     ) {
         var point = IntArray(2)
         location.buttonLocation.getLocationOnScreen(point)
@@ -64,7 +66,7 @@ class SquirtleTower(difficulty: String): Tower() {
 
         println("The distance is $distance")
         if (distance < towerRange) {
-            towerCombat(enemy, enemyClass, player, context, gameScreen, location)
+            towerCombat(enemy, enemyClass, player, context, gameScreen, location, monument, stats)
         }
 
     }
@@ -74,7 +76,9 @@ class SquirtleTower(difficulty: String): Tower() {
         player : Player,
         context: Context,
         gameScreen: ConstraintLayout,
-        location: Location
+        location: Location,
+        monument : Monument,
+    stats: Stats
     ) {
         val density = Resources.getSystem().displayMetrics.density
         var healthVal = enemyClass.enemyListHealth.getValue(enemyView.id)
@@ -118,9 +122,11 @@ class SquirtleTower(difficulty: String): Tower() {
             if (enemyView.visibility == View.VISIBLE) {
                 if (enemyClass is Giratina) {
                     val intent = Intent(context, WinScreen::class.java)
+                    intent.putExtra("STATS", stats)
                     context.startActivity(intent)
                     System.exit(0)
                 }
+                stats.enemiesKilled += 1
                 player.addMoney(enemyClass.awardMoney)
                 Enemy.removeEnemy(enemyView)
             }

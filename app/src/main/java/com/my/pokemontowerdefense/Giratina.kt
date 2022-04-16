@@ -30,7 +30,7 @@ class Giratina(difficulty: String, numberOfEnemies: Int) : Enemy() {
         }
     }
 
-    override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout, player : Player) {
+    override fun spawnEnemies(monument: Monument, context: Context, locations : ArrayList<Location>, gameScreen: ConstraintLayout, player : Player, stats: Stats) {
 
         val density = Resources.getSystem().displayMetrics.density
         enemyListHealth.clear()
@@ -61,10 +61,10 @@ class Giratina(difficulty: String, numberOfEnemies: Int) : Enemy() {
                     interpolator = null
                 }
             animation.start()
-            scanForDamage(enemy, this, animation, context, locations, gameScreen, player)
+            scanForDamage(enemy, this, animation, context, locations, gameScreen, player, monument, stats)
             animation.doOnEnd {
                 if (enemy.visibility == View.VISIBLE) {
-                    monument.reduceMonumentHealth(context, damage)
+                    monument.reduceMonumentHealth(context, damage, stats)
                 }
             }
         }

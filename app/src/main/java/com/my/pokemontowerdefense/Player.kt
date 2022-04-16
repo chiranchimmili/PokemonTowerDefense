@@ -1,10 +1,12 @@
 package com.my.pokemontowerdefense
 
 import android.widget.TextView
+import java.io.Serializable
 
-class Player (textView: TextView?, difficulty: String) {
+class Player (textView: TextView?, difficulty: String) : Serializable {
 
     var money: Int = 0
+    var moneySpent: Int = 0
     var score: Int = 0
     var name: String = ""
     var moneyView = textView
@@ -26,8 +28,10 @@ class Player (textView: TextView?, difficulty: String) {
         money += amount
         moneyView!!.text = money.toString()
     }
-    fun subtractMoney(amount : Int) {
+    fun subtractMoney(amount : Int, stats: Stats) {
         money -= amount
+        moneySpent += amount
+        stats.moneySpent += amount
         moneyView!!.text = money.toString()
     }
 }

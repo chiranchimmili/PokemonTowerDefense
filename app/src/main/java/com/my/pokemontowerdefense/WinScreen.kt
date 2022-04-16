@@ -1,13 +1,16 @@
 package com.my.pokemontowerdefense
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import kotlinx.android.synthetic.main.activity_win_screen.*
 
 class WinScreen : AppCompatActivity() {
     private fun hideSystemBars() {
@@ -27,11 +30,26 @@ class WinScreen : AppCompatActivity() {
 
         val restartButton = findViewById<Button>(R.id.restartButton)
 
+        var stats = intent.extras?.get("STATS") as Stats
+
+        var stat1: TextView? = findViewById(R.id.stat1)
+        var stat2: TextView? = findViewById(R.id.stat2)
+        var stat3: TextView? = findViewById(R.id.stat3)
+
+        displayStats(stats)
+
         restartButton.setOnClickListener{
             val intent = Intent(this, WelcomeScreen::class.java)
             startActivity(intent)
             finish()
             System.exit(0)
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    fun displayStats(stats : Stats) {
+        stat3.text = "Damage Taken: " + (stats.damageTaken).toString()
+        stat2.text = "Money Spent: " + (stats.moneySpent).toString()
+        stat1.text = "Enemies Killed: " + (stats.enemiesKilled).toString()
     }
 }
