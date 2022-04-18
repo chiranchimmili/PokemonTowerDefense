@@ -27,13 +27,13 @@ class BulbasaurTower(difficulty: String): Tower() {
         level = 1;
         if (difficulty == "easy") {
             cost = 200;
-            damage = 10;
+            damage = 30;
         } else if (difficulty == "medium") {
             cost = 300;
             damage = 20;
         } else {
             cost = 400;
-            damage = 30;
+            damage = 10;
         }
     }
     override fun update() {

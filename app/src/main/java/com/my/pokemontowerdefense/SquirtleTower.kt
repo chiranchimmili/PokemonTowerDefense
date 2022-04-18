@@ -27,13 +27,13 @@ class SquirtleTower(difficulty: String): Tower() {
         level = 1;
         if (difficulty == "easy") {
             cost = 200;
-            damage = 20;
+            damage = 40;
         } else if (difficulty == "medium") {
             cost = 300;
-            damage = 40;
+            damage = 30;
         } else {
             cost = 400;
-            damage = 60;
+            damage = 20;
         }
     }
     override fun update() {

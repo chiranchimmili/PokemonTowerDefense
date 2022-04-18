@@ -20,16 +20,16 @@ class HaunterEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
     init {
         level = 1
         hp = 30
-        damage = 10
+        damage = 15
         dead = 0
         bad = 0
 
         if (difficulty == "easy") {
-            awardMoney = 50
+            awardMoney = 60
         } else if (difficulty == "medium") {
-            awardMoney = 10
+            awardMoney = 40
         } else {
-            awardMoney = 2
+            awardMoney = 20
         }
     }
 

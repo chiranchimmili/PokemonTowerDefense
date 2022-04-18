@@ -22,17 +22,17 @@ class GrimerEnemy (difficulty: String, var numberOfEnemies: Int) :Enemy() {
 
     init {
         level = 1
-        hp = 40
-        damage = 10
+        hp = 50
+        damage = 30
         dead = 0
         bad = 0
 
         if (difficulty == "easy") {
             awardMoney = 75
         } else if (difficulty == "medium") {
-            awardMoney = 15
+            awardMoney = 50
         } else {
-            awardMoney = 3
+            awardMoney = 30
         }
 
 

@@ -119,7 +119,7 @@ open class GameScreen() : AppCompatActivity() {
                 startRound.isVisible = true
             }
         }
-        if (level == 2) {
+        if (level == 6) {
             giratinaEnemy.spawnEnemies(monument, this@GameScreen, locations, gameScreen, player, stats)
 
         } else {

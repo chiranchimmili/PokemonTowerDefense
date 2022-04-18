@@ -20,17 +20,17 @@ class RattataEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
     init {
 
         level = 1
-        hp = 50
+        hp = 10
         damage = 10
         dead = 0
         bad = 0
 
         if (difficulty == "easy") {
-            awardMoney = 25
+            awardMoney = 50
         } else if (difficulty == "medium") {
-            awardMoney = 5
+            awardMoney = 25
         } else {
-            awardMoney = 1
+            awardMoney = 10
         }
     }
 
