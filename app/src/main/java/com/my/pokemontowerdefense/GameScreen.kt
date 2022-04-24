@@ -35,9 +35,7 @@ open class GameScreen() : AppCompatActivity() {
     private lateinit var moneyView: TextView;
     private lateinit var locations: ArrayList<Location>;
     private var level: Int = 1
-    private lateinit var placedCharTower: ImageButton
-    private lateinit var placedSquirtleTower: ImageButton
-    private lateinit var placedBulbasaurTower: ImageButton
+    private var placedTowerList = arrayListOf<ImageButton>()
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,7 +97,7 @@ open class GameScreen() : AppCompatActivity() {
         }
 
         upgradeCharmanderTower.setOnClickListener{
-            upgradeTower(CharmanderTower, placedCharTower, stats)
+            upgradeTower(CharmanderTower, stats)
         }
 
         val startRound = findViewById<ImageButton>(R.id.startRound)
@@ -160,62 +158,51 @@ open class GameScreen() : AppCompatActivity() {
 
     // Helper function to draw sprite onto grid
     fun placeTowerSprite(view: ViewGroup, resId: Int) {
-        if (resId == CharmanderTower.imgResId) {
-            placedCharTower = ImageButton(this)
-            placedCharTower.layoutParams = LinearLayout.LayoutParams(800, 800)
-            placedCharTower.x = 20F
-            placedCharTower.y = 20F
-            placedCharTower.setBackgroundColor(Color.TRANSPARENT)
-            placedCharTower.scaleType = ImageView.ScaleType.FIT_START
-            placedCharTower.setImageResource(resId)
-            //imageButton.scaleType = ImageView.ScaleType.FIT_START
-            view?.addView(placedCharTower)
-        } else if (resId == BulbasaurTower.imgResId) {
-            placedBulbasaurTower = ImageButton(this)
-            placedBulbasaurTower.layoutParams = LinearLayout.LayoutParams(800, 800)
-            placedBulbasaurTower.x = 20F
-            placedBulbasaurTower.y = 20F
-            placedBulbasaurTower.setBackgroundColor(Color.TRANSPARENT)
-            placedBulbasaurTower.scaleType = ImageView.ScaleType.FIT_START
-            placedBulbasaurTower.setImageResource(resId)
-            //imageButton.scaleType = ImageView.ScaleType.FIT_START
-            view?.addView(placedBulbasaurTower)
+        val imageButton = ImageButton(this)
+        imageButton.layoutParams = LinearLayout.LayoutParams(800, 800)
+        imageButton.x = 20F
+        imageButton.y = 20F
+        imageButton.setBackgroundColor(Color.TRANSPARENT)
+        imageButton.setImageResource(resId)
+        imageButton.scaleType = ImageView.ScaleType.FIT_START
+        if (resId == R.drawable.charmander1) {
+            imageButton.tag = 1
+        } else if (resId == R.drawable.bulbasaur) {
+            imageButton.tag = 2
         } else {
-            placedSquirtleTower = ImageButton(this)
-            placedSquirtleTower.layoutParams = LinearLayout.LayoutParams(800, 800)
-            placedSquirtleTower.x = 20F
-            placedSquirtleTower.y = 20F
-            placedSquirtleTower.setBackgroundColor(Color.TRANSPARENT)
-            placedSquirtleTower.scaleType = ImageView.ScaleType.FIT_START
-            placedSquirtleTower.setImageResource(resId)
-            //imageButton.scaleType = ImageView.ScaleType.FIT_START
-            view?.addView(placedSquirtleTower)
+            imageButton.tag = 3
         }
-
+        view?.addView(imageButton)
+        placedTowerList.add(imageButton)
     }
 
-    fun upgradeTower(tower: Tower, towerImage: ImageButton, stats: Stats) {
-        if (tower.imgResId == R.drawable.charmander1) {
-            if(shop.upgradeTower(CharmanderTower, player)) {
-                tower.imgResId = R.drawable.charmeleon
-                tower.imageString = "@drawable/charmeleon"
-                towerImage.scaleType = ImageView.ScaleType.FIT_START
-                towerImage.setImageResource(R.drawable.charmeleon)
-                player.subtractMoney(tower.upgradeCost, stats)
-            } else {
-                insufficientFunds()
+    fun upgradeTower(tower: Tower, stats: Stats) {
+        for (placedTower in placedTowerList) {
+            if (placedTower.tag == 1) {
+                if(shop.upgradeTower(CharmanderTower, player)) {
+                    tower.imgResId = R.drawable.charmeleon
+                    tower.imageString = "@drawable/charmeleon"
+                    placedTower.scaleType = ImageView.ScaleType.FIT_START
+                    placedTower.setImageResource(R.drawable.charmeleon)
+                    placedTower.tag = 4
+                } else {
+                    insufficientFunds()
+                }
+            } else if (placedTower.tag == 2) {
+                tower.imgResId = R.drawable.wartortle
+                tower.imageString = "@drawable/wartortle"
+                placedTower.scaleType = ImageView.ScaleType.FIT_START
+                placedTower.setImageResource(R.drawable.wartortle)
+                placedTower.tag = 5
+            } else  {
+                tower.imgResId = R.drawable.ivysaur
+                tower.imageString = "@drawable/ivysaur"
+                placedTower.scaleType = ImageView.ScaleType.FIT_START
+                placedTower.setImageResource(R.drawable.ivysaur)
+                placedTower.tag = 6
             }
-        } else if (tower.imgResId == R.drawable.squirtle1) {
-            tower.imgResId = R.drawable.wartortle
-            tower.imageString = "@drawable/wartortle"
-            towerImage.scaleType = ImageView.ScaleType.FIT_START
-            towerImage.setImageResource(R.drawable.wartortle)
-        } else {
-            tower.imgResId = R.drawable.ivysaur
-            tower.imageString = "@drawable/ivysaur"
-            towerImage.scaleType = ImageView.ScaleType.FIT_START
-            towerImage.setImageResource(R.drawable.ivysaur)
         }
+        player.subtractMoney(tower.upgradeCost, stats)
 
     }
 
