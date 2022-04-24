@@ -27,12 +27,15 @@ class CharmanderTower(difficulty: String) : Tower() {
         if (difficulty == "easy") {
             cost = 200;
             damage = 30;
+            upgradeCost = 500
         } else if (difficulty == "medium") {
             cost = 300;
             damage = 20;
+            upgradeCost = 600
         } else {
             cost = 400;
             damage = 10;
+            upgradeCost = 700
         }
     }
     override fun update() {

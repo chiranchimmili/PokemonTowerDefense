@@ -397,5 +397,57 @@
 
     </TableRow>
 
+    <LinearLayout
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:background="#B38231"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Upgrades"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/upgradeCharmander"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:scaleType="fitStart"
+                app:srcCompat="@drawable/charmander1" />
+
+            <ImageButton
+                android:id="@+id/upgradeSquirtle"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:scaleType="fitStart"
+                app:srcCompat="@drawable/squirtle1" />
+
+            <ImageButton
+                android:id="@+id/upgradeBulbasaur"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:scaleType="fitStart"
+                app:srcCompat="@drawable/bulbasaur1" />
+        </LinearLayout>
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

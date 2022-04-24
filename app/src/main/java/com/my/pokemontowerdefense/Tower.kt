@@ -12,10 +12,11 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.doOnEnd
 
 open abstract class Tower {
-    abstract val imgResId: Int
+    abstract var imgResId: Int
     open var cooldownTime = 0
     abstract val towerRange: Int
     abstract val atkResId: Int
+    open var upgradeCost: Int = 0
     open var cost: Int = 0
         get() {
             return field
