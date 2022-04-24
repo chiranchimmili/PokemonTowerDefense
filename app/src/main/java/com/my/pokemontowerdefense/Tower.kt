@@ -1,6 +1,7 @@
 package com.my.pokemontowerdefense
 
 import android.animation.ObjectAnimator
+import android.app.AlertDialog
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Path
@@ -59,7 +60,17 @@ open abstract class Tower {
         set(value) {
             field = value;
         }
-    abstract fun update();
+    fun unabletoUpgrade(act: Context) {
+        val dialogBuilder = AlertDialog.Builder(act)
+        dialogBuilder.setPositiveButton("Okay") { dialog, _ ->
+            dialog.cancel()
+        }
+        dialogBuilder.setMessage("Tower is max level!")
+        val alert = dialogBuilder.create()
+        alert.show()
+
+    }
+    abstract fun upgrade(): Boolean;
     abstract fun shootEnemy(enemy: ImageView, enemyClass: Enemy, anim: ObjectAnimator, context: Context, location : Location, gameScreen: ConstraintLayout, player : Player, monument : Monument, stats: Stats);
     abstract fun towerCombat(enemyView: ImageView, enemyClass: Enemy, player : Player, context: Context, gameScreen: ConstraintLayout, location: Location, monument : Monument, stats: Stats)
 }

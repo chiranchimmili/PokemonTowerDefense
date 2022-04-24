@@ -38,8 +38,17 @@ class CharmanderTower(difficulty: String) : Tower() {
             upgradeCost = 700
         }
     }
-    override fun update() {
-
+    override fun upgrade(): Boolean {
+        if (level == 1) {
+            imgResId = R.drawable.charmeleon
+            imageString = "@drawable/charmeleon"
+            damage += 10
+            cooldownTime -= 100
+            level += 1
+            return true
+        } else {
+            return false
+        }
     }
 
     override fun shootEnemy(

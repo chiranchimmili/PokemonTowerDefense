@@ -398,12 +398,14 @@
     </TableRow>
 
     <LinearLayout
+        android:id="@+id/upgradeMenu"
         android:layout_width="160dp"
         android:layout_height="80dp"
         android:background="#B38231"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/textView4"
@@ -415,21 +417,16 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+        <Button
+            android:id="@+id/upgradeButton"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="Upgrade?"
+            android:background="@color/purple_500"
+            android:scaleType="fitStart" />
 
-            <ImageButton
-                android:id="@+id/upgradeCharmander"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:background="@null"
-                android:scaleType="fitStart"
-                app:srcCompat="@drawable/charmander1" />
-
-            <ImageButton
+          <!--  <ImageButton
                 android:id="@+id/upgradeSquirtle"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -445,8 +442,7 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:scaleType="fitStart"
-                app:srcCompat="@drawable/bulbasaur1" />
-        </LinearLayout>
+                app:srcCompat="@drawable/bulbasaur1" /> -->
     </LinearLayout>
 
 
