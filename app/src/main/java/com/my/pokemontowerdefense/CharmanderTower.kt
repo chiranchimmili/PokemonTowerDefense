@@ -47,8 +47,8 @@ class CharmanderTower(difficulty: String) : Tower() {
             level += 1
             return true
         } else if (level == 2) {
-            imgResId = R.drawable.charizard1
-            imageString = "@drawable/charizard1"
+            imgResId = R.drawable.charizard_remove
+            imageString = "@drawable/charizard_remove"
             damage += 10
             cooldownTime -= 100
             level += 1

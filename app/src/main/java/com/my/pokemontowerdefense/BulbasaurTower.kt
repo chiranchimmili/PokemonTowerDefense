@@ -45,8 +45,8 @@ class BulbasaurTower(difficulty: String): Tower() {
             level += 1
             return true
         } else if (level == 2) {
-            imgResId = R.drawable.venusaur
-            imageString = "@drawable/venusaur"
+            imgResId = R.drawable.venusaur_remove
+            imageString = "@drawable/venusaur_remove"
             damage += 10
             cooldownTime -= 100
             level += 1
