@@ -44,6 +44,13 @@ class SquirtleTower(difficulty: String): Tower() {
             cooldownTime -= 100
             level += 1
             return true
+        } else if (level == 2) {
+            imgResId = R.drawable.blastoise1
+            imageString = "@drawable/blastoise1"
+            damage += 10
+            cooldownTime -= 100
+            level += 1
+            return true
         } else {
             return false
         }
