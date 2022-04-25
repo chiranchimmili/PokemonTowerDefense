@@ -16,6 +16,7 @@ class HaunterEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
 
     var path = Path();
     override var amount = numberOfEnemies
+    var imgResId = R.drawable.haunter8bit
 
     init {
         level = 1

@@ -16,6 +16,7 @@ class RattataEnemy(difficulty: String, numberOfEnemies: Int) :Enemy() {
 
     var path = Path();
     override var amount = numberOfEnemies
+    var imgResId = R.drawable.rattata8bit
 
     init {
 

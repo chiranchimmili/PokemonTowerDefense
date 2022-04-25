@@ -1,0 +1,30 @@
+M6 Test Case Writeup
+Case #1: M6 - Test boss enemy is more difficult to kill
+        We have one boss enemy (Giratina). We use assertTrue() to check if the boss enemy has more HP than the regular enemies.
+
+Case #2: M6 - Test boss enemy does more damage to monument
+        We have one boss enemy (Giratina). We use assertTrue() to check that the enemies' damage values are less than Giratina's.
+
+Case #3: M6 - Test boss enemy is visually distinct from regular enemies
+        We have one boss enemy (Giratina). We use assertFalse() to verify that the boss enemy is visually different than the normal enemies by checking the image IDs.
+
+Case #4: M6 - Test tower upgrade is successful
+        We have three towers (charmander, squirtle, and bulbasaur). We use assertTrue to check if the towers have been upgraded successfully.
+
+Case #5: M6 - Test tower upgrade benefits gameplay
+        We have three towers (charmander, squirtle, and bulbasaur). We upgrade them and check to see if the upgraded tower does more damage than the original tower.
+
+Case #6: M6 - Test towers are visually distinct
+        We have three towers (charmander, squirtle, and bulbasaur). We upgrade them and check to see if the upgraded tower has a different image ID than the original tower.
+
+Case #7: M6 - Test towers are descriptively distinct
+        We have three towers (charmander, squirtle, and bulbasaur). We upgrade them and use assertFalse() to check that the image string of the towers are different.
+
+Case #8: M6 - Test insufficient funds
+        We test if upgrading a tower is not successful by setting the player's money to 0. We then use assertFalse() to check if the upgrade was unsuccessful.
+
+Case #9: M6 - Test upgrades cost money
+        We test if upgrading towers cost money. We then use assertEquals() to check this.
+
+Case #10: M6 - Test statistics track three statistics
+        We test if the statistics class tracks three statistics. We then use assertEquals() to check if the statistics are initalized.

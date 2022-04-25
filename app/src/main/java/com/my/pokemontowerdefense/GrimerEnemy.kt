@@ -19,6 +19,7 @@ class GrimerEnemy (difficulty: String, var numberOfEnemies: Int) :Enemy() {
 
     var path = Path();
     override var amount = numberOfEnemies
+    var imgResId = R.drawable.grimer8bit
 
     init {
         level = 1

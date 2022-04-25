@@ -15,6 +15,7 @@ class Giratina(difficulty: String, numberOfEnemies: Int) : Enemy() {
 
     var path = Path();
     override var amount = numberOfEnemies
+    var imgResId = R.drawable.giratina
 
     init {
         level = 1
@@ -65,10 +66,6 @@ class Giratina(difficulty: String, numberOfEnemies: Int) : Enemy() {
             animation.doOnEnd {
                 if (enemy.visibility == View.VISIBLE) {
                     monument.reduceMonumentHealth(context, damage, stats)
-                } else {
-                        val intent = Intent(context, GameOverScreen::class.java)
-                        context.startActivity(intent)
-                        System.exit(0)
                 }
             }
         }
