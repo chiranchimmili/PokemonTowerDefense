@@ -39,6 +39,7 @@ open class GameScreen() : AppCompatActivity() {
     private lateinit var currentTower : Tower
     private var level: Int = 1
     private var placedTowerList = arrayListOf<ImageButton>()
+    private var towers = arrayListOf<Tower>()
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -125,7 +126,7 @@ open class GameScreen() : AppCompatActivity() {
         val giratinaEnemy = Giratina(difficulty, 1)
 
         CoroutineScope(Dispatchers.IO).launch {
-            delay(TimeUnit.SECONDS.toMillis(floor(10 + 0.65 * (rattataEnemy.amount + grimerEnemy.amount + haunterEnemy.amount + giratinaEnemy.amount)).toLong() - 1))
+            delay(TimeUnit.SECONDS.toMillis(floor(7 + 0.65 * (rattataEnemy.amount + grimerEnemy.amount + haunterEnemy.amount + giratinaEnemy.amount)).toLong() - 1))
             withContext(Dispatchers.Main) {
                 startRound.isEnabled = true
                 startRound.isVisible = true
@@ -168,7 +169,7 @@ open class GameScreen() : AppCompatActivity() {
         imageButton.x = 20F
         imageButton.y = 20F
         imageButton.setBackgroundColor(Color.TRANSPARENT)
-        imageButton.setImageResource(resId)
+        imageButton.setImageResource(tower.imgResId)
         imageButton.scaleType = ImageView.ScaleType.FIT_START
         if (resId == R.drawable.charmander1) {
             imageButton.tag = 1
@@ -178,52 +179,36 @@ open class GameScreen() : AppCompatActivity() {
             imageButton.tag = 3
         }
         view?.addView(imageButton)
-        imageButton.setOnClickListener {
-            currentTower = tower
+        tower.image = imageButton
+        imageButton.setOnClickListener { v: View ->
+            for (t in towers) {
+                if (t.image == v) {
+                    currentTower = t
+                }
+            }
             upgradeMenu.visibility = View.VISIBLE
         }
+        towers.add(tower)
         placedTowerList.add(imageButton)
     }
 
     fun upgradeTower(tower: Tower, stats: Stats) {
-        for (placedTower in placedTowerList) {
-            if (placedTower.tag == 1) {
-                if(shop.upgradeTower(CharmanderTower, player)) {
-                    if (tower.upgrade()) {
-                        placedTower.scaleType = ImageView.ScaleType.FIT_START
-                        placedTower.setImageResource(R.drawable.charmeleon)
-                        placedTower.tag = 4
-                    } else {
-                        tower.unabletoUpgrade(this)
-                    }
-                } else {
-                    insufficientFunds()
+        if(shop.upgradeTower(tower, player)) {
+            if (tower.upgrade()) {
+                tower.image?.scaleType = ImageView.ScaleType.FIT_START
+                if (tower is CharmanderTower) {
+                    tower.image?.setImageResource(R.drawable.charmeleon)
+                } else if (tower is SquirtleTower) {
+                    tower.image?.setImageResource(R.drawable.wartortle)
+                } else if (tower is BulbasaurTower) {
+                    tower.image?.setImageResource(R.drawable.ivysaur)
                 }
-            } else if (placedTower.tag == 2) {
-                if (shop.upgradeTower(SquirtleTower, player)) {
-                    if (tower.upgrade()) {
-                        placedTower.scaleType = ImageView.ScaleType.FIT_START
-                        placedTower.setImageResource(R.drawable.wartortle)
-                        placedTower.tag = 5
-                    } else {
-                        tower.unabletoUpgrade(this)
-                    }
-                } else {
-                    insufficientFunds()
-                }
-            } else  {
-                if (shop.upgradeTower(BulbasaurTower, player)) {
-                    if (tower.upgrade()) {
-                        placedTower.scaleType = ImageView.ScaleType.FIT_START
-                        placedTower.setImageResource(R.drawable.ivysaur)
-                        placedTower.tag = 6
-                    } else {
-                        tower.unabletoUpgrade(this)
-                    }
-                } else {
-                    insufficientFunds()
-                }
+
+            } else {
+                tower.unabletoUpgrade(this)
             }
+        } else {
+            insufficientFunds()
         }
         player.subtractMoney(tower.upgradeCost, stats)
 

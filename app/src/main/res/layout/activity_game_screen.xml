@@ -419,8 +419,9 @@
 
         <Button
             android:id="@+id/upgradeButton"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:text="Upgrade?"
             android:background="@color/purple_500"

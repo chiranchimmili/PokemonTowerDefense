@@ -18,6 +18,7 @@ open abstract class Tower {
     abstract val towerRange: Int
     abstract val atkResId: Int
     open var upgradeCost: Int = 0
+    open var image: ImageView? = null
     open var cost: Int = 0
         get() {
             return field
